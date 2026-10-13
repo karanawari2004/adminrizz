@@ -1,0 +1,249 @@
+/* ================================
+   CONTACT PAGE - BURGUNDY NIGHT THEME
+================================ */
+
+#contact-page {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 125px 24px 80px;
+
+  background:
+    radial-gradient(
+      ellipse at 72% 32%,
+      rgba(43, 72, 110, 0.5),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 20% 85%,
+      rgba(190, 205, 222, 0.09),
+      transparent 42%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-background) 0%,
+      var(--color-burgundy) 48%,
+      var(--color-burgundy-rich) 100%
+    );
+
+  text-align: center;
+}
+
+/* Decorative border */
+
+#contact-page::before {
+  position: absolute;
+  inset: 110px 30px 30px;
+  border: 1px solid var(--color-border);
+  content: "";
+  pointer-events: none;
+}
+
+/* Eyebrow */
+
+#contact-eyebrow {
+  position: relative;
+  margin: 0 0 18px;
+  color: var(--color-champagne);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+}
+
+/* Main heading */
+
+#contact-title {
+  position: relative;
+  margin: 0 0 14px;
+  color: var(--color-champagne);
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 112px);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+
+/* Description */
+
+#contact-description {
+  position: relative;
+  max-width: 520px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* Contact form */
+
+#contact-message-form {
+  position: relative;
+  display: flex;
+  width: min(100%, 430px);
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+/* Form fields */
+
+#contact-name-field,
+#contact-email-field,
+#contact-message-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Labels */
+
+#contact-name-label,
+#contact-email-label,
+#contact-message-label {
+  color: var(--color-muted);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Inputs */
+
+#contact-name-input,
+#contact-email-input,
+#contact-message-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 14px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+
+  background: var(--color-input);
+  color: var(--color-ivory);
+
+  font-size: 11px;
+  letter-spacing: 0.04em;
+
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* Message textarea */
+
+#contact-message-input {
+  min-height: 105px;
+  resize: vertical;
+}
+
+/* Placeholder */
+
+#contact-name-input::placeholder,
+#contact-email-input::placeholder,
+#contact-message-input::placeholder {
+  color: rgba(181, 192, 206, 0.78);
+}
+
+/* Input focus */
+
+#contact-name-input:focus,
+#contact-email-input:focus,
+#contact-message-input:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+  background: var(--color-burgundy-rich);
+  box-shadow: 0 0 0 3px rgba(190, 205, 222, 0.1);
+}
+
+/* Submit button */
+
+#contact-submit-button {
+  min-height: 50px;
+  margin-top: 3px;
+
+  border: 1px solid var(--color-champagne);
+  background: linear-gradient(
+    120deg,
+    var(--color-champagne),
+    var(--color-gold)
+  );
+  color: var(--color-text-on-champagne);
+  cursor: pointer;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* Button hover */
+
+#contact-submit-button:hover {
+  border-color: var(--color-champagne);
+  background: var(--color-burgundy-rich);
+  color: var(--color-champagne);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(5, 11, 20, 0.35);
+}
+
+#contact-submit-button:active {
+  transform: translateY(0);
+}
+
+#contact-submit-button:focus-visible {
+  outline: 2px solid var(--color-champagne);
+  outline-offset: 4px;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 600px) {
+  #contact-page {
+    padding: 105px 20px 55px;
+  }
+
+  #contact-page::before {
+    inset: 95px 12px 15px;
+  }
+
+  #contact-title {
+    font-size: clamp(48px, 12vw, 72px);
+  }
+
+  #contact-description {
+    max-width: 420px;
+  }
+
+  #contact-message-form {
+    width: 100%;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  #contact-name-input,
+  #contact-email-input,
+  #contact-message-input,
+  #contact-submit-button {
+    transition: none;
+  }
+
+  #contact-submit-button:hover,
+  #contact-submit-button:active {
+    transform: none;
+  }
+}
