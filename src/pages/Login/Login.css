@@ -1,0 +1,843 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 22px 16px;
+  overflow: hidden;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(190, 65, 39, 0.42),
+      transparent 27%
+    ),
+    radial-gradient(
+      ellipse at 100% 100%,
+      rgba(169, 58, 38, 0.28),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #0a1732,
+      #101d3a 55%,
+      #09152e
+    );
+}
+
+/* ==========================================
+   BACKGROUND DECORATION
+========================================== */
+
+.bg-orbit {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(255, 111, 54, 0.27);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.bg-orbit-left {
+  width: 380px;
+  height: 380px;
+  top: -235px;
+  left: -140px;
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.015);
+}
+
+.bg-orbit-right {
+  width: 340px;
+  height: 340px;
+  bottom: -220px;
+  right: -135px;
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.015);
+}
+
+.bg-star {
+  position: absolute;
+  color: #ff7040;
+  font-size: 31px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.star-one {
+  left: 15%;
+  top: 29%;
+}
+
+.star-two {
+  right: 13%;
+  top: 43%;
+  font-size: 24px;
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 19px;
+  z-index: 2;
+}
+
+.login-logo h1 {
+  color: #fff;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.login-logo h1 span {
+  color: #ff5b2c;
+}
+
+.logo-ticket {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #fff;
+  padding: 5px 7px;
+}
+
+.logo-barcode {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 2px 0;
+}
+
+.logo-barcode span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+/* ==========================================
+   MAIN CARD
+========================================== */
+
+.login-card {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  max-width: 650px;
+
+  border-radius: 23px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    145deg,
+    #172440,
+    #0b1730
+  );
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(255, 91, 42, 0.07);
+}
+
+/* SVG outline */
+
+.card-border-svg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 10;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ==========================================
+   ORANGE HEADER
+========================================== */
+
+.login-header {
+  position: relative;
+
+  width: 100%;
+  height: 155px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: transparent;
+}
+
+/* SVG ticket background */
+
+.header-ticket-svg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Header content */
+
+.header-content {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 3;
+}
+
+.login-tagline {
+  display: block;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  margin-bottom: 11px;
+}
+
+.login-header h2 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+
+  color: #fff;
+
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+}
+
+/* ==========================================
+   HEADER STAMP
+========================================== */
+
+.header-stamp {
+  position: absolute;
+
+  top: 32px;
+  right: 65px;
+
+  z-index: 4;
+
+  padding: 10px 13px;
+
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transform: rotate(-13deg);
+}
+
+.header-stamp span {
+  font-size: 16px;
+}
+
+/* ==========================================
+   PERFORATION
+========================================== */
+
+.header-perforation {
+  position: absolute;
+
+  top: 14px;
+  bottom: 14px;
+  right: 47px;
+
+  z-index: 2;
+
+  border-right: 2px dashed rgba(87, 37, 21, 0.7);
+}
+
+/* ==========================================
+   CONCERT CROWD ART
+========================================== */
+
+.crowd-art {
+  position: absolute;
+
+  width: 49%;
+  height: 85px;
+
+  bottom: 0;
+  right: 35px;
+
+  z-index: 1;
+
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ==========================================
+   LOGIN FORM
+========================================== */
+
+.login-form {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 25px 39px 24px;
+}
+
+/* ==========================================
+   FIELD LABELS
+========================================== */
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 9px;
+
+  color: #f3f4f8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.field-label svg {
+  color: #f1f2f5;
+  flex-shrink: 0;
+}
+
+.field-label b {
+  color: #ff612f;
+}
+
+/* ==========================================
+   INPUT BOXES
+========================================== */
+
+.login-input {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 14px;
+  margin-bottom: 22px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid #46516b;
+  border-radius: 12px;
+
+  box-shadow: inset 3px 0 #ff702d;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.login-input > svg {
+  flex-shrink: 0;
+  color: #f3f4f7;
+}
+
+.login-input:focus-within {
+  border-color: #ff7439;
+
+  box-shadow:
+    inset 3px 0 #ff702d,
+    0 0 0 3px rgba(255, 102, 45, 0.1);
+}
+
+.login-input input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.login-input input::placeholder {
+  color: #8e9ab0;
+}
+
+/* ==========================================
+   PASSWORD VISIBILITY
+========================================== */
+
+.password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: transparent;
+  border: none;
+
+  color: #b5c0d1;
+  cursor: pointer;
+
+  padding: 4px;
+}
+
+.password-toggle:hover {
+  color: #ff793f;
+}
+
+/* ==========================================
+   REMEMBER / FORGOT PASSWORD
+========================================== */
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin: -2px 0 22px;
+}
+
+.remember-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #f2f3f7;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.remember-option input {
+  width: 17px;
+  height: 17px;
+
+  accent-color: #ff592c;
+  cursor: pointer;
+}
+
+.login-options a {
+  color: #ff743c;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================
+   TICKET SIGN-IN BUTTON
+========================================== */
+
+.login-button {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    105deg,
+    #ff7920,
+    #f0471c
+  );
+
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: filter 0.25s ease;
+}
+
+/* Left ticket cut */
+
+.login-button::before {
+  content: "";
+
+  position: absolute;
+  z-index: 1;
+
+  width: 22px;
+  height: 22px;
+
+  left: -11px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: #101d37;
+  border-radius: 50%;
+}
+
+/* Right ticket cut */
+
+.login-button::after {
+  content: "";
+
+  position: absolute;
+  z-index: 1;
+
+  width: 22px;
+  height: 22px;
+
+  right: -11px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: #101d37;
+  border-radius: 50%;
+}
+
+.login-button span,
+.login-button svg {
+  position: relative;
+  z-index: 2;
+}
+
+.login-button:hover {
+  filter: brightness(1.08);
+}
+
+.login-button:active {
+  filter: brightness(0.95);
+}
+
+.login-error {
+  margin-top: 12px;
+  color: #ff8a80;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ==========================================
+   SECURITY FOOTER
+========================================== */
+
+.login-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin-top: 17px;
+
+  color: #8996ac;
+  font-size: 12px;
+}
+
+.login-security svg {
+  color: #ff672f;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 768px) {
+  .login-card {
+    max-width: 520px;
+  }
+
+  .login-header {
+    height: 140px;
+  }
+
+  .login-form {
+    padding: 24px 27px 22px;
+  }
+
+  .login-header h2 {
+    font-size: 31px;
+  }
+
+  .header-content {
+    left: 28px;
+  }
+
+  .header-stamp {
+    right: 55px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+  .login-page {
+    min-height: 100svh;
+    padding: 20px 14px;
+  }
+
+  .login-logo {
+    margin-bottom: 19px;
+  }
+
+  .login-logo h1 {
+    font-size: 24px;
+  }
+
+  .logo-ticket {
+    width: 37px;
+    height: 37px;
+  }
+
+  .login-card {
+    max-width: 420px;
+    border-radius: 19px;
+  }
+
+  .login-header {
+    height: 125px;
+  }
+
+  .header-content {
+    left: 21px;
+  }
+
+  .login-tagline {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    margin-bottom: 9px;
+  }
+
+  .login-header h2 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  .login-header p {
+    font-size: 13px;
+  }
+
+  .header-stamp {
+    display: none;
+  }
+
+  .header-perforation {
+    right: 25px;
+  }
+
+  .crowd-art {
+    width: 50%;
+    height: 60px;
+    right: 22px;
+    opacity: 0.55;
+  }
+
+  .login-form {
+    padding: 22px 19px 19px;
+  }
+
+  .field-label {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .field-label svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .login-input {
+    height: 48px;
+    padding: 0 11px;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .login-input > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .login-input input {
+    font-size: 13px;
+  }
+
+  .login-options {
+    margin-bottom: 20px;
+  }
+
+  .remember-option {
+    font-size: 12px;
+  }
+
+  .login-options a {
+    font-size: 12px;
+  }
+
+  .login-button {
+    height: 49px;
+    font-size: 16px;
+  }
+
+  .login-security {
+    font-size: 11px;
+    margin-top: 16px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 360px) {
+  .login-page {
+    padding: 15px 10px;
+  }
+
+  .login-card {
+    border-radius: 16px;
+  }
+
+  .login-header {
+    height: 115px;
+  }
+
+  .header-content {
+    left: 17px;
+  }
+
+  .login-header h2 {
+    font-size: 25px;
+  }
+
+  .login-tagline {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .login-form {
+    padding: 20px 15px 17px;
+  }
+
+  .login-input {
+    height: 46px;
+  }
+
+  .login-options {
+    gap: 5px;
+  }
+
+  .remember-option,
+  .login-options a {
+    font-size: 10px;
+  }
+
+  .login-button {
+    height: 47px;
+  }
+}
+
+/* ==========================================
+   SHORT DESKTOP SCREENS
+========================================== */
+
+@media (min-width: 601px) and (max-height: 700px) {
+  .login-page {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .login-logo {
+    margin-bottom: 12px;
+  }
+
+  .login-header {
+    height: 125px;
+  }
+
+  .login-form {
+    padding-top: 19px;
+    padding-bottom: 17px;
+  }
+
+  .login-input {
+    height: 45px;
+    margin-bottom: 15px;
+  }
+
+  .login-options {
+    margin-bottom: 16px;
+  }
+
+  .login-button {
+    height: 48px;
+  }
+
+  .login-security {
+    margin-top: 12px;
+  }
+}

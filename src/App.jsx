@@ -1,49 +1,54 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
-import Sidebar from "./Components/Sidebar";
-import {
-  CustomCursor,
-  GrainOverlay,
-  PageTransition,
-  Preloader,
-  ScrollReveal,
-  SmoothScroll,
-} from "./Components/MotionEffects";
+import { PageTransition, Preloader } from "./Components/MotionEffects";
 
-import Home from "./pages/Home";
-import Evenings from "./pages/Evenings";
-import Menu from "./pages/Menu";
-import Contact from "./pages/Contact";
-import MyAccount from "./pages/Myaccount";
-import PrivateEvents from "./pages/PrivateEvents";
+import Login from "./pages/Login/Login";
+import AdminLayout from "./admin/AdminLayout";
+import SalesReport from "./admin/pages/SalesReport/SalesReport";
+import EventEndReport from "./admin/pages/EventEndReport/EventEndReport";
+import EventsPage from "./admin/pages/EventsPage/EventsPage";
+import ArtistsPage from "./admin/pages/ArtistsPage/ArtistsPage";
+import EventPhasesPage from "./admin/pages/EventPhasesPage/EventPhasesPage";
+import ClubsPage from "./admin/pages/ClubsPage/ClubsPage";
+import ClubManagersPage from "./admin/pages/ClubManagersPage/ClubManagersPage";
+import CategoriesPage from "./admin/pages/CategoriesPage/CategoriesPage";
+import GenresPage from "./admin/pages/GenresPage/GenresPage";
+import UtilityPage from "./admin/pages/UtilityPage/UtilityPage";
 
 function RoutedApp() {
   const location = useLocation();
+  const isLoginPage = location.pathname === "/" || location.pathname === "/login";
 
   return (
     <>
-      <Preloader />
+      {isLoginPage && <Preloader />}
       <a className="skip-link" href="#route-content">
         Skip to main content
       </a>
-      <Sidebar />
       <div id="route-content" tabIndex={-1}>
-        <ScrollReveal />
         <PageTransition>
           <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/evenings" element={<Evenings />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/private-events" element={<PrivateEvents />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/my-account" element={<MyAccount />} />
-            <Route path="*" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate replace to="sales-report" />} />
+              <Route path="sales-report" element={<SalesReport />} />
+              <Route path="event-end-report" element={<EventEndReport />} />
+              <Route path="events" element={<EventsPage />} />
+              <Route path="artists" element={<ArtistsPage />} />
+              <Route path="event-phases" element={<EventPhasesPage />} />
+              <Route path="clubs" element={<ClubsPage />} />
+              <Route path="club-managers" element={<ClubManagersPage />} />
+              <Route path="categories" element={<CategoriesPage />} />
+              <Route path="genres" element={<GenresPage />} />
+              <Route path="venue-booking" element={<UtilityPage title="Venue & Table Booking" />} />
+              <Route path="change-password" element={<UtilityPage section="Apps" title="Change Password" />} />
+              <Route path="*" element={<Navigate replace to="/admin/sales-report" />} />
+            </Route>
+            <Route path="*" element={<Login />} />
           </Routes>
         </PageTransition>
       </div>
-      <SmoothScroll />
-      <GrainOverlay />
-      <CustomCursor />
     </>
   );
 }

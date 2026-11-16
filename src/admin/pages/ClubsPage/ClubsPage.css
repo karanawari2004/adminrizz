@@ -1,0 +1,529 @@
+/* =========================================
+   CLUB MANAGEMENT - PREMIUM ADMIN DESIGN
+========================================= */
+
+.admin-clubs-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px 30px 35px;
+  color: #edf2ff;
+  background: transparent;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.admin-clubs-page *,
+.admin-clubs-page *::before,
+.admin-clubs-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.admin-clubs-page h1,
+.admin-clubs-page h2 {
+  color: #f5f7ff;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+/* =========================================
+   SEARCH AND TOOLBAR
+========================================= */
+
+.admin-clubs-page .admin-search-bar,
+.admin-clubs-page .admin-catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: 100%;
+  min-height: 76px;
+  padding: 12px 15px;
+  margin: 22px 0 20px;
+
+  background: linear-gradient(
+    110deg,
+    rgba(27, 43, 70, 0.92),
+    rgba(18, 32, 55, 0.95)
+  );
+
+  border: 1px solid rgba(100, 125, 170, 0.25);
+  border-radius: 12px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Search Input */
+
+.admin-clubs-page .admin-search-bar input,
+.admin-clubs-page .admin-catalog-toolbar input,
+.admin-clubs-page input[type="search"],
+.admin-clubs-page input[type="text"] {
+  width: 100%;
+  max-width: 85%;
+  height: 46px;
+
+  padding: 0 16px;
+
+  color: #f3f6ff;
+  background: rgba(17, 31, 54, 0.85);
+
+  border: 1px solid #344563;
+  border-radius: 9px;
+
+  outline: none;
+  font-size: 14px;
+
+  transition: border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              background 0.25s ease;
+}
+
+.admin-clubs-page input::placeholder {
+  color: #a2aec4;
+}
+
+.admin-clubs-page input:focus {
+  border-color: #ff5a1f;
+  background: #172944;
+
+  box-shadow: 0 0 0 3px rgba(255, 83, 28, 0.12);
+}
+
+/* =========================================
+   ADD CLUB BUTTON
+========================================= */
+
+.admin-clubs-page .admin-primary-button {
+  min-width: 125px;
+  min-height: 46px;
+
+  padding: 0 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff6428, #f0440d);
+
+  border: 1px solid #ff6428;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(255, 75, 20, 0.16);
+
+  transition: all 0.25s ease;
+}
+
+.admin-clubs-page .admin-primary-button:hover {
+  background: linear-gradient(135deg, #ff7943, #ff5019);
+  box-shadow: 0 6px 18px rgba(255, 75, 20, 0.28);
+  transform: translateY(-2px);
+}
+
+.admin-clubs-page .admin-primary-button:active {
+  transform: scale(0.97);
+}
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.admin-clubs-page .admin-table-card {
+  width: 100%;
+  overflow-x: auto;
+
+  background: linear-gradient(
+    145deg,
+    rgba(21, 36, 61, 0.96),
+    rgba(13, 27, 49, 0.98)
+  );
+
+  border: 1px solid rgba(103, 130, 177, 0.32);
+  border-radius: 13px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+/* =========================================
+   TABLE STRUCTURE
+========================================= */
+
+.admin-clubs-page table {
+  width: 100%;
+  min-width: 620px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  text-align: left;
+}
+
+/* Table Header */
+
+.admin-clubs-page thead {
+  background: linear-gradient(
+    110deg,
+    #293a59,
+    #25334e
+  );
+}
+
+.admin-clubs-page th {
+  height: 60px;
+  padding: 0 30px;
+
+  color: #f6f8ff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid rgba(120, 145, 185, 0.22);
+}
+
+/* Rounded Header Corners */
+
+.admin-clubs-page thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.admin-clubs-page thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.admin-clubs-page td {
+  height: 55px;
+  padding: 10px 30px;
+
+  color: #dce5f5;
+  font-size: 14px;
+
+  border-bottom: 1px solid rgba(110, 135, 175, 0.19);
+
+  transition: background 0.2s ease;
+}
+
+/* Club Name */
+
+.admin-clubs-page tbody td:first-child {
+  position: relative;
+
+  color: #f5f7ff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Orange Left Indicator */
+
+.admin-clubs-page tbody tr td:first-child::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+
+  width: 4px;
+
+  background: #ff5722;
+  border-radius: 0 5px 5px 0;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Row Hover */
+
+.admin-clubs-page tbody tr {
+  background: rgba(255, 255, 255, 0.008);
+  transition: background 0.2s ease;
+}
+
+.admin-clubs-page tbody tr:hover {
+  background: rgba(49, 75, 112, 0.30);
+}
+
+.admin-clubs-page tbody tr:hover td:first-child::before {
+  opacity: 1;
+}
+
+/* Last Row */
+
+.admin-clubs-page tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================
+   STATUS BADGE
+========================================= */
+
+.admin-clubs-page .admin-status,
+.admin-clubs-page .status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-width: 88px;
+  padding: 6px 13px;
+
+  color: #075b32;
+  background: #a8f3c1;
+
+  border: 1px solid rgba(91, 235, 145, 0.35);
+  border-radius: 30px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.admin-clubs-page .admin-table button,
+.admin-clubs-page .admin-action-button {
+  width: 39px;
+  height: 39px;
+
+  margin-right: 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: all 0.22s ease;
+}
+
+/* EDIT BUTTON */
+
+.admin-clubs-page button[aria-label*="Edit"],
+.admin-clubs-page .admin-edit-button {
+  color: #d1d9ff;
+  background: #202f50;
+  border-color: rgba(130, 155, 220, 0.12);
+}
+
+.admin-clubs-page button[aria-label*="Edit"]:hover,
+.admin-clubs-page .admin-edit-button:hover {
+  color: #ffffff;
+  background: #354b7c;
+  border-color: #7189d4;
+
+  transform: translateY(-2px);
+}
+
+/* DELETE BUTTON */
+
+.admin-clubs-page button[aria-label*="Delete"],
+.admin-clubs-page button[aria-label*="Remove"],
+.admin-clubs-page .admin-delete-button {
+  color: #ff725d;
+  background: rgba(151, 39, 37, 0.32);
+  border-color: rgba(255, 83, 65, 0.12);
+}
+
+.admin-clubs-page button[aria-label*="Delete"]:hover,
+.admin-clubs-page button[aria-label*="Remove"]:hover,
+.admin-clubs-page .admin-delete-button:hover {
+  color: #ffffff;
+  background: #c9362b;
+  border-color: #f35b4d;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   COUNT BADGE
+========================================= */
+
+.admin-clubs-page .admin-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 25px;
+  height: 23px;
+
+  margin-left: 7px;
+  padding: 0 7px;
+
+  color: #ffffff;
+  background: #142541;
+
+  border: 1px solid rgba(125, 150, 195, 0.15);
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.admin-clubs-page .admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+
+  margin-top: 22px;
+}
+
+.admin-clubs-page .admin-pagination button {
+  min-width: 39px;
+  height: 39px;
+
+  color: #dce5f7;
+  background: #1c2c49;
+
+  border: 1px solid rgba(120, 145, 190, 0.15);
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-clubs-page .admin-pagination button:hover {
+  color: #ffffff;
+  background: #ff5722;
+  border-color: #ff5722;
+}
+
+.admin-clubs-page .admin-pagination button.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff6428, #f0440d);
+  border-color: #ff5722;
+
+  box-shadow: 0 3px 10px rgba(255, 80, 25, 0.2);
+}
+
+/* =========================================
+   SHOWING RECORDS TEXT
+========================================= */
+
+.admin-clubs-page .admin-pagination-info,
+.admin-clubs-page .admin-table-info {
+  color: #b5c2d9;
+  font-size: 13px;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.admin-clubs-page .admin-empty-row {
+  padding: 35px;
+
+  color: #aab8ce;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1024px) {
+  .admin-clubs-page {
+    padding: 24px 20px;
+  }
+
+  .admin-clubs-page th,
+  .admin-clubs-page td {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-clubs-page {
+    padding: 18px 14px;
+  }
+
+  .admin-clubs-page .admin-search-bar,
+  .admin-clubs-page .admin-catalog-toolbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .admin-clubs-page .admin-search-bar input,
+  .admin-clubs-page .admin-catalog-toolbar input,
+  .admin-clubs-page input[type="search"],
+  .admin-clubs-page input[type="text"] {
+    max-width: 100%;
+  }
+
+  .admin-clubs-page .admin-primary-button {
+    min-height: 43px;
+  }
+
+  .admin-clubs-page th {
+    height: 53px;
+    font-size: 13px;
+  }
+
+  .admin-clubs-page td {
+    height: 52px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-clubs-page {
+    padding: 14px 10px;
+  }
+
+  .admin-clubs-page .admin-search-bar,
+  .admin-clubs-page .admin-catalog-toolbar {
+    padding: 10px;
+    border-radius: 9px;
+  }
+
+  .admin-clubs-page .admin-primary-button {
+    width: 100%;
+  }
+
+  .admin-clubs-page .admin-table-card {
+    border-radius: 9px;
+  }
+
+  .admin-clubs-page table {
+    min-width: 570px;
+  }
+
+  .admin-clubs-page th,
+  .admin-clubs-page td {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .admin-clubs-page .admin-pagination {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,217 @@
+/* ==============================
+   CLUB SELECTOR CARD
+============================== */
+
+.admin-club-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 440px) 1fr;
+  align-items: center;
+  gap: 32px;
+
+  width: 100%;
+  min-height: 148px;
+  padding: 28px 32px;
+
+  background: linear-gradient(
+    110deg,
+    #17243d 0%,
+    #1b2944 55%,
+    #253553 100%
+  );
+
+  border: 1px solid rgba(150, 170, 205, 0.25);
+  border-left: 5px solid #ff5722;
+  border-radius: 15px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Subtle hover effect */
+
+.admin-club-card:hover {
+  border-color: rgba(255, 87, 34, 0.45);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.22),
+    0 0 15px rgba(255, 87, 34, 0.06);
+}
+
+/* ==============================
+   LABEL
+============================== */
+
+.admin-club-card label {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #f4f5fa;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* ==============================
+   SELECT BOX
+============================== */
+
+.admin-club-card select {
+  width: 100%;
+  height: 49px;
+
+  padding: 0 40px 0 15px;
+
+  color: #f4f5fa;
+  font-size: 14px;
+  font-weight: 500;
+
+  background-color: #18243a;
+
+  border: 1px solid #566581;
+  border-radius: 10px;
+
+  outline: none;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+/* Select options */
+
+.admin-club-card select option {
+  background: #17243d;
+  color: #ffffff;
+}
+
+/* Focus */
+
+.admin-club-card select:focus {
+  border-color: #ff5722;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 87, 34, 0.13);
+}
+
+/* Hover */
+
+.admin-club-card select:hover {
+  border-color: #ff754b;
+}
+
+/* ==============================
+   DESCRIPTION
+============================== */
+
+.admin-club-card p {
+  position: relative;
+
+  margin: 25px 0 0;
+  padding-left: 24px;
+
+  color: #b7c0d2;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Small information indicator */
+
+.admin-club-card p::before {
+  content: "i";
+
+  position: absolute;
+  left: 0;
+  top: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 16px;
+  height: 16px;
+
+  border: 1.5px solid #ff754b;
+  border-radius: 50%;
+
+  color: #ff754b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 900px) {
+  .admin-club-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    padding: 24px;
+  }
+
+  .admin-club-card p {
+    margin: 0;
+  }
+}
+
+/* Tablets and mobile */
+
+@media (max-width: 600px) {
+  .admin-club-card {
+    min-height: auto;
+
+    padding: 20px 17px;
+
+    gap: 15px;
+
+    border-radius: 12px;
+    border-left-width: 4px;
+  }
+
+  .admin-club-card label {
+    margin-bottom: 9px;
+    font-size: 14px;
+  }
+
+  .admin-club-card select {
+    height: 45px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .admin-club-card p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
+/* Small mobile screens */
+
+@media (max-width: 380px) {
+  .admin-club-card {
+    padding: 17px 13px;
+  }
+
+  .admin-club-card select {
+    height: 43px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-club-card,
+  .admin-club-card select {
+    transition: none;
+  }
+}

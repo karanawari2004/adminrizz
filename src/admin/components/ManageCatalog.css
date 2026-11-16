@@ -1,0 +1,455 @@
+/* ==========================================
+   MANAGE CATALOG - PREMIUM RIZZTIX DESIGN
+========================================== */
+
+.admin-catalog-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px 30px 35px;
+  color: #edf2ff;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.admin-catalog-page *,
+.admin-catalog-page *::before,
+.admin-catalog-page *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   TOOLBAR
+========================================== */
+
+.admin-catalog-page .admin-catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  width: 100%;
+  min-height: 76px;
+  padding: 12px;
+
+  margin: 22px 0 20px;
+
+  background: linear-gradient(
+    110deg,
+    rgba(29, 44, 72, 0.95),
+    rgba(18, 32, 55, 0.96)
+  );
+
+  border: 1px solid rgba(104, 130, 175, 0.25);
+  border-radius: 12px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================
+   SEARCH INPUT
+========================================== */
+
+.admin-catalog-page .admin-catalog-toolbar > input {
+  width: 100%;
+  max-width: 85%;
+  height: 46px;
+
+  padding: 0 16px;
+
+  color: #f3f6ff;
+  background: rgba(16, 30, 52, 0.85);
+
+  border: 1px solid #354563;
+  border-radius: 9px;
+
+  outline: none;
+  font-size: 14px;
+
+  transition: all 0.25s ease;
+}
+
+.admin-catalog-page .admin-catalog-toolbar > input::placeholder {
+  color: #a4b0c6;
+}
+
+.admin-catalog-page .admin-catalog-toolbar > input:focus {
+  border-color: #ff5722;
+
+  background: #172944;
+
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
+}
+
+/* ==========================================
+   ADD BUTTON
+========================================== */
+
+.admin-catalog-page .admin-primary-button {
+  min-width: 125px;
+  min-height: 46px;
+
+  padding: 0 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #ff6428,
+    #f0440d
+  );
+
+  border: 1px solid #ff6428;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(255, 75, 20, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+.admin-catalog-page .admin-primary-button:hover {
+  background: linear-gradient(
+    135deg,
+    #ff7943,
+    #ff5019
+  );
+
+  box-shadow: 0 6px 18px rgba(255, 75, 20, 0.25);
+
+  transform: translateY(-2px);
+}
+
+.admin-catalog-page .admin-primary-button:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================
+   TABLE CONTAINER
+========================================== */
+
+.admin-catalog-page .admin-table-card {
+  width: 100%;
+  overflow-x: auto;
+
+  background: linear-gradient(
+    145deg,
+    rgba(21, 36, 61, 0.97),
+    rgba(13, 27, 49, 0.98)
+  );
+
+  border: 1px solid rgba(103, 130, 177, 0.32);
+  border-radius: 13px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.17);
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.admin-catalog-page .admin-catalog-table {
+  width: 100%;
+  min-width: 640px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  text-align: left;
+}
+
+/* Table Header */
+
+.admin-catalog-page .admin-catalog-table thead {
+  background: linear-gradient(
+    110deg,
+    #293a59,
+    #25334e
+  );
+}
+
+.admin-catalog-page .admin-catalog-table th {
+  height: 60px;
+  padding: 0 30px;
+
+  color: #f5f7ff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid rgba(120, 145, 185, 0.22);
+}
+
+.admin-catalog-page .admin-catalog-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.admin-catalog-page .admin-catalog-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* ==========================================
+   TABLE BODY
+========================================== */
+
+.admin-catalog-page .admin-catalog-table td {
+  height: 55px;
+  padding: 10px 30px;
+
+  color: #dce5f5;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid rgba(110, 135, 175, 0.19);
+
+  transition: background 0.2s ease;
+}
+
+/* First Column */
+
+.admin-catalog-page .admin-catalog-table td:first-child {
+  position: relative;
+
+  color: #f5f7ff;
+  font-weight: 600;
+}
+
+/* Orange Row Indicator */
+
+.admin-catalog-page .admin-catalog-table tbody td:first-child::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+
+  width: 4px;
+
+  background: #ff5722;
+  border-radius: 0 5px 5px 0;
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
+}
+
+/* Row Hover */
+
+.admin-catalog-page .admin-catalog-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.admin-catalog-page .admin-catalog-table tbody tr:hover {
+  background: rgba(55, 80, 119, 0.25);
+}
+
+.admin-catalog-page .admin-catalog-table tbody tr:hover td:first-child::before {
+  opacity: 1;
+}
+
+/* Last Row */
+
+.admin-catalog-page .admin-catalog-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================
+   COUNT BADGE
+========================================== */
+
+.admin-catalog-page .admin-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 25px;
+  height: 23px;
+
+  margin-left: 8px;
+  padding: 0 7px;
+
+  color: #ffffff;
+  background: #142541;
+
+  border: 1px solid rgba(125, 150, 195, 0.15);
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.admin-catalog-page .admin-catalog-table td:last-child {
+  white-space: nowrap;
+}
+
+/* Common Action Button */
+
+.admin-catalog-page .admin-icon-action {
+  width: 39px;
+  height: 39px;
+
+  margin-right: 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d1d9ff;
+  background: #202f50;
+
+  border: 1px solid rgba(130, 155, 220, 0.12);
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: all 0.22s ease;
+}
+
+/* Edit */
+
+.admin-catalog-page .admin-icon-action:not(.delete):hover {
+  color: #ffffff;
+  background: #354b7c;
+
+  border-color: #7189d4;
+
+  transform: translateY(-2px);
+}
+
+/* Delete */
+
+.admin-catalog-page .admin-icon-action.delete {
+  color: #ff725d;
+  background: rgba(151, 39, 37, 0.32);
+
+  border-color: rgba(255, 83, 65, 0.12);
+}
+
+.admin-catalog-page .admin-icon-action.delete:hover {
+  color: #ffffff;
+  background: #c9362b;
+
+  border-color: #f35b4d;
+
+  transform: translateY(-2px);
+}
+
+/* Button Click */
+
+.admin-catalog-page .admin-icon-action:active {
+  transform: scale(0.94);
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.admin-catalog-page .admin-empty-row {
+  padding: 40px 20px !important;
+
+  color: #aab8ce !important;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400 !important;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1024px) {
+  .admin-catalog-page {
+    padding: 24px 20px;
+  }
+
+  .admin-catalog-page .admin-catalog-table th,
+  .admin-catalog-page .admin-catalog-table td {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-catalog-page {
+    padding: 18px 14px;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar > input {
+    max-width: 100%;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar .admin-primary-button {
+    min-height: 43px;
+  }
+
+  .admin-catalog-page .admin-catalog-table th {
+    height: 53px;
+    font-size: 13px;
+  }
+
+  .admin-catalog-page .admin-catalog-table td {
+    height: 52px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-catalog-page {
+    padding: 14px 10px;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar {
+    padding: 10px;
+    border-radius: 9px;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar > input {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .admin-catalog-page .admin-catalog-toolbar .admin-primary-button {
+    width: 100%;
+  }
+
+  .admin-catalog-page .admin-table-card {
+    border-radius: 9px;
+  }
+
+  .admin-catalog-page .admin-catalog-table {
+    min-width: 570px;
+  }
+
+  .admin-catalog-page .admin-catalog-table th,
+  .admin-catalog-page .admin-catalog-table td {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .admin-catalog-page .admin-icon-action {
+    width: 34px;
+    height: 34px;
+  }
+}

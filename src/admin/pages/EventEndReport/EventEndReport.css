@@ -1,0 +1,9 @@
+.admin-event-end-report-page .admin-report-content {
+  padding: 0 24px;
+}
+
+@media (max-width: 700px) {
+  .admin-event-end-report-page .admin-report-content {
+    padding: 0;
+  }
+}

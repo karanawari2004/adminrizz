@@ -1,0 +1,99 @@
+.admin-event-phases-page .admin-phases-panel {
+  min-height: 530px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: #151313;
+}
+
+.admin-event-phases-page .admin-pricing-banner {
+  display: flex;
+  min-height: 138px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid #70301b;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #2a1d18, #171514);
+}
+
+.admin-event-phases-page .admin-pricing-banner span {
+  color: var(--admin-orange);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.admin-event-phases-page .admin-pricing-banner h2 {
+  margin: 8px 0 6px;
+  font-size: 22px;
+}
+
+.admin-event-phases-page .admin-pricing-banner p {
+  max-width: 810px;
+  margin: 0;
+  color: #aaa5a2;
+  line-height: 1.6;
+}
+
+.admin-event-phases-page .admin-pricing-banner .admin-primary-button {
+  min-width: 148px;
+}
+
+.admin-event-phases-page .admin-phase-selects {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(240px, 1.6fr);
+  gap: 12px;
+  margin-top: 23px;
+}
+
+.admin-event-phases-page .admin-phase-selects label,
+.admin-event-phases-page .admin-phase-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #aaa5a2;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.admin-event-phases-page .admin-phase-selects select {
+  border-color: #44403e;
+  border-radius: 10px;
+  background: #2b2725;
+}
+
+.admin-event-phases-page .admin-pick-night {
+  display: grid;
+  min-height: 255px;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.admin-event-phases-page .admin-pick-night h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+.admin-event-phases-page .admin-pick-night p,
+.admin-event-phases-page .admin-phase-config > p {
+  margin: 0;
+  color: #aaa5a2;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.admin-event-phases-page .admin-phase-config { margin-top: 34px; }
+.admin-event-phases-page .admin-phase-config h3 { font-size: 18px; }
+.admin-event-phases-page .admin-phase-inputs { display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 15px; }
+.admin-event-phases-page .admin-phase-inputs label { font-size: 13px; letter-spacing: 0; }
+.admin-event-phases-page .admin-phase-inputs input { border-color: #44403e; background: #2b2725; }
+
+@media (max-width: 700px) {
+  .admin-event-phases-page .admin-phases-panel { padding: 14px; }
+  .admin-event-phases-page .admin-pricing-banner { align-items: flex-start; flex-direction: column; }
+  .admin-event-phases-page .admin-phase-selects,
+  .admin-event-phases-page .admin-phase-inputs { grid-template-columns: 1fr; }
+}

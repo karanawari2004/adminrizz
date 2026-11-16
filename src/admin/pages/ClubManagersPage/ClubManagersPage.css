@@ -1,0 +1,369 @@
+/* =========================================
+   CLUB MANAGERS PAGE
+========================================= */
+
+.admin-club-managers-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px 30px;
+  color: #f1f3fa;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.admin-club-managers-page * {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   MAIN FORM CARD
+========================================= */
+
+.admin-managers-form {
+  width: 100%;
+  max-width: 1050px;
+  margin: 28px auto;
+  padding: 28px 30px;
+
+  background: #18243a;
+  border: 1px solid #34425e;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+  transition: border-color 0.25s ease;
+}
+
+/* =========================================
+   CLUB SELECT
+========================================= */
+
+.admin-manager-club {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 430px;
+  margin-bottom: 30px;
+
+  color: #e6eaf3;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-manager-club select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+
+  color: #f1f3fa;
+  background-color: #202d46;
+
+  border: 1px solid #465570;
+  border-radius: 8px;
+  outline: none;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.admin-manager-club select:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
+}
+
+.admin-manager-club select option {
+  color: #fff;
+  background: #202d46;
+}
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.admin-managers-form h2 {
+  position: relative;
+
+  margin: 0 0 20px;
+  padding-left: 12px;
+
+  color: #f5f6fc;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: 0.1px;
+}
+
+.admin-managers-form h2::before {
+  content: "";
+
+  position: absolute;
+  top: 2px;
+  left: 0;
+
+  width: 3px;
+  height: 19px;
+
+  background: #ff5722;
+  border-radius: 5px;
+}
+
+/* =========================================
+   INVITE FORM
+========================================= */
+
+.admin-managers-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 18px;
+
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.admin-managers-form form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  color: #dce2ee;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================
+   INPUT FIELDS
+========================================= */
+
+.admin-managers-form input {
+  width: 100%;
+  height: 45px;
+  padding: 0 14px;
+
+  color: #f5f6fc;
+  background: #202d46;
+
+  border: 1px solid #465570;
+  border-radius: 8px;
+
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+
+  transition: all 0.25s ease;
+}
+
+.admin-managers-form input::placeholder {
+  color: #8e9bb2;
+}
+
+.admin-managers-form input:focus {
+  border-color: #ff5722;
+  background: #202c43;
+
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
+}
+
+/* =========================================
+   SEND INVITE BUTTON
+========================================= */
+
+.admin-managers-form .admin-primary-button {
+  min-width: 125px;
+  height: 45px;
+  padding: 0 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  background: #ff501c;
+
+  border: 1px solid #ff501c;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.admin-managers-form .admin-primary-button:hover:not(:disabled) {
+  background: #e94313;
+  border-color: #e94313;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 15px rgba(255, 80, 28, 0.2);
+}
+
+.admin-managers-form .admin-primary-button:active {
+  transform: translateY(0);
+}
+
+.admin-managers-form .admin-primary-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   FEEDBACK MESSAGE
+========================================= */
+
+.admin-managers-form .admin-report-feedback {
+  margin: 15px 0 25px;
+  padding: 12px 15px;
+
+  color: #b9f5d0;
+  background: rgba(34, 197, 94, 0.09);
+
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 8px;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   MANAGERS LIST SECTION
+========================================= */
+
+.admin-managers-form .admin-managers-list-title {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+/* No Result Found */
+
+.admin-managers-form .admin-no-result {
+  margin: 0 0 16px;
+  padding: 18px;
+
+  color: #aab5c9;
+  background: #202d46;
+
+  border: 1px solid #34425e;
+  border-radius: 8px;
+
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Refresh Button */
+
+.admin-managers-form > .admin-primary-button {
+  min-width: 95px;
+  height: 40px;
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .admin-club-managers-page {
+    padding: 22px 18px;
+  }
+
+  .admin-managers-form {
+    padding: 24px;
+  }
+
+  .admin-managers-form form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-managers-form form button {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
+
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .admin-club-managers-page {
+    padding: 16px 12px;
+  }
+
+  .admin-managers-form {
+    margin: 18px auto;
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+
+  .admin-manager-club {
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .admin-managers-form h2 {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .admin-managers-form form {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .admin-managers-form form label {
+    width: 100%;
+  }
+
+  .admin-managers-form form button {
+    grid-column: auto;
+    width: 100%;
+    height: 44px;
+  }
+
+  .admin-managers-form input,
+  .admin-manager-club select {
+    height: 44px;
+  }
+
+  .admin-managers-form .admin-managers-list-title {
+    margin-top: 28px;
+  }
+
+  .admin-managers-form > .admin-primary-button {
+    width: 100%;
+  }
+
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .admin-club-managers-page {
+    padding: 12px 8px;
+  }
+
+  .admin-managers-form {
+    padding: 16px 12px;
+  }
+
+  .admin-managers-form h2 {
+    font-size: 15px;
+  }
+
+  .admin-managers-form input {
+    font-size: 13px;
+  }
+
+}

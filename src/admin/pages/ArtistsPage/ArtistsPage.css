@@ -1,0 +1,548 @@
+/* =========================================
+   ARTISTS PAGE - RIZZTIX ADMIN DASHBOARD
+   Premium Navy + Orange Theme
+========================================= */
+
+.admin-artists-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px 30px 40px;
+  color: #f4f6fc;
+  box-sizing: border-box;
+  background: transparent;
+  font-family: inherit;
+}
+
+.admin-artists-page * {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.admin-artists-page .admin-artists-content {
+  width: 100%;
+  padding: 0;
+}
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.admin-artists-page .admin-artists-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: 100%;
+  margin: 22px 0 20px;
+  padding: 16px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(28, 43, 69, 0.96),
+    rgba(17, 29, 50, 0.96)
+  );
+
+  border: 1px solid rgba(104, 128, 170, 0.25);
+  border-radius: 13px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
+}
+
+/* Search Input */
+
+.admin-artists-page .admin-artists-toolbar > input {
+  width: min(100%, 850px);
+  height: 46px;
+
+  padding: 0 17px;
+
+  color: #f5f7ff;
+  background: rgba(20, 33, 56, 0.9);
+
+  border: 1px solid #344563;
+  border-radius: 9px;
+
+  outline: none;
+  font-size: 14px;
+
+  transition: all 0.25s ease;
+}
+
+.admin-artists-page .admin-artists-toolbar > input::placeholder {
+  color: #9ba9c1;
+}
+
+.admin-artists-page .admin-artists-toolbar > input:hover {
+  border-color: #536789;
+}
+
+.admin-artists-page .admin-artists-toolbar > input:focus {
+  border-color: #ff5a1f;
+  box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.13);
+}
+
+/* =========================================
+   ADD ARTIST BUTTON
+========================================= */
+
+.admin-artists-page .admin-primary-button {
+  min-height: 46px;
+  padding: 0 23px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  flex-shrink: 0;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff641f, #f0440b);
+
+  border: 1px solid rgba(255, 112, 55, 0.7);
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(255, 75, 20, 0.16);
+
+  transition: all 0.25s ease;
+}
+
+.admin-artists-page .admin-primary-button:hover {
+  background: linear-gradient(135deg, #ff783d, #ff5015);
+  box-shadow: 0 7px 20px rgba(255, 80, 25, 0.3);
+  transform: translateY(-2px);
+}
+
+.admin-artists-page .admin-primary-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.admin-artists-page .admin-table-card {
+  width: 100%;
+  overflow-x: auto;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 39, 64, 0.97),
+    rgba(15, 27, 47, 0.97)
+  );
+
+  border: 1px solid rgba(103, 127, 169, 0.32);
+  border-radius: 13px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+/* =========================================
+   ARTISTS TABLE
+========================================= */
+
+.admin-artists-page .admin-artists-table {
+  width: 100%;
+  min-width: 740px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  text-align: left;
+}
+
+/* Column Width */
+
+.admin-artists-page .admin-artists-table th:nth-child(1) {
+  width: 23%;
+}
+
+.admin-artists-page .admin-artists-table th:nth-child(2) {
+  width: 39%;
+}
+
+.admin-artists-page .admin-artists-table th:nth-child(3) {
+  width: 18%;
+}
+
+.admin-artists-page .admin-artists-table th:nth-child(4) {
+  width: 20%;
+}
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.admin-artists-page .admin-artists-table thead {
+  background: linear-gradient(
+    110deg,
+    #293b5b,
+    #202f4b
+  );
+}
+
+.admin-artists-page .admin-artists-table th {
+  height: 59px;
+  padding: 0 25px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid rgba(126, 151, 190, 0.24);
+}
+
+.admin-artists-page .admin-artists-table th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+.admin-artists-page .admin-artists-table th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+/* =========================================
+   COUNT BADGE
+========================================= */
+
+.admin-artists-page .admin-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 25px;
+  height: 23px;
+
+  margin-left: 7px;
+  padding: 0 7px;
+
+  color: #ffffff;
+  background: #111e35;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.admin-artists-page .admin-artists-table td {
+  height: 72px;
+  padding: 13px 25px;
+
+  color: #cbd5e7;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  border-bottom: 1px solid rgba(111, 135, 174, 0.19);
+
+  transition: background 0.2s ease;
+}
+
+/* Artist Name */
+
+.admin-artists-page .admin-artists-table td:first-child {
+  color: #f5f7ff;
+  font-weight: 600;
+}
+
+/* About Artist */
+
+.admin-artists-page .admin-artists-table td:nth-child(2) {
+  max-width: 460px;
+
+  color: #aebbd0;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Followers */
+
+.admin-artists-page .admin-artists-table td:nth-child(3) {
+  color: #e2e9f5;
+  font-weight: 600;
+}
+
+/* Row Hover */
+
+.admin-artists-page .admin-artists-table tbody tr {
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.admin-artists-page .admin-artists-table tbody tr:hover {
+  background: rgba(52, 76, 115, 0.24);
+}
+
+.admin-artists-page .admin-artists-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================
+   ARTIST PROFILE CELL
+========================================= */
+
+.admin-artists-page .admin-artist-cell {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+/* Artist Initial Avatar */
+
+.admin-artists-page .admin-artist-cell > span {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    145deg,
+    #ff702d,
+    #a93618
+  );
+
+  border: 1px solid rgba(255, 137, 80, 0.35);
+  border-radius: 11px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 12px rgba(255, 85, 30, 0.16);
+
+  transition: all 0.25s ease;
+}
+
+.admin-artists-page .admin-artists-table tbody tr:hover .admin-artist-cell > span {
+  transform: scale(1.07);
+  box-shadow: 0 5px 17px rgba(255, 85, 30, 0.28);
+}
+
+.admin-artists-page .admin-artist-cell strong {
+  color: #f4f6fc;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.admin-artists-page .admin-artists-table td:last-child {
+  white-space: nowrap;
+}
+
+/* Common Action Button */
+
+.admin-artists-page .admin-icon-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 39px;
+  height: 39px;
+
+  margin-right: 10px;
+
+  color: #c6d5ff;
+  background: #1d2d4c;
+
+  border: 1px solid rgba(118, 146, 194, 0.16);
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+/* Edit */
+
+.admin-artists-page .admin-icon-action:not(.delete):hover {
+  color: #ffffff;
+  background: #354c77;
+  border-color: #637da9;
+
+  transform: translateY(-2px);
+}
+
+/* Delete */
+
+.admin-artists-page .admin-icon-action.delete {
+  color: #ff725d;
+  background: rgba(179, 46, 42, 0.18);
+  border-color: rgba(255, 87, 70, 0.2);
+}
+
+.admin-artists-page .admin-icon-action.delete:hover {
+  color: #ffffff;
+  background: #d83e32;
+  border-color: #ef594a;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 13px rgba(230, 58, 45, 0.2);
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.admin-artists-page .admin-empty-row {
+  height: 120px !important;
+
+  color: #aab8ce !important;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.admin-artists-page .admin-table-card::-webkit-scrollbar {
+  height: 7px;
+}
+
+.admin-artists-page .admin-table-card::-webkit-scrollbar-track {
+  background: #111d33;
+  border-radius: 10px;
+}
+
+.admin-artists-page .admin-table-card::-webkit-scrollbar-thumb {
+  background: #405477;
+  border-radius: 10px;
+}
+
+.admin-artists-page .admin-table-card::-webkit-scrollbar-thumb:hover {
+  background: #ff5a1f;
+}
+
+/* =========================================
+   RESPONSIVE - LAPTOP
+========================================= */
+
+@media (max-width: 1024px) {
+  .admin-artists-page {
+    padding: 22px;
+  }
+
+  .admin-artists-page .admin-artists-table th,
+  .admin-artists-page .admin-artists-table td {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .admin-artists-page {
+    padding: 18px 15px;
+  }
+
+  .admin-artists-page .admin-artists-toolbar {
+    gap: 12px;
+    padding: 13px;
+  }
+
+  .admin-artists-page .admin-artists-toolbar > input {
+    height: 43px;
+  }
+
+  .admin-artists-page .admin-primary-button {
+    min-height: 43px;
+    padding: 0 16px;
+  }
+
+  .admin-artists-page .admin-artists-table th {
+    height: 53px;
+    font-size: 13px;
+  }
+
+  .admin-artists-page .admin-artists-table td {
+    height: 65px;
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+  .admin-artists-page {
+    padding: 15px 10px;
+  }
+
+  .admin-artists-page .admin-artists-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    margin: 18px 0 15px;
+    padding: 12px;
+  }
+
+  .admin-artists-page .admin-artists-toolbar > input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .admin-artists-page .admin-artists-toolbar .admin-primary-button {
+    width: 100%;
+  }
+
+  .admin-artists-page .admin-table-card {
+    border-radius: 9px;
+  }
+
+  .admin-artists-page .admin-artists-table {
+    min-width: 700px;
+  }
+
+  .admin-artists-page .admin-artists-table th,
+  .admin-artists-page .admin-artists-table td {
+    padding: 12px 14px;
+  }
+
+  .admin-artists-page .admin-artist-cell > span {
+    width: 37px;
+    height: 37px;
+    flex-basis: 37px;
+  }
+
+  .admin-artists-page .admin-icon-action {
+    width: 34px;
+    height: 34px;
+    margin-right: 6px;
+  }
+}

@@ -1,0 +1,602 @@
+/* =========================================
+   EVENTS PAGE - MAIN
+========================================= */
+
+.admin-events-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 25px 30px 40px;
+  color: #edf0f7;
+  box-sizing: border-box;
+}
+
+.admin-events-content {
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* =========================================
+   TABS
+========================================= */
+
+.admin-tabs {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #343c50;
+}
+
+.admin-tabs button {
+  position: relative;
+  padding: 13px 10px;
+  border: none;
+  background: transparent;
+  color: #929db1;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.admin-tabs button:hover {
+  color: #ffffff;
+}
+
+.admin-tabs button.is-active {
+  color: #ff572d;
+  font-weight: 600;
+}
+
+.admin-tabs button.is-active::after {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  content: "";
+  border-radius: 5px 5px 0 0;
+  background: #ff572d;
+}
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.admin-events-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #343d52;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background: #252d40;
+}
+
+.admin-events-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 19px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Add Event */
+
+.admin-events-toolbar .admin-primary-button {
+  border: 1px solid #ff572d;
+  background: #ff572d;
+  color: #ffffff;
+}
+
+.admin-events-toolbar .admin-primary-button:hover {
+  border-color: #e94b25;
+  background: #e94b25;
+  box-shadow: 0 5px 15px rgba(255, 87, 45, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Clubs Button */
+
+.admin-events-toolbar .admin-secondary-button {
+  border: 1px solid #414b61;
+  background: #1e273a;
+  color: #e0e6f1;
+}
+
+.admin-events-toolbar .admin-secondary-button:hover {
+  border-color: #ff7047;
+  color: #ff7047;
+}
+
+/* Event Filter */
+
+.admin-events-toolbar select {
+  width: 330px;
+  max-width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #46516a;
+  border-radius: 7px;
+  outline: none;
+  background: #1e273a;
+  color: #edf1f8;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin-events-toolbar select:focus {
+  border-color: #ff7047;
+}
+
+/* =========================================
+   SEARCH SECTION
+========================================= */
+
+.admin-search-bar.admin-events-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px 16px;
+  border: 1px solid #343d52;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  background: #252d40;
+}
+
+.admin-events-search input {
+  flex: 1;
+  width: 100%;
+  height: 41px;
+  padding: 0 14px;
+  border: 1px solid #414c63;
+  border-radius: 7px;
+  outline: none;
+  background: #1d2639;
+  color: #ffffff;
+  font-size: 12px;
+  transition: 0.25s ease;
+}
+
+.admin-events-search input::placeholder {
+  color: #8e9aaf;
+}
+
+.admin-events-search input:focus {
+  border-color: #ff7047;
+  box-shadow: 0 0 0 3px rgba(255, 87, 45, 0.08);
+}
+
+.admin-events-search button {
+  display: grid;
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #414c63;
+  border-radius: 7px;
+  background: #1d2639;
+  color: #cbd4e4;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.admin-events-search button:hover {
+  border-color: #ff572d;
+  background: rgba(255, 87, 45, 0.1);
+  color: #ff7047;
+}
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.admin-table-card.admin-events-table-wrap {
+  width: 100%;
+  margin-top: 20px;
+  overflow-x: auto;
+  border: 1px solid #343d52;
+  border-radius: 10px;
+  background: #252d40;
+  scrollbar-width: thin;
+  scrollbar-color: #58647d #20283a;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.admin-events-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+/* Table Heading */
+
+.admin-events-table thead {
+  background: #30394e;
+}
+
+.admin-events-table th {
+  padding: 17px 16px;
+  border-bottom: 1px solid #424c62;
+  color: #f1f3f8;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-events-table th:first-child {
+  padding-left: 23px;
+}
+
+.admin-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  margin-left: 6px;
+  border-radius: 5px;
+  background: #424d64;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+/* =========================================
+   FILTER ROW
+========================================= */
+
+.admin-events-table .admin-table-filters {
+  background: #20293b;
+}
+
+.admin-events-table .admin-table-filters td {
+  padding: 11px 13px;
+  border-bottom: 1px solid #3a455b;
+}
+
+.admin-events-table .admin-table-filters select,
+.admin-events-table .admin-table-filters input {
+  width: 100%;
+  min-width: 100px;
+  height: 36px;
+  padding: 0 11px;
+  border: 1px solid #46516a;
+  border-radius: 6px;
+  outline: none;
+  background: #2b3449;
+  color: #e9edf5;
+  font-size: 12px;
+  transition: 0.2s ease;
+}
+
+.admin-events-table .admin-table-filters select:focus,
+.admin-events-table .admin-table-filters input:focus {
+  border-color: #ff7047;
+}
+
+/* =========================================
+   TABLE ROWS
+========================================= */
+
+.admin-events-table tbody tr:not(.admin-table-filters) {
+  transition: background 0.2s ease;
+}
+
+.admin-events-table tbody tr:not(.admin-table-filters):hover {
+  background: #2d374c;
+}
+
+.admin-events-table td {
+  padding: 19px 15px;
+  border-bottom: 1px solid #394358;
+  color: #cbd3e2;
+  font-size: 12px;
+  line-height: 1.65;
+  vertical-align: middle;
+}
+
+.admin-events-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================
+   EVENT DETAILS
+========================================= */
+
+.admin-event-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  min-width: 190px;
+  padding: 2px 0;
+}
+
+/* Calendar Icon */
+
+.admin-event-poster {
+  display: none;
+}
+
+/* Event Name and ID */
+
+.admin-event-detail strong {
+  display: block;
+  color: #f5f6fa;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+/* Venue */
+
+.admin-event-detail small {
+  display: block;
+  grid-column: auto;
+  color: #9da9bd;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   ARTIST DETAILS
+========================================= */
+
+.admin-type-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 11px;
+  border: 1px solid #46516a;
+  border-radius: 5px;
+  background: #30394e;
+  color: #dce4f2;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.admin-event-artist {
+  display: block;
+  margin-top: 10px;
+  color: #f0f3f9;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================================
+   EVENT TIMINGS
+========================================= */
+
+.admin-events-table td:nth-child(3) {
+  min-width: 185px;
+  color: #cbd3e2;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   TICKET DETAILS
+========================================= */
+
+.admin-events-table td:nth-child(4) {
+  min-width: 150px;
+}
+
+.admin-events-table td:nth-child(4) strong {
+  display: block;
+  color: #e8edf6;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =========================================
+   EVENT STATUS
+========================================= */
+
+.admin-events-table td:nth-child(5) {
+  min-width: 135px;
+}
+
+.admin-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-status-pill.ongoing {
+  border: 1px solid rgba(66, 197, 139, 0.25);
+  background: rgba(66, 197, 139, 0.13);
+  color: #76dca9;
+}
+
+.admin-status-pill.upcoming {
+  border: 1px solid rgba(81, 155, 235, 0.25);
+  background: rgba(81, 155, 235, 0.13);
+  color: #91c6ff;
+}
+
+.admin-status-pill.past {
+  border: 1px solid rgba(160, 170, 190, 0.2);
+  background: rgba(160, 170, 190, 0.12);
+  color: #bac4d4;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.admin-events-table .admin-empty-row {
+  padding: 40px 15px;
+  color: #9da9bd;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* =========================================
+   MODAL BUTTON AREA
+========================================= */
+
+.admin-events-page button:focus-visible,
+.admin-events-page select:focus-visible,
+.admin-events-page input:focus-visible {
+  outline: 2px solid rgba(255, 112, 71, 0.65);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+  .admin-events-page {
+    padding: 22px 20px 35px;
+  }
+
+  .admin-events-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .admin-events-toolbar select {
+    flex: 1;
+    min-width: 180px;
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+  .admin-events-page {
+    padding: 18px 12px 30px;
+  }
+
+  .admin-events-content {
+    margin-top: 18px;
+  }
+
+  .admin-tabs {
+    gap: 17px;
+  }
+
+  .admin-tabs button {
+    padding: 12px 6px;
+    font-size: 12px;
+  }
+
+  .admin-events-toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .admin-events-toolbar button {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  .admin-events-toolbar select {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-search-bar.admin-events-search {
+    padding: 0 12px 12px;
+  }
+
+  .admin-events-search input {
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  .admin-events-search button {
+    width: 38px;
+    height: 40px;
+  }
+
+  .admin-table-card.admin-events-table-wrap {
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+
+  .admin-events-table {
+    min-width: 820px;
+  }
+
+  .admin-events-table th {
+    padding: 14px 12px;
+  }
+
+  .admin-events-table td {
+    padding: 15px 12px;
+  }
+
+  .admin-event-detail strong {
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .admin-events-page {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .admin-events-toolbar {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .admin-events-toolbar button {
+    font-size: 10px;
+  }
+
+  .admin-tabs {
+    gap: 10px;
+  }
+
+  .admin-tabs button {
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-events-page *,
+  .admin-events-page *::before,
+  .admin-events-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
