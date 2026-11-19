@@ -1,26 +1,56 @@
+
+/* =====================================================
+   RIZZTIX - GLOBAL STYLES
+   Premium Animated Theme
+===================================================== */
+
 :root {
   color-scheme: dark;
+
   --color-background: #07111f;
   --color-burgundy: #0a1728;
   --color-burgundy-rich: #12243a;
   --color-burgundy-deep: #050b14;
+
   --color-champagne: #e8edf4;
   --color-gold: #aab7c8;
   --color-ivory: #f4f6f9;
   --color-muted: #b5c0ce;
+
   --color-border: rgba(190, 205, 222, 0.2);
   --color-surface: rgba(17, 34, 54, 0.76);
   --color-input: #0c1929;
   --color-text-on-champagne: #081321;
+
+  /* Animated Colors */
+  --color-orange: #ff8a1f;
+  --color-pink: #ff3d81;
+  --color-violet: #8b5cf6;
+  --color-cyan: #22d3ee;
+  --color-green: #34d399;
+
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Jost", Arial, sans-serif;
+}
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   background: var(--color-background);
   color: var(--color-ivory);
+  font-family: var(--font-body);
 }
 
 #root {
@@ -41,7 +71,12 @@ select {
   font: inherit;
 }
 
+/* =====================================================
+   GLOBAL HOVER EFFECTS
+===================================================== */
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+
   a[href]:not(.skip-link),
   [role="button"],
   [role="tab"] {
@@ -69,6 +104,7 @@ select {
   :where([class*="panel"]):hover,
   :where([class*="banner"]):hover {
     transform: translateY(-3px);
+
     box-shadow:
       0 14px 32px rgba(0, 0, 0, 0.2),
       0 0 18px rgba(190, 205, 222, 0.08);
@@ -84,6 +120,7 @@ select {
   button:not(:disabled):hover {
     transform: translateY(-2px) scale(1.02);
     filter: brightness(1.08);
+
     box-shadow:
       0 8px 18px rgba(0, 0, 0, 0.24),
       0 0 14px rgba(190, 205, 222, 0.12);
@@ -112,10 +149,15 @@ select {
   }
 }
 
+/* =====================================================
+   FOCUS EFFECTS
+===================================================== */
+
 input:not(:disabled):not([readonly]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):focus,
 textarea:not(:disabled):not([readonly]):focus,
 select:not(:disabled):focus {
   border-color: var(--color-champagne);
+
   box-shadow:
     0 0 0 3px rgba(190, 205, 222, 0.14),
     0 6px 20px rgba(0, 0, 0, 0.18);
@@ -130,78 +172,136 @@ select:focus-visible {
   outline-offset: 3px;
 }
 
+/* =====================================================
+   PAGE TRANSITION
+===================================================== */
+
+.page-transition {
+  width: 100%;
+  min-height: 100vh;
+  will-change: opacity, transform, filter;
+}
+
+/* =====================================================
+   PRELOADER BACKGROUND
+===================================================== */
+
 .preloader {
   position: fixed;
-  z-index: 2000;
+  z-index: 9999;
   inset: 0;
-  display: grid;
-  place-items: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   overflow: hidden;
   isolation: isolate;
+
   background:
     radial-gradient(
       ellipse at 50% 46%,
-      rgba(45, 79, 122, 0.44),
-      transparent 60%
+      rgba(139, 92, 246, 0.23),
+      transparent 58%
     ),
     linear-gradient(
       135deg,
-      var(--color-background) 0%,
-      var(--color-burgundy-rich) 52%,
-      var(--color-burgundy-deep) 100%
+      #060818 0%,
+      #10102b 50%,
+      #050b14 100%
     );
-  will-change: opacity;
+
+  will-change: opacity, transform, filter;
 }
+
+/* =====================================================
+   BACKGROUND AURORA
+===================================================== */
 
 .preloader::before {
   position: absolute;
   z-index: -1;
   inset: -20%;
+
+  content: "";
+  pointer-events: none;
+
   background:
     radial-gradient(
-      ellipse at 50% 50%,
-      rgba(190, 205, 222, 0.17),
-      transparent 36%
+      ellipse at 20% 30%,
+      rgba(139, 92, 246, 0.35),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 80% 70%,
+      rgba(255, 61, 129, 0.25),
+      transparent 38%
     ),
     radial-gradient(
       ellipse at 50% 50%,
-      rgba(37, 64, 98, 0.36),
-      transparent 68%
+      rgba(34, 211, 238, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 30% 80%,
+      rgba(255, 138, 31, 0.15),
+      transparent 40%
     );
-  content: "";
-  pointer-events: none;
-  animation: rizztix-background-glow 5s ease-in-out infinite alternate;
+
+  filter: blur(35px);
+
+  animation: rizztix-background-glow 6s ease-in-out infinite alternate;
 }
+
+/* =====================================================
+   MOVING LIGHT SWEEP
+===================================================== */
 
 .preloader::after {
   position: absolute;
   z-index: -1;
+
   top: -30%;
-  left: 0;
+  left: -50%;
+
   width: 42%;
   height: 160%;
+
+  content: "";
+  pointer-events: none;
+
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(190, 205, 222, 0.035),
+    rgba(255, 255, 255, 0.055),
     transparent
   );
-  content: "";
-  pointer-events: none;
+
   transform: rotate(18deg);
+
   will-change: transform, opacity;
-  animation: rizztix-light-sweep 4s ease-in-out 0.25s infinite;
+
+  animation: rizztix-light-sweep 4.5s ease-in-out 0.25s infinite;
 }
 
+/* =====================================================
+   BACKGROUND ANIMATIONS
+===================================================== */
+
 @keyframes rizztix-background-glow {
-  from {
+  0% {
     opacity: 0.45;
-    transform: scale(0.96);
+    transform: scale(0.94) rotate(0deg);
   }
 
-  to {
-    opacity: 0.95;
-    transform: scale(1.05);
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04) rotate(5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.08) rotate(-5deg);
   }
 }
 
@@ -221,99 +321,359 @@ select:focus-visible {
   }
 }
 
+/* =====================================================
+   PRELOADER CONTENT
+===================================================== */
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(90%, 440px);
+  text-align: center;
+}
+
 .preloader-mark {
   position: relative;
   isolation: isolate;
+
   display: flex;
   max-width: 100%;
+
   flex-direction: column;
   align-items: center;
+
   gap: clamp(18px, 3vh, 26px);
+
   padding-inline: 20px;
 }
+
+/* =====================================================
+   CIRCULAR ANIMATED ORBIT
+===================================================== */
+
+.preloader-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 280px;
+  height: 280px;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.preloader-orbit::before,
+.preloader-orbit::after {
+  position: absolute;
+  inset: 18px;
+
+  content: "";
+
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 50%;
+}
+
+.preloader-orbit::after {
+  inset: 38px;
+  border-color: rgba(34, 211, 238, 0.16);
+}
+
+.preloader-orbit-dot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+  background: var(--color-cyan);
+
+  box-shadow:
+    0 0 12px var(--color-cyan),
+    0 0 25px rgba(34, 211, 238, 0.7);
+}
+
+/* Existing CSS orbit support */
 
 .preloader-mark::before {
   position: absolute;
   z-index: -1;
+
   width: clamp(220px, 46vw, 500px);
   aspect-ratio: 1;
-  border: 1px solid rgba(190, 205, 222, 0.1);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(226, 235, 247, 0.85) 0 2px, transparent 3px),
-    radial-gradient(ellipse at center, rgba(37, 64, 98, 0.12), transparent 65%);
-  box-shadow:
-    inset 0 0 70px rgba(37, 64, 98, 0.1),
-    0 0 90px rgba(37, 64, 98, 0.14);
+
   content: "";
   pointer-events: none;
+
+  border: 1px solid rgba(190, 205, 222, 0.13);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 138, 31, 0.9) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle at 100% 50%,
+      rgba(34, 211, 238, 0.8) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(139, 92, 246, 0.13),
+      transparent 65%
+    );
+
+  box-shadow:
+    inset 0 0 70px rgba(139, 92, 246, 0.12),
+    0 0 90px rgba(255, 61, 129, 0.12);
+
   animation: rizztix-loader-orbit 18s linear infinite;
 }
 
 @keyframes rizztix-loader-orbit {
-  from { transform: rotate(0deg) scale(0.97); }
-  50% { transform: rotate(180deg) scale(1.03); }
-  to { transform: rotate(360deg) scale(0.97); }
+  from {
+    transform: rotate(0deg) scale(0.97);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.03);
+  }
+
+  to {
+    transform: rotate(360deg) scale(0.97);
+  }
 }
+
+/* =====================================================
+   RIZZTIX BRAND NAME
+===================================================== */
 
 .preloader-word {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 0;
+
   color: var(--color-ivory);
+
   font-family: var(--font-display);
   font-size: clamp(24px, 7vw, 68px);
   font-weight: 300;
+
   line-height: 1;
   white-space: nowrap;
+
   text-rendering: optimizeLegibility;
+
   will-change: letter-spacing, opacity, transform;
 }
 
 .preloader-word > span {
   display: inline-block;
   flex: 0 0 auto;
+
   white-space: pre;
-  text-shadow: 0 0 24px rgba(190, 205, 222, 0.08);
+
+  background: linear-gradient(
+    100deg,
+    var(--color-orange),
+    var(--color-pink),
+    var(--color-violet),
+    var(--color-cyan),
+    var(--color-orange)
+  );
+
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 24px rgba(255, 61, 129, 0.12);
+
   will-change: opacity, filter, transform;
+
+  animation: rizztix-letter-gradient 5s linear infinite;
 }
+
+@keyframes rizztix-letter-gradient {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 300% 50%;
+  }
+}
+
+/* =====================================================
+   TAGLINE
+===================================================== */
+
+.preloader-caption {
+  margin: 20px 0 0;
+
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+
+  letter-spacing: 0.32em;
+  line-height: 1.8;
+
+  color: rgba(232, 237, 244, 0.65);
+}
+
+/* =====================================================
+   ANIMATED UNDERLINE
+===================================================== */
 
 .preloader-rule {
   display: block;
+
   width: clamp(75px, 15vw, 140px);
-  height: 1px;
+  height: 2px;
+
+  border-radius: 20px;
+
   background: linear-gradient(
     90deg,
     transparent,
-    var(--color-ivory) 22%,
-    var(--color-gold) 50%,
-    var(--color-ivory) 78%,
+    var(--color-orange) 15%,
+    var(--color-pink) 35%,
+    var(--color-violet) 55%,
+    var(--color-cyan) 80%,
     transparent
   );
+
+  background-size: 250% 100%;
+
   transform-origin: center;
-  box-shadow: 0 0 20px rgba(190, 205, 222, 0.34);
+
+  box-shadow:
+    0 0 10px rgba(255, 138, 31, 0.4),
+    0 0 20px rgba(255, 61, 129, 0.3),
+    0 0 30px rgba(139, 92, 246, 0.25);
+
   will-change: transform, opacity;
+
+  animation: rizztix-rule-glow 4s linear infinite;
 }
+
+@keyframes rizztix-rule-glow {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.5);
+  }
+
+  100% {
+    background-position: 200% 50%;
+    filter: brightness(1);
+  }
+}
+
+/* =====================================================
+   LOADING PROGRESS
+===================================================== */
+
+.preloader-progress-track {
+  position: relative;
+
+  width: min(220px, 70%);
+  height: 2px;
+
+  margin-top: 55px;
+
+  overflow: hidden;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.preloader-progress {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    var(--color-orange),
+    var(--color-pink),
+    var(--color-violet),
+    var(--color-cyan)
+  );
+
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+
+  transform-origin: left center;
+}
+
+.preloader-loading-text {
+  margin-top: 15px;
+
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+
+  letter-spacing: 0.28em;
+
+  color: rgba(232, 237, 244, 0.45);
+}
+
+/* =====================================================
+   SKIP LINK
+===================================================== */
 
 .skip-link {
   position: fixed;
   z-index: 1000;
+
   top: 12px;
   left: 12px;
+
   padding: 12px 16px;
+
   border: 1px solid var(--color-gold);
+
   background: var(--color-background);
   color: var(--color-ivory);
+
   font-size: 14px;
   text-decoration: none;
+
   transform: translateY(-160%);
+
   transition: transform 180ms ease;
 }
 
 .skip-link:focus {
   outline: 2px solid var(--color-ivory);
   outline-offset: 3px;
+
   transform: translateY(0);
 }
 
@@ -321,13 +681,42 @@ select:focus-visible {
   outline: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .preloader::before,
-  .preloader::after,
-  .preloader-mark::before,
-  .page-transition {
-    animation: none !important;
-    will-change: auto;
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 768px) {
+  .preloader-mark::before {
+    width: clamp(220px, 65vw, 380px);
+  }
+
+  .preloader-orbit {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .preloader-orbit {
+    width: 230px;
+    height: 230px;
+  }
+
+  .preloader-orbit::before {
+    inset: 15px;
+  }
+
+  .preloader-orbit::after {
+    inset: 32px;
+  }
+
+  .preloader-caption {
+    font-size: 8px;
+    letter-spacing: 0.24em;
+  }
+
+  .preloader-progress-track {
+    margin-top: 45px;
   }
 }
 
@@ -339,5 +728,58 @@ select:focus-visible {
 
   .preloader-word {
     font-size: clamp(22px, 7.4vw, 34px);
+  }
+
+  .preloader-rule {
+    width: 100px;
+  }
+
+  .preloader-content {
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .preloader-word {
+    font-size: 25px;
+  }
+
+  .preloader-mark {
+    gap: 17px;
+  }
+
+  .preloader-orbit {
+    width: 205px;
+    height: 205px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .preloader::before,
+  .preloader::after,
+  .preloader-mark::before,
+  .preloader-word > span,
+  .preloader-rule {
+    animation: none !important;
+  }
+
+  .preloader,
+  .preloader *,
+  .page-transition {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  .preloader,
+  .page-transition {
+    will-change: auto;
   }
 }
