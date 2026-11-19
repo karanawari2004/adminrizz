@@ -13,5 +13,8 @@ export default function ClubsPage() {
       rows={clubs.map((club) => [club.name, club.slug, "Active"])}
       title="Club Management"
     />
+
+
+
   );
 }

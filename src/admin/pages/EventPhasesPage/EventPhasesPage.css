@@ -1,99 +1,596 @@
-.admin-event-phases-page .admin-phases-panel {
-  min-height: 530px;
-  padding: 20px 22px;
-  border-radius: 16px;
-  background: #151313;
+/* =========================================
+   EVENT PHASES PAGE
+========================================= */
+
+.admin-event-phases-page {
+  --phase-orange: #ff8a3d;
+  --phase-pink: #ff4f91;
+  --phase-purple: #9475ff;
+  --phase-cyan: #42d9f5;
+  --phase-text: #f4f5ff;
+  --phase-muted: #a4acc5;
+
+  position: relative;
+  min-height: 100vh;
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+
+  color: var(--phase-text);
+
+  background:
+    radial-gradient(circle at 10% 10%, rgba(148, 117, 255, 0.15), transparent 32%),
+    radial-gradient(circle at 90% 85%, rgba(255, 138, 61, 0.12), transparent 30%),
+    linear-gradient(135deg, #101426, #171c32 55%, #101426);
 }
 
+/* =========================================
+   ANIMATED BACKGROUND
+========================================= */
+
+.admin-event-phases-page::before,
+.admin-event-phases-page::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  width: 380px;
+  height: 380px;
+
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.17;
+  pointer-events: none;
+
+  animation: phaseGlow 11s ease-in-out infinite alternate;
+}
+
+.admin-event-phases-page::before {
+  top: 5%;
+  right: -120px;
+  background: var(--phase-purple);
+}
+
+.admin-event-phases-page::after {
+  bottom: 0;
+  left: -130px;
+  background: var(--phase-orange);
+  animation-delay: 2s;
+}
+
+@keyframes phaseGlow {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+  }
+
+  100% {
+    transform: translate(45px, -35px) scale(1.2);
+  }
+}
+
+/* =========================================
+   MAIN PANEL
+========================================= */
+
+.admin-event-phases-page .admin-phases-panel {
+  position: relative;
+
+  width: 100%;
+  max-width: 1150px;
+
+  margin: 35px auto;
+  padding: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  animation: phasePanelEnter 0.7s ease both;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.admin-event-phases-page .admin-phases-panel:hover {
+  border-color: rgba(148, 117, 255, 0.3);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(148, 117, 255, 0.07);
+}
+
+@keyframes phasePanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   PRICING BANNER
+========================================= */
+
 .admin-event-phases-page .admin-pricing-banner {
+  position: relative;
+
   display: flex;
-  min-height: 138px;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 20px;
-  border: 1px solid #70301b;
-  border-radius: 14px;
-  background: linear-gradient(110deg, #2a1d18, #171514);
+  gap: 25px;
+
+  padding: 28px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 138, 61, 0.13),
+      rgba(255, 79, 145, 0.12),
+      rgba(148, 117, 255, 0.15)
+    );
+
+  background-size: 200% 200%;
+
+  animation:
+    phaseBannerEnter 0.8s ease both,
+    phaseBannerGradient 8s ease infinite;
+}
+
+@keyframes phaseBannerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes phaseBannerGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.admin-event-phases-page .admin-pricing-banner > div {
+  max-width: 750px;
 }
 
 .admin-event-phases-page .admin-pricing-banner span {
-  color: var(--admin-orange);
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: var(--phase-cyan);
+
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
 .admin-event-phases-page .admin-pricing-banner h2 {
-  margin: 8px 0 6px;
-  font-size: 22px;
+  margin: 0 0 12px;
+
+  color: #ffffff;
+
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: 0.3px;
 }
 
 .admin-event-phases-page .admin-pricing-banner p {
-  max-width: 810px;
   margin: 0;
-  color: #aaa5a2;
-  line-height: 1.6;
+
+  color: #c0c7df;
+
+  font-size: 14px;
+  line-height: 1.8;
 }
 
-.admin-event-phases-page .admin-pricing-banner .admin-primary-button {
-  min-width: 148px;
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.admin-event-phases-page .admin-primary-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 12px 25px;
+
+  flex-shrink: 0;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(
+    110deg,
+    var(--phase-orange),
+    var(--phase-pink),
+    var(--phase-purple)
+  );
+
+  background-size: 200% 200%;
+
+  cursor: pointer;
+
+  box-shadow: 0 7px 22px rgba(255, 79, 145, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-position 0.4s ease;
 }
+
+.admin-event-phases-page .admin-primary-button:hover {
+  transform: translateY(-3px);
+
+  background-position: 100% 50%;
+
+  box-shadow: 0 12px 28px rgba(255, 79, 145, 0.3);
+}
+
+.admin-event-phases-page .admin-primary-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* =========================================
+   CLUB AND EVENT SELECTS
+========================================= */
 
 .admin-event-phases-page .admin-phase-selects {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(240px, 1.6fr);
-  gap: 12px;
-  margin-top: 23px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+
+  margin: 30px 0;
+  padding: 25px;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+
+  background: rgba(10, 15, 32, 0.25);
 }
 
 .admin-event-phases-page .admin-phase-selects label,
 .admin-event-phases-page .admin-phase-inputs label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  color: #aaa5a2;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+
+  gap: 10px;
+
+  color: #dfe4f7;
+
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1px;
 }
 
-.admin-event-phases-page .admin-phase-selects select {
-  border-color: #44403e;
-  border-radius: 10px;
-  background: #2b2725;
+/* =========================================
+   INPUTS AND SELECTS
+========================================= */
+
+.admin-event-phases-page .admin-phases-panel input,
+.admin-event-phases-page .admin-phases-panel select {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 12px 15px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  background: rgba(10, 15, 32, 0.7);
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 11px;
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
 }
+
+.admin-event-phases-page .admin-phases-panel input::placeholder {
+  color: #818ba7;
+}
+
+.admin-event-phases-page .admin-phases-panel input:focus,
+.admin-event-phases-page .admin-phases-panel select:focus {
+  border-color: var(--phase-purple);
+
+  background: rgba(20, 25, 48, 0.95);
+
+  box-shadow: 0 0 0 3px rgba(148, 117, 255, 0.15);
+
+  transform: translateY(-2px);
+}
+
+.admin-event-phases-page .admin-phases-panel select option {
+  color: #ffffff;
+  background: #171c32;
+}
+
+/* Date picker icon */
+
+.admin-event-phases-page input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+/* =========================================
+   PHASE CONFIGURATION
+========================================= */
+
+.admin-event-phases-page .admin-phase-config {
+  padding: 28px;
+
+  border: 1px solid rgba(66, 217, 245, 0.15);
+  border-radius: 17px;
+
+  background: rgba(66, 217, 245, 0.035);
+
+  animation: phaseConfigEnter 0.5s ease both;
+}
+
+@keyframes phaseConfigEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-event-phases-page .admin-phase-config h3 {
+  margin: 0 0 25px;
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.admin-event-phases-page .admin-phase-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+.admin-event-phases-page .admin-phase-info {
+  margin: 25px 0 0;
+  padding: 15px 18px;
+
+  color: #b6c2df;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  border-left: 3px solid var(--phase-cyan);
+
+  background: rgba(66, 217, 245, 0.06);
+  border-radius: 0 10px 10px 0;
+}
+
+/* =========================================
+   PICK A NIGHT EMPTY STATE
+========================================= */
 
 .admin-event-phases-page .admin-pick-night {
-  display: grid;
-  min-height: 255px;
-  align-content: center;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 250px;
+
+  padding: 35px 20px;
+
   text-align: center;
+
+  border: 1px dashed rgba(255, 255, 255, 0.17);
+  border-radius: 17px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  animation: phaseConfigEnter 0.6s ease both;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.admin-event-phases-page .admin-pick-night:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(66, 217, 245, 0.4);
+}
+
+.admin-event-phases-page .admin-pick-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 18px;
+
+  color: #ffffff;
+
+  font-size: 27px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    var(--phase-orange),
+    var(--phase-pink),
+    var(--phase-purple)
+  );
+
+  box-shadow: 0 8px 25px rgba(255, 79, 145, 0.2);
+
+  animation: phaseIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes phaseIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
 }
 
 .admin-event-phases-page .admin-pick-night h3 {
   margin: 0 0 10px;
-  font-size: 17px;
+
+  color: #ffffff;
+
+  font-size: 21px;
 }
 
-.admin-event-phases-page .admin-pick-night p,
-.admin-event-phases-page .admin-phase-config > p {
+.admin-event-phases-page .admin-pick-night p {
+  max-width: 450px;
+
   margin: 0;
-  color: #aaa5a2;
-  font-size: 15px;
-  line-height: 1.6;
+
+  color: var(--phase-muted);
+
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.admin-event-phases-page .admin-phase-config { margin-top: 34px; }
-.admin-event-phases-page .admin-phase-config h3 { font-size: 18px; }
-.admin-event-phases-page .admin-phase-inputs { display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 15px; }
-.admin-event-phases-page .admin-phase-inputs label { font-size: 13px; letter-spacing: 0; }
-.admin-event-phases-page .admin-phase-inputs input { border-color: #44403e; background: #2b2725; }
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
 
-@media (max-width: 700px) {
-  .admin-event-phases-page .admin-phases-panel { padding: 14px; }
-  .admin-event-phases-page .admin-pricing-banner { align-items: flex-start; flex-direction: column; }
+.admin-event-phases-page .admin-report-feedback {
+  margin-top: 22px;
+  padding: 14px 17px;
+
+  color: #8fffd1;
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  background: rgba(46, 213, 145, 0.09);
+
+  border: 1px solid rgba(46, 213, 145, 0.25);
+  border-radius: 10px;
+
+  animation: phaseConfigEnter 0.4s ease both;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+  .admin-event-phases-page .admin-phases-panel {
+    padding: 23px;
+  }
+
+  .admin-event-phases-page .admin-pricing-banner {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 650px) {
+  .admin-event-phases-page {
+    padding: 18px 13px;
+  }
+
+  .admin-event-phases-page .admin-phases-panel {
+    padding: 17px;
+    margin-top: 22px;
+    border-radius: 17px;
+  }
+
+  .admin-event-phases-page .admin-pricing-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .admin-event-phases-page .admin-pricing-banner h2 {
+    font-size: 23px;
+  }
+
+  .admin-event-phases-page .admin-pricing-banner .admin-primary-button {
+    width: 100%;
+  }
+
   .admin-event-phases-page .admin-phase-selects,
-  .admin-event-phases-page .admin-phase-inputs { grid-template-columns: 1fr; }
+  .admin-event-phases-page .admin-phase-inputs {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .admin-event-phases-page .admin-phase-selects {
+    padding: 19px;
+  }
+
+  .admin-event-phases-page .admin-phase-config {
+    padding: 20px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-event-phases-page *,
+  .admin-event-phases-page *::before,
+  .admin-event-phases-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

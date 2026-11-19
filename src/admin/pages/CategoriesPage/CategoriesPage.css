@@ -1,3 +1,688 @@
-.admin-categories-page .admin-catalog-table td {
+/* =====================================================
+   RIZZTIX · CATEGORY MANAGEMENT
+   Animated Neon Glassmorphism UI
+   Theme: Navy + Orange + Pink + Violet + Cyan
+===================================================== */
+
+.admin-categories-page {
+  --cat-bg: #060818;
+  --cat-glass: rgba(255, 255, 255, 0.055);
+  --cat-line: rgba(255, 255, 255, 0.12);
+  --cat-text: #eef2ff;
+  --cat-muted: #8b98c4;
+  --cat-orange: #ff8a1f;
+  --cat-pink: #ff3d81;
+  --cat-violet: #8b5cf6;
+  --cat-cyan: #22d3ee;
+  --cat-green: #34d399;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 30px;
+  color: var(--cat-text);
+  background: var(--cat-bg);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.admin-categories-page *,
+.admin-categories-page *::before,
+.admin-categories-page *::after {
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
+
+.admin-categories-page::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.24), transparent 32%),
+    radial-gradient(circle at 85% 80%, rgba(255, 61, 129, 0.18), transparent 32%),
+    radial-gradient(circle at 70% 15%, rgba(34, 211, 238, 0.13), transparent 30%),
+    radial-gradient(circle at 25% 85%, rgba(255, 138, 31, 0.13), transparent 30%);
+
+  filter: blur(35px);
+  animation: cat-aurora 18s ease-in-out infinite alternate;
+}
+
+.admin-categories-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+
+  background-size: 55px 55px;
+
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+
+  animation: cat-grid 25s linear infinite;
+}
+
+@keyframes cat-aurora {
+  0% {
+    transform: translate(-3%, -2%) scale(1);
+  }
+
+  50% {
+    transform: translate(3%, 4%) scale(1.12);
+  }
+
+  100% {
+    transform: translate(-2%, 3%) scale(1.05);
+  }
+}
+
+@keyframes cat-grid {
+  to {
+    background-position: 55px 55px;
+  }
+}
+
+/* =====================================================
+   ENTRANCE ANIMATION
+===================================================== */
+
+@keyframes cat-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+.admin-categories-page > * {
+  animation: cat-rise 0.85s cubic-bezier(0.2, 0.9, 0.25, 1) both;
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.admin-categories-page .admin-catalog-toolbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  margin-bottom: 24px;
+  padding: 24px;
+
+  background: var(--cat-glass);
+  border: 1px solid var(--cat-line);
+  border-radius: 20px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  overflow: hidden;
+
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+}
+
+.admin-categories-page .admin-catalog-toolbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    var(--cat-orange),
+    var(--cat-pink),
+    var(--cat-violet),
+    var(--cat-cyan)
+  );
+
+  background-size: 100% 300%;
+  animation: cat-bar-flow 5s linear infinite;
+}
+
+@keyframes cat-bar-flow {
+  to {
+    background-position: 0 300%;
+  }
+}
+
+.admin-categories-page .admin-catalog-toolbar:hover {
+  border-color: rgba(255, 138, 31, 0.4);
+  box-shadow: 0 20px 45px -20px rgba(255, 61, 129, 0.35);
+}
+
+/* =====================================================
+   SEARCH INPUT
+===================================================== */
+
+.admin-categories-page .admin-catalog-toolbar input {
+  width: 100%;
+  max-width: 340px;
+  min-width: 200px;
+
+  padding: 14px 18px;
+
+  color: var(--cat-text);
+  background: rgba(8, 12, 34, 0.8);
+
+  border: 1px solid var(--cat-line);
+  border-radius: 12px;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 500;
+
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
+}
+
+.admin-categories-page .admin-catalog-toolbar input::placeholder {
+  color: var(--cat-muted);
+}
+
+.admin-categories-page .admin-catalog-toolbar input:hover {
+  border-color: rgba(255, 138, 31, 0.6);
+  transform: translateY(-2px);
+}
+
+.admin-categories-page .admin-catalog-toolbar input:focus {
+  border-color: var(--cat-orange);
+  background: rgba(12, 17, 45, 0.95);
+
+  box-shadow:
+    0 0 0 4px rgba(255, 138, 31, 0.12),
+    0 0 25px rgba(255, 138, 31, 0.18);
+}
+
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
+
+.admin-categories-page .admin-primary-button {
+  position: relative;
+  overflow: hidden;
+
+  padding: 13px 25px;
+
+  border: none;
+  border-radius: 12px;
+
+  color: #fff;
+
+  background: linear-gradient(
+    110deg,
+    var(--cat-orange),
+    var(--cat-pink),
+    var(--cat-violet),
+    var(--cat-orange)
+  );
+
+  background-size: 250% 100%;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px -8px rgba(255, 61, 129, 0.65);
+
+  animation: cat-button-flow 5s linear infinite;
+
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+@keyframes cat-button-flow {
+  to {
+    background-position: -250% 0;
+  }
+}
+
+.admin-categories-page .admin-primary-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+
+  transform: translateX(-120%);
+  transition: transform 0.7s;
+}
+
+.admin-categories-page .admin-primary-button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 16px 35px -8px rgba(255, 61, 129, 0.85);
+}
+
+.admin-categories-page .admin-primary-button:hover::after {
+  transform: translateX(120%);
+}
+
+.admin-categories-page .admin-primary-button:active {
+  transform: scale(0.96);
+}
+
+/* =====================================================
+   TABLE CARD
+===================================================== */
+
+.admin-categories-page .admin-table-card {
+  position: relative;
+
+  padding: 24px;
+
+  background: var(--cat-glass);
+
+  border: 1px solid var(--cat-line);
+  border-radius: 22px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  overflow: hidden;
+
+  transition: border-color 0.35s, box-shadow 0.35s;
+}
+
+.admin-categories-page .admin-table-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--cat-orange),
+    var(--cat-pink),
+    var(--cat-violet),
+    var(--cat-cyan),
+    transparent
+  );
+
+  background-size: 200% 100%;
+  animation: cat-border-flow 6s linear infinite;
+}
+
+@keyframes cat-border-flow {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.admin-categories-page .admin-table-card:hover {
+  border-color: rgba(255, 138, 31, 0.3);
+  box-shadow: 0 25px 55px -25px rgba(139, 92, 246, 0.35);
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.admin-categories-page .admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 9px;
+
+  color: var(--cat-text);
+  font-size: 14px;
+}
+
+.admin-categories-page .admin-catalog-table {
+  min-width: 600px;
+}
+
+.admin-categories-page .admin-table thead th {
+  padding: 16px 18px;
+
+  text-align: left;
+  white-space: nowrap;
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    110deg,
+    #ff8a1f,
+    #ff3d81,
+    #8b5cf6,
+    #22d3ee,
+    #ff8a1f
+  );
+
+  background-size: 300% 100%;
+  animation: cat-header-flow 8s linear infinite;
+}
+
+@keyframes cat-header-flow {
+  to {
+    background-position: -300% 0;
+  }
+}
+
+.admin-categories-page .admin-table thead th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.admin-categories-page .admin-table thead th:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+/* =====================================================
+   TABLE ROW ANIMATION
+===================================================== */
+
+@keyframes cat-row-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.admin-categories-page .admin-table tbody tr {
+  animation: cat-row-enter 0.65s ease backwards;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.admin-categories-page .admin-table tbody tr:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+.admin-categories-page .admin-table tbody tr:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.admin-categories-page .admin-table tbody tr:nth-child(3) {
+  animation-delay: 0.65s;
+}
+
+.admin-categories-page .admin-table tbody tr:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.admin-categories-page .admin-table tbody tr:nth-child(5) {
+  animation-delay: 0.95s;
+}
+
+.admin-categories-page .admin-table tbody td {
+  padding: 17px 18px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  border-top: 1px solid rgba(255,255,255,0.035);
+  border-bottom: 1px solid rgba(255,255,255,0.035);
+
+  color: #dce4ff;
+  white-space: nowrap;
+
+  transition: background 0.3s, color 0.3s;
+}
+
+.admin-categories-page .admin-table tbody td:first-child {
+  border-radius: 12px 0 0 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.admin-categories-page .admin-table tbody td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.admin-categories-page .admin-table tbody tr:hover {
+  transform: translateX(7px) scale(1.003);
+}
+
+.admin-categories-page .admin-table tbody tr:hover td {
+  background: rgba(255, 138, 31, 0.13);
+  color: #fff;
+}
+
+.admin-categories-page .admin-table tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 var(--cat-orange);
+}
+
+/* =====================================================
+   CATEGORY EVENT COUNT
+===================================================== */
+
+.admin-categories-page .admin-table tbody td:nth-child(2) {
+  color: var(--cat-cyan);
+  font-weight: 800;
+}
+
+/* =====================================================
+   COUNT BADGE
+===================================================== */
+
+.admin-categories-page .admin-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 38px;
+  height: 38px;
+
+  padding: 0 12px;
+
+  color: #fff;
+
+  background: linear-gradient(
+    120deg,
+    var(--cat-orange),
+    var(--cat-pink),
+    var(--cat-violet)
+  );
+
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  box-shadow: 0 6px 20px rgba(255, 61, 129, 0.3);
+
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.admin-categories-page .admin-count:hover {
+  transform: translateY(-4px) rotate(-5deg) scale(1.08);
+  box-shadow: 0 12px 25px rgba(255, 61, 129, 0.5);
+}
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.admin-categories-page .admin-icon-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 37px;
+  height: 37px;
+
+  margin: 0 4px;
+
+  color: var(--cat-cyan);
+
+  background: rgba(34, 211, 238, 0.1);
+
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: transform 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.admin-categories-page .admin-icon-action:hover {
+  color: #fff;
+
+  background: linear-gradient(
+    120deg,
+    var(--cat-cyan),
+    var(--cat-violet)
+  );
+
+  transform: translateY(-4px) rotate(5deg);
+
+  box-shadow: 0 8px 20px rgba(34, 211, 238, 0.35);
+}
+
+.admin-categories-page .admin-icon-action.delete {
+  color: var(--cat-pink);
+  background: rgba(255, 61, 129, 0.1);
+  border-color: rgba(255, 61, 129, 0.3);
+}
+
+.admin-categories-page .admin-icon-action.delete:hover {
+  color: #fff;
+  background: linear-gradient(120deg, #ff3d81, #ef4444);
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(255, 61, 129, 0.4);
+}
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.admin-categories-page .admin-empty-row {
+  padding: 40px 20px !important;
+  text-align: center;
+  color: var(--cat-muted) !important;
+  font-size: 14px;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+.admin-categories-page ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-categories-page ::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.04);
+  border-radius: 20px;
+}
+
+.admin-categories-page ::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--cat-orange),
+    var(--cat-pink),
+    var(--cat-violet)
+  );
+  border-radius: 20px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+  .admin-categories-page {
+    padding: 22px 18px;
+  }
+
+  .admin-categories-page .admin-table-card {
+    padding: 18px;
+  }
+
+  .admin-categories-page .admin-catalog-toolbar {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-categories-page {
+    padding: 16px 12px;
+  }
+
+  .admin-categories-page .admin-catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .admin-categories-page .admin-catalog-toolbar input {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .admin-categories-page .admin-primary-button {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .admin-categories-page .admin-table-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .admin-categories-page .admin-table {
+    font-size: 12px;
+  }
+
+  .admin-categories-page .admin-table thead th,
+  .admin-categories-page .admin-table tbody td {
+    padding: 13px 12px;
+  }
+
+  .admin-categories-page .admin-icon-action {
+    width: 33px;
+    height: 33px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-categories-page *,
+  .admin-categories-page *::before,
+  .admin-categories-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

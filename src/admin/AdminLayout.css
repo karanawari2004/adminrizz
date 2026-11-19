@@ -6,7 +6,11 @@
   --admin-text: #f0f1f5;
   --admin-muted: #a4aabc;
   --admin-orange: #fb4b22;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--admin-bg);
   color: var(--admin-text);
   font-family: var(--font-body);
@@ -21,7 +25,8 @@
 .admin-shell input,
 .admin-shell select { font: inherit; }
 
-.admin-main { min-height: 100vh; margin-left: 248px; }
+.admin-main { min-width: 0; min-height: 100vh; margin-left: 0; }
+.admin-sidebar { align-self: start; height: 100vh; height: 100dvh; }
 .admin-topbar { position: relative; z-index: 10; display: flex; height: 74px; align-items: center; justify-content: flex-end; padding: 0 30px; background: var(--admin-sidebar); }
 .admin-profile-button,
 .admin-menu-toggle { display: inline-flex; align-items: center; gap: 12px; padding: 9px; border: 0; background: transparent; color: var(--admin-text); cursor: pointer; }
@@ -96,12 +101,15 @@
 .admin-modal-close { position: absolute; top: 14px; right: 14px; display: grid; width: 32px; height: 32px; place-items: center; border: 0; background: transparent; color: var(--admin-muted); cursor: pointer; }
 
 @media (max-width: 1000px) {
-  .admin-main { margin-left: 225px; }
   .admin-content { padding-inline: 20px; }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .admin-shell { grid-template-columns: minmax(0, 1fr); }
   .admin-main { margin-left: 0; }
+}
+
+@media (max-width: 700px) {
   .admin-topbar { height: 64px; padding-inline: 14px; }
   .admin-menu-toggle { display: inline-flex; }
   .admin-content { min-height: calc(100vh - 64px); padding: 22px 14px 40px; }

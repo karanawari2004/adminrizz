@@ -3,367 +3,366 @@
 ========================================= */
 
 .admin-club-managers-page {
-  width: 100%;
+  --manager-orange: #ff8a3d;
+  --manager-pink: #ff4f91;
+  --manager-purple: #9475ff;
+  --manager-cyan: #42d9f5;
+  --manager-text: #f4f5ff;
+  --manager-muted: #a4acc5;
+
+  position: relative;
   min-height: 100vh;
-  padding: 28px 30px;
-  color: #f1f3fa;
-  font-family: inherit;
-  box-sizing: border-box;
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--manager-text);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(148, 117, 255, 0.15), transparent 32%),
+    radial-gradient(circle at 90% 85%, rgba(255, 138, 61, 0.12), transparent 30%),
+    linear-gradient(135deg, #101426, #171c32 55%, #101426);
 }
 
-.admin-club-managers-page * {
-  box-sizing: border-box;
+/* Animated background */
+
+.admin-club-managers-page::before,
+.admin-club-managers-page::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.16;
+  pointer-events: none;
+  animation: managerGlow 10s ease-in-out infinite alternate;
+}
+
+.admin-club-managers-page::before {
+  top: 5%;
+  right: -100px;
+  background: var(--manager-purple);
+}
+
+.admin-club-managers-page::after {
+  bottom: 0;
+  left: -120px;
+  background: var(--manager-orange);
+  animation-delay: 2s;
+}
+
+@keyframes managerGlow {
+  from {
+    transform: translate(0, 0) scale(0.9);
+  }
+
+  to {
+    transform: translate(40px, -30px) scale(1.2);
+  }
 }
 
 /* =========================================
    MAIN FORM CARD
 ========================================= */
 
-.admin-managers-form {
+.admin-club-managers-page .admin-managers-form {
+  position: relative;
   width: 100%;
-  max-width: 1050px;
-  margin: 28px auto;
-  padding: 28px 30px;
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 35px;
+  overflow: hidden;
 
-  background: #18243a;
-  border: 1px solid #34425e;
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 
-  transition: border-color 0.25s ease;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  animation: managerCardEnter 0.7s ease both;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-club-managers-page .admin-managers-form:hover {
+  border-color: rgba(148, 117, 255, 0.35);
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(148, 117, 255, 0.08);
+}
+
+@keyframes managerCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================
-   CLUB SELECT
+   HEADINGS
 ========================================= */
 
-.admin-manager-club {
+.admin-club-managers-page .admin-managers-form h2 {
+  margin: 25px 0 22px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.admin-club-managers-page .admin-managers-list-title {
+  padding-top: 25px;
+  margin-top: 35px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   LABELS
+========================================= */
+
+.admin-club-managers-page .admin-managers-form label {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 22px;
 
-  width: 100%;
-  max-width: 430px;
-  margin-bottom: 30px;
-
-  color: #e6eaf3;
+  color: #dfe4f7;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.admin-manager-club select {
+/* =========================================
+   INPUTS AND SELECT
+========================================= */
+
+.admin-club-managers-page .admin-managers-form input,
+.admin-club-managers-page .admin-managers-form select {
   width: 100%;
-  height: 46px;
-  padding: 0 14px;
+  min-height: 48px;
+  padding: 12px 15px;
 
-  color: #f1f3fa;
-  background-color: #202d46;
+  color: #ffffff;
+  font-size: 14px;
 
-  border: 1px solid #465570;
-  border-radius: 8px;
+  background: rgba(10, 15, 32, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 11px;
+
   outline: none;
-
-  font-family: inherit;
-  font-size: 14px;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
-.admin-manager-club select:focus {
-  border-color: #ff5722;
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
+.admin-club-managers-page .admin-managers-form input::placeholder {
+  color: #818ba7;
 }
 
-.admin-manager-club select option {
-  color: #fff;
-  background: #202d46;
+.admin-club-managers-page .admin-managers-form input:focus,
+.admin-club-managers-page .admin-managers-form select:focus {
+  border-color: var(--manager-purple);
+  background: rgba(20, 25, 48, 0.95);
+  box-shadow: 0 0 0 3px rgba(148, 117, 255, 0.15);
+  transform: translateY(-2px);
 }
 
-/* =========================================
-   SECTION HEADINGS
-========================================= */
-
-.admin-managers-form h2 {
-  position: relative;
-
-  margin: 0 0 20px;
-  padding-left: 12px;
-
-  color: #f5f6fc;
-  font-size: 17px;
-  font-weight: 650;
-  letter-spacing: 0.1px;
-}
-
-.admin-managers-form h2::before {
-  content: "";
-
-  position: absolute;
-  top: 2px;
-  left: 0;
-
-  width: 3px;
-  height: 19px;
-
-  background: #ff5722;
-  border-radius: 5px;
+.admin-club-managers-page .admin-managers-form select option {
+  color: #ffffff;
+  background: #171c32;
 }
 
 /* =========================================
-   INVITE FORM
+   FORM LAYOUT
 ========================================= */
 
-.admin-managers-form form {
+.admin-club-managers-page .admin-managers-form form {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  align-items: end;
-  gap: 18px;
-
-  width: 100%;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
 }
 
-.admin-managers-form form label {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-
-  color: #dce2ee;
-  font-size: 14px;
-  font-weight: 500;
+.admin-club-managers-page .admin-managers-form form button {
+  grid-column: 1 / -1;
+  justify-self: start;
 }
 
 /* =========================================
-   INPUT FIELDS
+   PRIMARY BUTTON
 ========================================= */
 
-.admin-managers-form input {
-  width: 100%;
-  height: 45px;
-  padding: 0 14px;
-
-  color: #f5f6fc;
-  background: #202d46;
-
-  border: 1px solid #465570;
-  border-radius: 8px;
-
-  outline: none;
-  font-family: inherit;
-  font-size: 14px;
-
-  transition: all 0.25s ease;
-}
-
-.admin-managers-form input::placeholder {
-  color: #8e9bb2;
-}
-
-.admin-managers-form input:focus {
-  border-color: #ff5722;
-  background: #202c43;
-
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
-}
-
-/* =========================================
-   SEND INVITE BUTTON
-========================================= */
-
-.admin-managers-form .admin-primary-button {
-  min-width: 125px;
-  height: 45px;
-  padding: 0 20px;
-
+.admin-club-managers-page .admin-primary-button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 
-  color: #fff;
-  background: #ff501c;
+  min-height: 46px;
+  padding: 12px 25px;
 
-  border: 1px solid #ff501c;
-  border-radius: 8px;
-
-  font-family: inherit;
+  color: #ffffff;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(
+    110deg,
+    var(--manager-orange),
+    var(--manager-pink),
+    var(--manager-purple)
+  );
+  background-size: 200% 200%;
 
   cursor: pointer;
-  transition: all 0.25s ease;
+  box-shadow: 0 7px 22px rgba(255, 79, 145, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-position 0.4s ease;
 }
 
-.admin-managers-form .admin-primary-button:hover:not(:disabled) {
-  background: #e94313;
-  border-color: #e94313;
-
-  transform: translateY(-2px);
-
-  box-shadow: 0 5px 15px rgba(255, 80, 28, 0.2);
+.admin-club-managers-page .admin-primary-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background-position: 100% 50%;
+  box-shadow: 0 12px 28px rgba(255, 79, 145, 0.3);
 }
 
-.admin-managers-form .admin-primary-button:active {
-  transform: translateY(0);
+.admin-club-managers-page .admin-primary-button:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
 }
 
-.admin-managers-form .admin-primary-button:disabled {
-  opacity: 0.45;
+.admin-club-managers-page .admin-primary-button:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
+  filter: grayscale(0.5);
 }
 
 /* =========================================
    FEEDBACK MESSAGE
 ========================================= */
 
-.admin-managers-form .admin-report-feedback {
-  margin: 15px 0 25px;
-  padding: 12px 15px;
+.admin-club-managers-page .admin-report-feedback {
+  margin-top: 22px;
+  padding: 14px 17px;
 
-  color: #b9f5d0;
-  background: rgba(34, 197, 94, 0.09);
-
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  border-radius: 8px;
-
-  font-size: 13px;
+  color: #8fffd1;
+  font-size: 14px;
   line-height: 1.6;
+
+  background: rgba(46, 213, 145, 0.09);
+  border: 1px solid rgba(46, 213, 145, 0.25);
+  border-radius: 10px;
+
+  animation: managerMessageEnter 0.4s ease both;
+}
+
+@keyframes managerMessageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================
-   MANAGERS LIST SECTION
+   EMPTY RESULT
 ========================================= */
 
-.admin-managers-form .admin-managers-list-title {
-  margin-top: 32px;
-  margin-bottom: 16px;
-}
+.admin-club-managers-page .admin-no-result {
+  padding: 25px 15px;
+  margin: 0 0 22px;
 
-/* No Result Found */
-
-.admin-managers-form .admin-no-result {
-  margin: 0 0 16px;
-  padding: 18px;
-
-  color: #aab5c9;
-  background: #202d46;
-
-  border: 1px solid #34425e;
-  border-radius: 8px;
-
+  color: var(--manager-muted);
   font-size: 14px;
   text-align: center;
+
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
-/* Refresh Button */
-
-.admin-managers-form > .admin-primary-button {
-  min-width: 95px;
-  height: 40px;
-}
-
-/* =========================================
-   TABLET RESPONSIVE
-========================================= */
-
-@media (max-width: 900px) {
-
-  .admin-club-managers-page {
-    padding: 22px 18px;
-  }
-
-  .admin-managers-form {
-    padding: 24px;
-  }
-
-  .admin-managers-form form {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .admin-managers-form form button {
-    grid-column: 1 / -1;
-    width: fit-content;
-  }
-
+.admin-club-managers-page .admin-no-result:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(66, 217, 245, 0.4);
 }
 
 /* =========================================
-   MOBILE RESPONSIVE
+   RESPONSIVE
 ========================================= */
 
-@media (max-width: 600px) {
-
+@media (max-width: 768px) {
   .admin-club-managers-page {
-    padding: 16px 12px;
+    padding: 20px 15px;
   }
 
-  .admin-managers-form {
-    margin: 18px auto;
-    padding: 20px 16px;
-    border-radius: 10px;
+  .admin-club-managers-page .admin-managers-form {
+    padding: 25px 20px;
+    margin-top: 25px;
   }
 
-  .admin-manager-club {
-    max-width: 100%;
-    margin-bottom: 25px;
+  .admin-club-managers-page .admin-managers-form h2 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 520px) {
+  .admin-club-managers-page {
+    padding: 15px 12px;
   }
 
-  .admin-managers-form h2 {
-    font-size: 16px;
-    margin-bottom: 18px;
+  .admin-club-managers-page .admin-managers-form {
+    padding: 22px 16px;
+    border-radius: 17px;
   }
 
-  .admin-managers-form form {
+  .admin-club-managers-page .admin-managers-form form {
     grid-template-columns: 1fr;
-    gap: 17px;
+    gap: 0;
   }
 
-  .admin-managers-form form label {
+  .admin-club-managers-page .admin-managers-form form button {
     width: 100%;
   }
 
-  .admin-managers-form form button {
-    grid-column: auto;
-    width: 100%;
-    height: 44px;
-  }
-
-  .admin-managers-form input,
-  .admin-manager-club select {
-    height: 44px;
-  }
-
-  .admin-managers-form .admin-managers-list-title {
-    margin-top: 28px;
-  }
-
-  .admin-managers-form > .admin-primary-button {
+  .admin-club-managers-page .admin-primary-button {
     width: 100%;
   }
-
 }
 
 /* =========================================
-   SMALL MOBILE
+   ACCESSIBILITY
 ========================================= */
 
-@media (max-width: 380px) {
-
-  .admin-club-managers-page {
-    padding: 12px 8px;
+@media (prefers-reduced-motion: reduce) {
+  .admin-club-managers-page *,
+  .admin-club-managers-page *::before,
+  .admin-club-managers-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  .admin-managers-form {
-    padding: 16px 12px;
-  }
-
-  .admin-managers-form h2 {
-    font-size: 15px;
-  }
-
-  .admin-managers-form input {
-    font-size: 13px;
-  }
-
 }
