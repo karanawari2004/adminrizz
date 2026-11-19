@@ -290,6 +290,13 @@
   .admin-sidebar.admin-sidebar-open { transform: translateX(0); }
 }
 
+@media (min-width: 701px) and (max-width: 900px) {
+  .admin-sidebar,
+  .admin-sidebar.admin-sidebar-open {
+    transform: translateX(0);
+  }
+}
+
 /* ---------- Respect "reduce motion" ---------- */
 @media (prefers-reduced-motion: reduce) {
   .admin-sidebar *,

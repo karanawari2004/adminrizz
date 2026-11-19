@@ -26,28 +26,26 @@ function RoutedApp() {
         Skip to main content
       </a>
       <div id="route-content" tabIndex={-1}>
-        <PageTransition>
-          <Routes location={location}>
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<Navigate replace to="sales-report" />} />
-              <Route path="sales-report" element={<SalesReport />} />
-              <Route path="event-end-report" element={<EventEndReport />} />
-              <Route path="events" element={<EventsPage />} />
-              <Route path="artists" element={<ArtistsPage />} />
-              <Route path="event-phases" element={<EventPhasesPage />} />
-              <Route path="clubs" element={<ClubsPage />} />
-              <Route path="club-managers" element={<ClubManagersPage />} />
-              <Route path="categories" element={<CategoriesPage />} />
-              <Route path="genres" element={<GenresPage />} />
-              <Route path="venue-booking" element={<UtilityPage title="Venue & Table Booking" />} />
-              <Route path="change-password" element={<UtilityPage section="Apps" title="Change Password" />} />
-              <Route path="*" element={<Navigate replace to="/admin/sales-report" />} />
-            </Route>
-            <Route path="*" element={<Login />} />
-          </Routes>
-        </PageTransition>
+        <Routes location={location}>
+          <Route path="/" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate replace to="sales-report" />} />
+            <Route path="sales-report" element={<SalesReport />} />
+            <Route path="event-end-report" element={<EventEndReport />} />
+            <Route path="events" element={<EventsPage />} />
+            <Route path="artists" element={<ArtistsPage />} />
+            <Route path="event-phases" element={<EventPhasesPage />} />
+            <Route path="clubs" element={<ClubsPage />} />
+            <Route path="club-managers" element={<ClubManagersPage />} />
+            <Route path="categories" element={<CategoriesPage />} />
+            <Route path="genres" element={<GenresPage />} />
+            <Route path="venue-booking" element={<UtilityPage title="Venue & Table Booking" />} />
+            <Route path="change-password" element={<UtilityPage section="Apps" title="Change Password" />} />
+            <Route path="*" element={<Navigate replace to="/admin/sales-report" />} />
+          </Route>
+          <Route path="*" element={<Login />} />
+        </Routes>
       </div>
     </>
   );
