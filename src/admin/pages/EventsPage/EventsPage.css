@@ -1,897 +1,675 @@
-/* =========================================
-   EVENTS PAGE - GLOBAL
-========================================= */
+/* =========================================================
+   RIZZTIX - EVENTS PAGE
+   Modern Premium Dashboard Theme
+========================================================= */
 
 .admin-events-page {
-  --event-orange: #ff8a3d;
-  --event-pink: #ff4f91;
-  --event-purple: #9475ff;
-  --event-cyan: #42d9f5;
+  --primary: #6254e8;
+  --primary-dark: #4f46cf;
+  --primary-light: #f0efff;
+  --secondary: #8b7cf6;
 
-  --event-text: #f4f5ff;
-  --event-muted: #a4acc5;
+  --heading: #17172f;
+  --text: #292943;
+  --muted: #85859a;
 
-  position: relative;
+  --page-bg: #f5f6fc;
+  --card-bg: #ffffff;
+  --border: #ececf4;
+
+  width: 100%;
   min-height: 100vh;
   padding: 28px;
-  overflow: hidden;
-  isolation: isolate;
-
-  color: var(--event-text);
-
-  background:
-    radial-gradient(circle at 10% 10%, rgba(148, 117, 255, 0.15), transparent 32%),
-    radial-gradient(circle at 90% 85%, rgba(255, 138, 61, 0.12), transparent 30%),
-    linear-gradient(135deg, #101426, #171c32 55%, #101426);
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  box-sizing: border-box;
 }
 
-/* =========================================
-   ANIMATED BACKGROUND
-========================================= */
-
-.admin-events-page::before,
-.admin-events-page::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  width: 400px;
-  height: 400px;
-
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.15;
-  pointer-events: none;
-
-  animation: eventsGlow 12s ease-in-out infinite alternate;
+.admin-events-page *,
+.admin-events-page *::before,
+.admin-events-page *::after {
+  box-sizing: border-box;
 }
 
-.admin-events-page::before {
-  top: 5%;
-  right: -120px;
-  background: var(--event-purple);
-}
-
-.admin-events-page::after {
-  bottom: 0;
-  left: -130px;
-  background: var(--event-orange);
-  animation-delay: 2s;
-}
-
-@keyframes eventsGlow {
-  from {
-    transform: translate(0, 0) scale(0.9);
-  }
-
-  to {
-    transform: translate(45px, -35px) scale(1.2);
-  }
-}
-
-/* =========================================
+/* =========================================================
    MAIN CONTENT
-========================================= */
+========================================================= */
 
-.admin-events-page .admin-events-content {
-  position: relative;
+.admin-events-content {
   width: 100%;
-  max-width: 1600px;
-  margin: 28px auto;
-
-  animation: eventsContentEnter 0.7s ease both;
+  margin-top: 24px;
+  padding: 25px;
+  background: var(--card-bg);
+  border: 1px solid rgba(225, 225, 240, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 5px 25px rgba(35, 35, 85, 0.045);
+  animation: eventsFadeIn 0.45s ease both;
 }
 
-@keyframes eventsContentEnter {
+@keyframes eventsFadeIn {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* =========================================
+/* =========================================================
    TABS
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-tabs {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-
-  width: fit-content;
-  max-width: 100%;
-
-  padding: 6px;
+  gap: 5px;
   margin-bottom: 25px;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 13px;
-
-  background: rgba(255, 255, 255, 0.045);
-  backdrop-filter: blur(15px);
+  padding: 5px;
+  border: 1px solid #eeeeF6;
+  border-radius: 11px;
+  background: #f7f7fc;
 }
 
 .admin-events-page .admin-tabs button {
-  position: relative;
-
-  padding: 12px 23px;
-
-  color: var(--event-muted);
-
-  font-size: 14px;
-  font-weight: 650;
-
+  padding: 10px 20px;
   border: none;
-  border-radius: 9px;
-
+  border-radius: 8px;
   background: transparent;
+  color: #77778e;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-
-  transition:
-    color 0.3s ease,
-    background 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .admin-events-page .admin-tabs button:hover {
+  color: var(--primary);
+  background: #eeedff;
+}
+
+.admin-events-page .admin-tabs button.active {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.07);
+  background: linear-gradient(135deg, #6254e8, #8975f5);
+  box-shadow: 0 4px 12px rgba(98, 84, 232, 0.24);
 }
 
-.admin-events-page .admin-tabs button.is-active {
-  color: #ffffff;
-
-  background: linear-gradient(
-    110deg,
-    var(--event-orange),
-    var(--event-pink),
-    var(--event-purple)
-  );
-
-  box-shadow: 0 5px 18px rgba(255, 79, 145, 0.2);
-}
-
-.admin-events-page .admin-tabs button.is-active:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 23px rgba(255, 79, 145, 0.3);
-}
-
-/* =========================================
+/* =========================================================
    TOOLBAR
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-events-toolbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 13px;
-
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
-.admin-events-page .admin-primary-button,
-.admin-events-page .admin-secondary-button {
+.admin-events-page .admin-events-toolbar select {
+  min-width: 155px;
+  height: 42px;
+  padding: 0 35px 0 13px;
+  border: 1px solid #e5e5f0;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #292943;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-events-page .admin-events-toolbar select:hover {
+  border-color: #b8b0ff;
+}
+
+.admin-events-page .admin-events-toolbar select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(98, 84, 232, 0.1);
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.admin-events-page .admin-primary-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-
-  min-height: 44px;
-  padding: 11px 20px;
-
-  color: #ffffff;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  border-radius: 10px;
-  cursor: pointer;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
-}
-
-.admin-events-page .admin-primary-button {
+  min-height: 42px;
+  padding: 0 19px;
   border: none;
-
-  background: linear-gradient(
-    110deg,
-    var(--event-orange),
-    var(--event-pink),
-    var(--event-purple)
-  );
-
-  background-size: 200% 200%;
-
-  box-shadow: 0 6px 20px rgba(255, 79, 145, 0.2);
+  border-radius: 9px;
+  background: linear-gradient(135deg, #6254e8, #8875f4);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(98, 84, 232, 0.2);
+  transition: all 0.25s ease;
 }
 
 .admin-events-page .admin-primary-button:hover {
-  transform: translateY(-3px);
-  background-position: 100% 50%;
-  box-shadow: 0 10px 25px rgba(255, 79, 145, 0.3);
+  background: linear-gradient(135deg, #5144d3, #7661e8);
+  box-shadow: 0 7px 17px rgba(98, 84, 232, 0.28);
+  transform: translateY(-2px);
 }
+
+.admin-events-page .admin-primary-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
 
 .admin-events-page .admin-secondary-button {
-  color: #dfe4f7;
-
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.admin-events-page .admin-secondary-button:hover {
-  color: #ffffff;
-  border-color: var(--event-cyan);
-  background: rgba(66, 217, 245, 0.1);
-  transform: translateY(-3px);
-}
-
-.admin-events-page .admin-events-toolbar > select {
-  min-height: 44px;
-  min-width: 150px;
-
-  padding: 10px 15px;
-
-  color: #ffffff;
-  font-size: 13px;
-
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 10px;
-
-  outline: none;
-  background: rgba(17, 22, 42, 0.9);
-
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.admin-events-page .admin-events-toolbar > select:focus {
-  border-color: var(--event-purple);
-}
-
-.admin-events-page .admin-events-toolbar > select option {
-  color: #ffffff;
-  background: #171c32;
-}
-
-/* =========================================
-   SEARCH BAR
-========================================= */
-
-.admin-events-page .admin-events-search {
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  min-height: 54px;
-
-  margin-bottom: 22px;
-  padding: 5px 7px 5px 18px;
-
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 13px;
-
-  background: rgba(255, 255, 255, 0.055);
-
-  backdrop-filter: blur(15px);
-
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
-}
-
-.admin-events-page .admin-events-search:focus-within {
-  border-color: rgba(148, 117, 255, 0.7);
-
-  background: rgba(255, 255, 255, 0.075);
-
-  box-shadow: 0 0 0 3px rgba(148, 117, 255, 0.1);
-}
-
-.admin-events-page .admin-events-search input {
-  flex: 1;
-  min-width: 0;
-  min-height: 40px;
-
-  padding: 8px 10px;
-
-  color: #ffffff;
-  font-size: 13px;
-
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-.admin-events-page .admin-events-search input::placeholder {
-  color: #8992ad;
-}
-
-.admin-events-page .admin-events-search button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 42px;
-  height: 40px;
-
-  flex-shrink: 0;
-
-  color: #ffffff;
-
-  border: none;
-  border-radius: 9px;
-
-  background: linear-gradient(
-    135deg,
-    var(--event-orange),
-    var(--event-pink),
-    var(--event-purple)
-  );
-
-  cursor: pointer;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.admin-events-page .admin-events-search button:hover {
-  transform: scale(1.07);
-  box-shadow: 0 5px 18px rgba(255, 79, 145, 0.3);
-}
-
-/* =========================================
-   TABLE CONTAINER
-========================================= */
-
-.admin-events-page .admin-events-table-wrap {
-  position: relative;
-  width: 100%;
-
-  overflow: auto;
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.045);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  box-shadow:
-    0 20px 55px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-  scrollbar-width: thin;
-  scrollbar-color: #66568e rgba(255, 255, 255, 0.04);
-
-  animation: eventsTableEnter 0.8s ease both;
-}
-
-@keyframes eventsTableEnter {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(0.99);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.admin-events-page .admin-events-table-wrap::-webkit-scrollbar {
-  height: 7px;
-  width: 7px;
-}
-
-.admin-events-page .admin-events-table-wrap::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    var(--event-orange),
-    var(--event-pink),
-    var(--event-purple)
-  );
-}
-
-/* =========================================
-   TABLE
-========================================= */
-
-.admin-events-page .admin-events-table {
-  width: 100%;
-  min-width: 1000px;
-
-  border-collapse: separate;
-  border-spacing: 0;
-
-  color: var(--event-text);
-}
-
-/* Table header */
-
-.admin-events-page .admin-events-table thead {
-  position: relative;
-  z-index: 2;
-}
-
-.admin-events-page .admin-events-table thead th {
-  position: sticky;
-  top: 0;
-
-  padding: 20px 18px;
-
-  color: #e9eaff;
-
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  text-align: left;
-  text-transform: uppercase;
-
-  white-space: nowrap;
-
-  background: linear-gradient(
-    110deg,
-    rgba(148, 117, 255, 0.16),
-    rgba(255, 79, 145, 0.1),
-    rgba(66, 217, 245, 0.08)
-  );
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-}
-
-.admin-events-page .admin-events-table thead th:first-child {
-  border-radius: 17px 0 0 0;
-}
-
-.admin-events-page .admin-events-table thead th:last-child {
-  border-radius: 0 17px 0 0;
-}
-
-/* Count badge */
-
-.admin-events-page .admin-count {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  min-width: 23px;
-  height: 23px;
-
-  margin-left: 9px;
-  padding: 0 6px;
-
-  color: #ffffff;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  border-radius: 7px;
-
-  background: linear-gradient(
-    135deg,
-    var(--event-orange),
-    var(--event-pink)
-  );
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid #e6e4f5;
+  border-radius: 9px;
+  background: #f9f8ff;
+  color: #39364f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-/* =========================================
+.admin-events-page .admin-secondary-button:hover {
+  border-color: #c9c2ff;
+  background: #f0efff;
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SEARCH BAR
+========================================================= */
+
+.admin-events-page .admin-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  max-width: 340px;
+  height: 42px;
+  padding: 0 11px 0 14px;
+  border: 1px solid #e6e5f0;
+  border-radius: 9px;
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.admin-events-page .admin-search-bar:hover {
+  border-color: #c8c1ff;
+}
+
+.admin-events-page .admin-search-bar:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(98, 84, 232, 0.1);
+}
+
+.admin-events-page .admin-search-bar input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #22223a;
+  font-size: 13px;
+}
+
+.admin-events-page .admin-search-bar input::placeholder {
+  color: #a1a1b3;
+}
+
+.admin-events-page .admin-search-bar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  background: #f0efff;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-events-page .admin-search-bar button:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.admin-events-page .admin-table-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ececf4;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 0 3px 13px rgba(35, 35, 85, 0.025);
+}
+
+.admin-events-page .admin-events-table-wrap {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c9c3f8 transparent;
+}
+
+.admin-events-page .admin-events-table-wrap::-webkit-scrollbar {
+  height: 5px;
+}
+
+.admin-events-page .admin-events-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-events-page .admin-events-table-wrap::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #c9c3f8;
+}
+
+.admin-events-page .admin-events-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: #8b7cf6;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.admin-events-page .admin-events-table {
+  width: 100%;
+  min-width: 950px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.admin-events-page .admin-events-table thead th {
+  height: 54px;
+  padding: 0 16px;
+  border-bottom: 1px solid #ececf4;
+  background: #f8f8fd;
+  color: #55546c;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-events-page .admin-events-table tbody td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #f0f0f6;
+  background: #ffffff;
+  color: #292943;
+  font-size: 13px;
+  vertical-align: middle;
+  transition: background 0.2s ease;
+}
+
+.admin-events-page .admin-events-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-events-page .admin-events-table tbody tr:hover td {
+  background: #faf9ff;
+}
+
+/* =========================================================
+   COUNT BADGE
+========================================================= */
+
+.admin-events-page .admin-events-table thead th span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: #eae8ff;
+  color: #6254e8;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================================================
    FILTER ROW
-========================================= */
+========================================================= */
 
-.admin-events-page .admin-table-filters td {
-  padding: 12px 15px;
-
-  background: rgba(10, 15, 32, 0.35);
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.admin-events-page .admin-table-filters th {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eeeeF5;
+  background: #ffffff;
 }
 
 .admin-events-page .admin-table-filters select,
 .admin-events-page .admin-table-filters input {
   width: 100%;
   min-width: 100px;
-  min-height: 36px;
-
-  padding: 8px 10px;
-
-  color: #dce2f5;
-  font-size: 12px;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid #e9e8f1;
+  border-radius: 7px;
   outline: none;
-  background: rgba(255, 255, 255, 0.055);
-
-  transition:
-    border-color 0.3s ease,
-    background 0.3s ease;
+  background: #fafaff;
+  color: #292943;
+  font-size: 12px;
+  transition: all 0.2s ease;
 }
 
 .admin-events-page .admin-table-filters select:focus,
 .admin-events-page .admin-table-filters input:focus {
-  border-color: var(--event-purple);
-  background: rgba(148, 117, 255, 0.1);
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(98, 84, 232, 0.08);
 }
 
-.admin-events-page .admin-table-filters select option {
-  color: #ffffff;
-  background: #171c32;
-}
-
-.admin-events-page .admin-table-filters input::placeholder {
-  color: #8992ad;
-}
-
-/* =========================================
-   TABLE BODY ROWS
-========================================= */
-
-.admin-events-page .admin-events-table tbody tr:not(.admin-table-filters) {
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.admin-events-page .admin-events-table tbody tr:not(.admin-table-filters):not(:last-child) td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
-}
-
-.admin-events-page .admin-events-table tbody tr:not(.admin-table-filters) td {
-  padding: 20px 18px;
-
-  color: #c8cee2;
-  font-size: 13px;
-  vertical-align: middle;
-}
-
-.admin-events-page .admin-events-table tbody tr:not(.admin-table-filters) {
-  animation: eventRowEnter 0.5s ease both;
-  animation-delay: calc(var(--event-index, 0) * 90ms);
-}
-
-@keyframes eventRowEnter {
-  from {
-    opacity: 0;
-    transform: translateX(-15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.admin-events-page .admin-events-table tbody tr:not(.admin-table-filters):hover {
-  background: linear-gradient(
-    90deg,
-    rgba(148, 117, 255, 0.09),
-    rgba(255, 79, 145, 0.055),
-    rgba(66, 217, 245, 0.055)
-  );
-}
-
-/* =========================================
+/* =========================================================
    EVENT DETAILS
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-event-detail {
   display: flex;
   align-items: center;
-  gap: 13px;
-
-  min-width: 220px;
+  gap: 12px;
+  min-width: 190px;
 }
 
 .admin-events-page .admin-event-poster {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-
   flex-shrink: 0;
-
-  color: #ffffff;
-
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 13px;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 138, 61, 0.8),
-    rgba(255, 79, 145, 0.8),
-    rgba(148, 117, 255, 0.8)
-  );
-
-  box-shadow: 0 5px 17px rgba(148, 117, 255, 0.18);
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  width: 48px;
+  height: 54px;
+  overflow: hidden;
+  border: 1px solid #e8e6f5;
+  border-radius: 9px;
+  background: #f0efff;
+  transition: all 0.25s ease;
 }
 
 .admin-events-page .admin-events-table tbody tr:hover .admin-event-poster {
-  transform: rotate(-7deg) scale(1.08);
+  transform: scale(1.06);
+  box-shadow: 0 4px 10px rgba(98, 84, 232, 0.12);
+}
 
-  box-shadow: 0 8px 23px rgba(255, 79, 145, 0.25);
+.admin-events-page .admin-event-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .admin-events-page .admin-event-info {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-width: 0;
 }
 
+.admin-events-page .admin-event-info h4,
 .admin-events-page .admin-event-info strong {
-  color: #ffffff;
-
-  font-size: 14px;
-  font-weight: 750;
+  margin: 0;
+  color: #19192f;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-.admin-events-page .admin-event-info small {
-  color: var(--event-muted);
+.admin-events-page .admin-event-info p,
+.admin-events-page .admin-event-info span {
+  margin: 0;
+  color: #85859a;
   font-size: 11px;
+  line-height: 1.5;
 }
 
-/* =========================================
-   ARTIST
-========================================= */
+/* =========================================================
+   ARTIST DETAILS
+========================================================= */
 
 .admin-events-page .admin-event-artist-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 9px;
+  gap: 6px;
+}
+
+.admin-events-page .admin-event-artist {
+  color: #25253d;
+  font-size: 13px;
+  font-weight: 650;
 }
 
 .admin-events-page .admin-type-pill {
   display: inline-flex;
   align-items: center;
-
-  padding: 5px 10px;
-
-  color: #c9baff;
-
+  width: fit-content;
+  padding: 5px 9px;
+  border: 1px solid #e2deff;
+  border-radius: 6px;
+  background: #f3f1ff;
+  color: #6254d8;
   font-size: 10px;
-  font-weight: 750;
-  letter-spacing: 0.5px;
-
-  border: 1px solid rgba(148, 117, 255, 0.25);
-  border-radius: 20px;
-
-  background: rgba(148, 117, 255, 0.1);
+  font-weight: 650;
 }
 
-.admin-events-page .admin-event-artist {
-  color: #ffffff;
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* =========================================
+/* =========================================================
    EVENT TIMING
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-event-timing {
   display: flex;
-  align-items: center;
-  gap: 9px;
-
-  white-space: nowrap;
+  flex-direction: column;
+  gap: 5px;
+  color: #292943;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.admin-events-page .admin-event-timing svg {
-  flex-shrink: 0;
-  color: var(--event-cyan);
+.admin-events-page .admin-event-timing strong {
+  color: #292943;
+  font-size: 12px;
+  font-weight: 650;
 }
 
-/* =========================================
+.admin-events-page .admin-event-timing span {
+  color: #85859a;
+  font-size: 11px;
+}
+
+/* =========================================================
    TICKET DETAILS
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-event-ticket-info {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5px;
+  color: #292943;
+  font-size: 12px;
 }
 
 .admin-events-page .admin-event-ticket-info strong {
-  color: var(--event-muted);
-
-  font-size: 11px;
-  font-weight: 600;
+  color: #25253d;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .admin-events-page .admin-event-ticket-info span {
-  color: #ffffff;
-
-  font-size: 14px;
-  font-weight: 750;
+  color: #85859a;
+  font-size: 11px;
 }
 
-/* =========================================
-   STATUS
-========================================= */
+/* =========================================================
+   STATUS BADGES
+========================================================= */
 
 .admin-events-page .admin-event-status {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 9px;
-}
-
-.admin-events-page .admin-event-status > strong {
-  color: #dfe4f7;
-
-  font-size: 12px;
-  font-weight: 650;
+  align-items: center;
 }
 
 .admin-events-page .admin-status-pill {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-
+  width: fit-content;
   padding: 6px 11px;
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-
-  border: 1px solid transparent;
-  border-radius: 30px;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.admin-events-page .admin-status-pill:hover {
-  transform: translateY(-2px);
+  border: 1px solid #e8e8ef;
+  border-radius: 20px;
+  background: #f8f8fb;
+  color: #55546c;
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .admin-events-page .admin-status-dot {
   width: 7px;
   height: 7px;
-
-  flex-shrink: 0;
-
   border-radius: 50%;
-  background: currentColor;
-
-  animation: statusPulse 1.8s ease-in-out infinite;
+  background: #9999aa;
 }
 
-@keyframes statusPulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 currentColor;
-  }
-
-  50% {
-    opacity: 0.7;
-    box-shadow: 0 0 0 4px transparent;
-  }
-}
+/* Ongoing */
 
 .admin-events-page .admin-status-pill.ongoing {
-  color: #66f0b1;
-
-  border-color: rgba(46, 213, 145, 0.25);
-  background: rgba(46, 213, 145, 0.1);
+  border-color: #c9f0d7;
+  background: #edfff3;
+  color: #168044;
 }
+
+.admin-events-page .admin-status-pill.ongoing .admin-status-dot {
+  background: #20b66a;
+  box-shadow: 0 0 0 3px rgba(32, 182, 106, 0.1);
+}
+
+/* Upcoming */
 
 .admin-events-page .admin-status-pill.upcoming {
-  color: #72dfff;
-
-  border-color: rgba(66, 217, 245, 0.25);
-  background: rgba(66, 217, 245, 0.1);
+  border-color: #d8d3ff;
+  background: #f2f0ff;
+  color: #6254d8;
 }
 
-.admin-events-page .admin-status-pill.completed {
-  color: #c5a9ff;
-
-  border-color: rgba(148, 117, 255, 0.25);
-  background: rgba(148, 117, 255, 0.1);
+.admin-events-page .admin-status-pill.upcoming .admin-status-dot {
+  background: #7565ed;
 }
 
-/* =========================================
+/* =========================================================
    EMPTY STATE
-========================================= */
+========================================================= */
 
 .admin-events-page .admin-empty-row {
-  padding: 55px 20px !important;
-
-  color: var(--event-muted) !important;
-
-  font-size: 14px !important;
+  padding: 48px 20px !important;
+  color: #85859a !important;
   text-align: center;
-
-  background: rgba(255, 255, 255, 0.015);
+  font-size: 13px;
 }
 
-/* =========================================
+/* =========================================================
+   MODAL
+========================================================= */
+
+.admin-events-page .admin-modal,
+.admin-events-page .admin-modal-content {
+  color: #292943;
+}
+
+.admin-events-page .admin-modal-content {
+  background: #ffffff;
+  border: 1px solid #ececf4;
+  border-radius: 15px;
+  box-shadow: 0 18px 55px rgba(30, 30, 75, 0.16);
+}
+
+/* =========================================================
+   FOCUS STATES
+========================================================= */
+
+.admin-events-page button:focus-visible,
+.admin-events-page select:focus-visible,
+.admin-events-page input:focus-visible {
+  outline: 2px solid #9b91ff;
+  outline-offset: 2px;
+}
+
+/* =========================================================
    RESPONSIVE
-========================================= */
+========================================================= */
 
 @media (max-width: 900px) {
   .admin-events-page {
-    padding: 22px 17px;
+    padding: 18px;
   }
 
-  .admin-events-page .admin-events-table-wrap {
-    border-radius: 14px;
+  .admin-events-content {
+    padding: 18px;
   }
 }
 
 @media (max-width: 600px) {
   .admin-events-page {
-    padding: 17px 12px;
+    padding: 12px;
+  }
+
+  .admin-events-content {
+    margin-top: 16px;
+    padding: 13px;
+    border-radius: 13px;
+  }
+
+  .admin-events-page .admin-events-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-events-page .admin-events-toolbar > * {
+    width: 100%;
+  }
+
+  .admin-events-page .admin-search-bar {
+    max-width: 100%;
   }
 
   .admin-events-page .admin-tabs {
+    display: flex;
     width: 100%;
   }
 
   .admin-events-page .admin-tabs button {
     flex: 1;
-    padding: 11px 10px;
-    font-size: 12px;
-  }
-
-  .admin-events-page .admin-events-toolbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .admin-events-page .admin-events-toolbar .admin-primary-button,
-  .admin-events-page .admin-events-toolbar .admin-secondary-button {
-    width: 100%;
-  }
-
-  .admin-events-page .admin-events-toolbar > select {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-
-  .admin-events-page .admin-events-search {
-    min-height: 48px;
-    padding-left: 9px;
-  }
-
-  .admin-events-page .admin-events-search input {
-    font-size: 12px;
+    padding: 10px 8px;
   }
 }
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .admin-events-page *,
   .admin-events-page *::before,
   .admin-events-page *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

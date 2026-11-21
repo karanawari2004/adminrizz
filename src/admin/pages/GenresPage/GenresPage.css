@@ -1,688 +1,228 @@
 /* =====================================================
-   RIZZTIX · GENRES MANAGEMENT
-   Animated Neon Glassmorphism UI
-   Theme: Navy + Orange + Pink + Violet + Cyan
+   GENRES MANAGEMENT - WHITE & BLUE THEME
 ===================================================== */
 
 .admin-genres-page {
-  --gen-bg: #060818;
-  --gen-glass: rgba(255, 255, 255, 0.055);
-  --gen-line: rgba(255, 255, 255, 0.12);
-  --gen-text: #eef2ff;
-  --gen-muted: #8b98c4;
-  --gen-orange: #ff8a1f;
-  --gen-pink: #ff3d81;
-  --gen-violet: #8b5cf6;
-  --gen-cyan: #22d3ee;
-  --gen-green: #34d399;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --text: #111827;
+  --text-secondary: #374151;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --surface: #ffffff;
+  --page-bg: #f5f8ff;
 
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-  padding: 30px;
-  color: var(--gen-text);
-  background: var(--gen-bg);
-  font-family: "Segoe UI", system-ui, sans-serif;
-  overflow: hidden;
-}
-
-.admin-genres-page *,
-.admin-genres-page *::before,
-.admin-genres-page *::after {
-  box-sizing: border-box;
-}
-
-/* =====================================================
-   ANIMATED BACKGROUND
-===================================================== */
-
-.admin-genres-page::before {
-  content: "";
-  position: fixed;
-  inset: -30%;
-  z-index: -2;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.24), transparent 32%),
-    radial-gradient(circle at 85% 80%, rgba(255, 61, 129, 0.18), transparent 32%),
-    radial-gradient(circle at 70% 15%, rgba(34, 211, 238, 0.13), transparent 30%),
-    radial-gradient(circle at 25% 85%, rgba(255, 138, 31, 0.13), transparent 30%);
-
-  filter: blur(35px);
-  animation: gen-aurora 18s ease-in-out infinite alternate;
-}
-
-.admin-genres-page::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-
-  background-size: 55px 55px;
-
-  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
-
-  animation: gen-grid 25s linear infinite;
-}
-
-@keyframes gen-aurora {
-  0% {
-    transform: translate(-3%, -2%) scale(1);
-  }
-
-  50% {
-    transform: translate(3%, 4%) scale(1.12);
-  }
-
-  100% {
-    transform: translate(-2%, 3%) scale(1.05);
-  }
-}
-
-@keyframes gen-grid {
-  to {
-    background-position: 55px 55px;
-  }
-}
-
-/* =====================================================
-   ENTRANCE ANIMATION
-===================================================== */
-
-@keyframes gen-rise {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.97);
-    filter: blur(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: none;
-  }
-}
-
-.admin-genres-page > * {
-  animation: gen-rise 0.85s cubic-bezier(0.2, 0.9, 0.25, 1) both;
-}
-
-/* =====================================================
-   TOOLBAR
-===================================================== */
-
-.admin-genres-page .admin-catalog-toolbar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 18px;
-
-  margin-bottom: 24px;
-  padding: 24px;
-
-  background: var(--gen-glass);
-  border: 1px solid var(--gen-line);
-  border-radius: 20px;
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  overflow: hidden;
-
-  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
-}
-
-.admin-genres-page .admin-catalog-toolbar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-
-  background: linear-gradient(
-    180deg,
-    var(--gen-orange),
-    var(--gen-pink),
-    var(--gen-violet),
-    var(--gen-cyan)
-  );
-
-  background-size: 100% 300%;
-  animation: gen-bar-flow 5s linear infinite;
-}
-
-@keyframes gen-bar-flow {
-  to {
-    background-position: 0 300%;
-  }
-}
-
-.admin-genres-page .admin-catalog-toolbar:hover {
-  border-color: rgba(255, 138, 31, 0.4);
-  box-shadow: 0 20px 45px -20px rgba(255, 61, 129, 0.35);
-}
-
-/* =====================================================
-   SEARCH INPUT
-===================================================== */
-
-.admin-genres-page .admin-catalog-toolbar input {
   width: 100%;
-  max-width: 340px;
-  min-width: 200px;
-
-  padding: 14px 18px;
-
-  color: var(--gen-text);
-  background: rgba(8, 12, 34, 0.8);
-
-  border: 1px solid var(--gen-line);
-  border-radius: 12px;
-
-  outline: none;
-
+  min-height: 100%;
+  padding: 28px;
+  background: var(--page-bg);
+  color: var(--text);
+  box-sizing: border-box;
   font-family: inherit;
+}
+
+/* Main text visibility */
+.admin-genres-page,
+.admin-genres-page * {
+  color: var(--text);
+}
+
+/* Headings */
+.admin-genres-page h1,
+.admin-genres-page h2,
+.admin-genres-page h3,
+.admin-genres-page h4 {
+  color: #111827 !important;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+/* Paragraphs and labels */
+.admin-genres-page p,
+.admin-genres-page label,
+.admin-genres-page span {
+  color: #374151;
+}
+
+/* Main content cards */
+.admin-genres-page .admin-catalog,
+.admin-genres-page .manage-catalog,
+.admin-genres-page .admin-catalog-content,
+.admin-genres-page .admin-table-card,
+.admin-genres-page .catalog-container,
+.admin-genres-page .catalog-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(37, 99, 235, 0.05);
+}
+
+/* Search input */
+.admin-genres-page input,
+.admin-genres-page select {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid #dbe3ef !important;
+  border-radius: 9px;
+  padding: 11px 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.admin-genres-page input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.admin-genres-page input:focus,
+.admin-genres-page select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Buttons */
+.admin-genres-page button {
+  border-radius: 9px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.admin-genres-page button:hover {
+  transform: translateY(-1px);
+}
+
+/* Primary buttons */
+.admin-genres-page button[type="submit"],
+.admin-genres-page .primary-button,
+.admin-genres-page .admin-primary-button {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--primary) !important;
+}
+
+.admin-genres-page button[type="submit"]:hover,
+.admin-genres-page .primary-button:hover,
+.admin-genres-page .admin-primary-button:hover {
+  background: var(--primary-dark) !important;
+}
+
+/* Table wrapper */
+.admin-genres-page .admin-table-wrapper,
+.admin-genres-page .catalog-table-wrapper,
+.admin-genres-page .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+/* Table */
+.admin-genres-page table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+/* Table heading */
+.admin-genres-page thead {
+  background: #eaf2ff !important;
+}
+
+.admin-genres-page th {
+  padding: 16px 20px;
+  color: #111827 !important;
+  background: #eaf2ff !important;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1px solid #dbeafe;
+  white-space: nowrap;
+}
+
+/* Table body */
+.admin-genres-page td {
+  padding: 16px 20px;
+  color: #111827 !important;
+  background: #ffffff !important;
   font-size: 14px;
   font-weight: 500;
-
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
+  border-bottom: 1px solid #edf1f7;
 }
 
-.admin-genres-page .admin-catalog-toolbar input::placeholder {
-  color: var(--gen-muted);
+/* Table row hover */
+.admin-genres-page tbody tr {
+  transition: background 0.2s ease;
 }
 
-.admin-genres-page .admin-catalog-toolbar input:hover {
-  border-color: rgba(255, 138, 31, 0.6);
-  transform: translateY(-2px);
+.admin-genres-page tbody tr:hover td {
+  background: #f3f7ff !important;
 }
 
-.admin-genres-page .admin-catalog-toolbar input:focus {
-  border-color: var(--gen-orange);
-  background: rgba(12, 17, 45, 0.95);
-
-  box-shadow:
-    0 0 0 4px rgba(255, 138, 31, 0.12),
-    0 0 25px rgba(255, 138, 31, 0.18);
+/* Last row */
+.admin-genres-page tbody tr:last-child td {
+  border-bottom: none;
 }
 
-/* =====================================================
-   PRIMARY BUTTON
-===================================================== */
-
-.admin-genres-page .admin-primary-button {
-  position: relative;
-  overflow: hidden;
-
-  padding: 13px 25px;
-
-  border: none;
-  border-radius: 12px;
-
-  color: #fff;
-
-  background: linear-gradient(
-    110deg,
-    var(--gen-orange),
-    var(--gen-pink),
-    var(--gen-violet),
-    var(--gen-orange)
-  );
-
-  background-size: 250% 100%;
-
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-  box-shadow: 0 10px 25px -8px rgba(255, 61, 129, 0.65);
-
-  animation: gen-button-flow 5s linear infinite;
-
-  transition: transform 0.3s, box-shadow 0.3s;
+/* Links */
+.admin-genres-page a {
+  color: var(--primary) !important;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-@keyframes gen-button-flow {
-  to {
-    background-position: -250% 0;
-  }
+.admin-genres-page a:hover {
+  color: var(--primary-dark) !important;
 }
 
-.admin-genres-page .admin-primary-button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    100deg,
-    transparent,
-    rgba(255,255,255,0.4),
-    transparent
-  );
-
-  transform: translateX(-120%);
-  transition: transform 0.7s;
+/* Icons */
+.admin-genres-page svg {
+  color: inherit;
+  flex-shrink: 0;
 }
 
-.admin-genres-page .admin-primary-button:hover {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 16px 35px -8px rgba(255, 61, 129, 0.85);
-}
-
-.admin-genres-page .admin-primary-button:hover::after {
-  transform: translateX(120%);
-}
-
-.admin-genres-page .admin-primary-button:active {
-  transform: scale(0.96);
-}
-
-/* =====================================================
-   TABLE CARD
-===================================================== */
-
-.admin-genres-page .admin-table-card {
-  position: relative;
-
-  padding: 24px;
-
-  background: var(--gen-glass);
-
-  border: 1px solid var(--gen-line);
-  border-radius: 22px;
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  overflow: hidden;
-
-  transition: border-color 0.35s, box-shadow 0.35s;
-}
-
-.admin-genres-page .admin-table-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 2px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--gen-orange),
-    var(--gen-pink),
-    var(--gen-violet),
-    var(--gen-cyan),
-    transparent
-  );
-
-  background-size: 200% 100%;
-  animation: gen-border-flow 6s linear infinite;
-}
-
-@keyframes gen-border-flow {
-  to {
-    background-position: -200% 0;
-  }
-}
-
-.admin-genres-page .admin-table-card:hover {
-  border-color: rgba(255, 138, 31, 0.3);
-  box-shadow: 0 25px 55px -25px rgba(139, 92, 246, 0.35);
-}
-
-/* =====================================================
-   TABLE
-===================================================== */
-
-.admin-genres-page .admin-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 9px;
-
-  color: var(--gen-text);
-  font-size: 14px;
-}
-
-.admin-genres-page .admin-catalog-table {
-  min-width: 600px;
-}
-
-.admin-genres-page .admin-table thead th {
-  padding: 16px 18px;
-
-  text-align: left;
-  white-space: nowrap;
-
-  color: #fff;
-
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-
-  background: linear-gradient(
-    110deg,
-    #ff8a1f,
-    #ff3d81,
-    #8b5cf6,
-    #22d3ee,
-    #ff8a1f
-  );
-
-  background-size: 300% 100%;
-  animation: gen-header-flow 8s linear infinite;
-}
-
-@keyframes gen-header-flow {
-  to {
-    background-position: -300% 0;
-  }
-}
-
-.admin-genres-page .admin-table thead th:first-child {
-  border-radius: 12px 0 0 12px;
-}
-
-.admin-genres-page .admin-table thead th:last-child {
-  border-radius: 0 12px 12px 0;
-}
-
-/* =====================================================
-   TABLE ROW ANIMATION
-===================================================== */
-
-@keyframes gen-row-enter {
-  from {
-    opacity: 0;
-    transform: translateX(-25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.admin-genres-page .admin-table tbody tr {
-  animation: gen-row-enter 0.65s ease backwards;
-  transition: transform 0.3s, filter 0.3s;
-}
-
-.admin-genres-page .admin-table tbody tr:nth-child(1) {
-  animation-delay: 0.35s;
-}
-
-.admin-genres-page .admin-table tbody tr:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.admin-genres-page .admin-table tbody tr:nth-child(3) {
-  animation-delay: 0.65s;
-}
-
-.admin-genres-page .admin-table tbody tr:nth-child(4) {
-  animation-delay: 0.8s;
-}
-
-.admin-genres-page .admin-table tbody tr:nth-child(5) {
-  animation-delay: 0.95s;
-}
-
-.admin-genres-page .admin-table tbody td {
-  padding: 17px 18px;
-
-  background: rgba(255, 255, 255, 0.045);
-
-  border-top: 1px solid rgba(255,255,255,0.035);
-  border-bottom: 1px solid rgba(255,255,255,0.035);
-
-  color: #dce4ff;
-  white-space: nowrap;
-
-  transition: background 0.3s, color 0.3s;
-}
-
-.admin-genres-page .admin-table tbody td:first-child {
-  border-radius: 12px 0 0 12px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.admin-genres-page .admin-table tbody td:last-child {
-  border-radius: 0 12px 12px 0;
-}
-
-.admin-genres-page .admin-table tbody tr:hover {
-  transform: translateX(7px) scale(1.003);
-}
-
-.admin-genres-page .admin-table tbody tr:hover td {
-  background: rgba(255, 138, 31, 0.13);
-  color: #fff;
-}
-
-.admin-genres-page .admin-table tbody tr:hover td:first-child {
-  box-shadow: inset 3px 0 var(--gen-orange);
-}
-
-/* =====================================================
-   GENRE EVENT COUNT
-===================================================== */
-
-.admin-genres-page .admin-table tbody td:nth-child(2) {
-  color: var(--gen-cyan);
-  font-weight: 800;
-}
-
-/* =====================================================
-   COUNT BADGE
-===================================================== */
-
-.admin-genres-page .admin-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 38px;
-  height: 38px;
-
-  padding: 0 12px;
-
-  color: #fff;
-
-  background: linear-gradient(
-    120deg,
-    var(--gen-orange),
-    var(--gen-pink),
-    var(--gen-violet)
-  );
-
-  border-radius: 12px;
-
-  font-size: 14px;
-  font-weight: 900;
-
-  box-shadow: 0 6px 20px rgba(255, 61, 129, 0.3);
-
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.admin-genres-page .admin-count:hover {
-  transform: translateY(-4px) rotate(-5deg) scale(1.08);
-  box-shadow: 0 12px 25px rgba(255, 61, 129, 0.5);
-}
-
-/* =====================================================
-   ACTION BUTTONS
-===================================================== */
-
-.admin-genres-page .admin-icon-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 37px;
-  height: 37px;
-
-  margin: 0 4px;
-
-  color: var(--gen-cyan);
-
-  background: rgba(34, 211, 238, 0.1);
-
-  border: 1px solid rgba(34, 211, 238, 0.3);
-  border-radius: 10px;
-
-  cursor: pointer;
-
-  transition: transform 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s;
-}
-
-.admin-genres-page .admin-icon-action:hover {
-  color: #fff;
-
-  background: linear-gradient(
-    120deg,
-    var(--gen-cyan),
-    var(--gen-violet)
-  );
-
-  transform: translateY(-4px) rotate(5deg);
-
-  box-shadow: 0 8px 20px rgba(34, 211, 238, 0.35);
-}
-
-.admin-genres-page .admin-icon-action.delete {
-  color: var(--gen-pink);
-  background: rgba(255, 61, 129, 0.1);
-  border-color: rgba(255, 61, 129, 0.3);
-}
-
-.admin-genres-page .admin-icon-action.delete:hover {
-  color: #fff;
-  background: linear-gradient(120deg, #ff3d81, #ef4444);
-  border-color: transparent;
-  box-shadow: 0 8px 20px rgba(255, 61, 129, 0.4);
-}
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.admin-genres-page .admin-empty-row {
-  padding: 40px 20px !important;
+/* Empty state */
+.admin-genres-page .empty-state,
+.admin-genres-page .no-results {
+  color: #64748b !important;
   text-align: center;
-  color: var(--gen-muted) !important;
-  font-size: 14px;
+  padding: 30px;
 }
 
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
+/* Scrollbar */
 .admin-genres-page ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
 }
 
 .admin-genres-page ::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.04);
-  border-radius: 20px;
+  background: #f1f5f9;
+  border-radius: 10px;
 }
 
 .admin-genres-page ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--gen-orange),
-    var(--gen-pink),
-    var(--gen-violet)
-  );
-  border-radius: 20px;
+  background: #93b4f5;
+  border-radius: 10px;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+.admin-genres-page ::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
 
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 768px) {
   .admin-genres-page {
-    padding: 22px 18px;
+    padding: 16px;
   }
 
-  .admin-genres-page .admin-table-card {
-    padding: 18px;
-  }
-
-  .admin-genres-page .admin-catalog-toolbar {
-    padding: 20px;
+  .admin-genres-page th,
+  .admin-genres-page td {
+    padding: 12px 14px;
+    font-size: 13px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .admin-genres-page {
-    padding: 16px 12px;
-  }
-
-  .admin-genres-page .admin-catalog-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-    padding: 18px;
-  }
-
-  .admin-genres-page .admin-catalog-toolbar input {
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  .admin-genres-page .admin-primary-button {
-    width: 100%;
-    padding: 14px;
-  }
-
-  .admin-genres-page .admin-table-card {
     padding: 12px;
-    border-radius: 16px;
-  }
-
-  .admin-genres-page .admin-table {
-    font-size: 12px;
-  }
-
-  .admin-genres-page .admin-table thead th,
-  .admin-genres-page .admin-table tbody td {
-    padding: 13px 12px;
-  }
-
-  .admin-genres-page .admin-icon-action {
-    width: 33px;
-    height: 33px;
-  }
-}
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .admin-genres-page *,
-  .admin-genres-page *::before,
-  .admin-genres-page *::after {
-    animation: none !important;
-    transition: none !important;
   }
 }

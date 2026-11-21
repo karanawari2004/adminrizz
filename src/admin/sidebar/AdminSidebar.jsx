@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   ChevronDown,
   Grid2X2,
@@ -6,6 +8,7 @@ import {
   Mic2,
   Shield,
 } from "lucide-react";
+
 import { Link, NavLink } from "react-router-dom";
 import "./AdminSidebar.css";
 
@@ -33,6 +36,9 @@ function NavigationLink({ to, children, className = "", onNavigate }) {
 }
 
 export default function AdminSidebar({ isOpen, onClose, onLogout }) {
+  const [salesOpen, setSalesOpen] = useState(true);
+  const [eventsOpen, setEventsOpen] = useState(true);
+
   return (
     <>
       {isOpen && (
@@ -43,53 +49,155 @@ export default function AdminSidebar({ isOpen, onClose, onLogout }) {
           type="button"
         />
       )}
-      <aside className={`admin-sidebar ${isOpen ? "admin-sidebar-open" : ""}`}>
+
+      <aside
+        className={`admin-sidebar ${
+          isOpen ? "admin-sidebar-open" : ""
+        }`}
+      >
+        {/* Logo */}
         <Link
           aria-label="Rizztix admin home"
           className="admin-logo"
           onClick={onClose}
           to="/admin/sales-report"
         >
-          <span aria-hidden="true" className="admin-logo-lines">▤</span>
-          <strong>RIZZ</strong><span>TIX</span>
+          <span aria-hidden="true" className="admin-logo-lines">
+            ▤
+          </span>
+
+          <strong>RIZZ</strong>
+          <span>TIX</span>
         </Link>
+
         <nav aria-label="Admin navigation" className="admin-navigation">
+
           <p className="admin-nav-caption">Management</p>
+
+          {/* SALES ANALYSIS */}
           <div className="admin-nav-group">
-            <div className="admin-nav-parent admin-nav-heading">
-              <Grid2X2 size={17} />
+
+            <button
+              className={`admin-nav-heading ${
+                salesOpen ? "menu-expanded" : ""
+              }`}
+              onClick={() => setSalesOpen(!salesOpen)}
+              type="button"
+              aria-expanded={salesOpen}
+            >
+              <Grid2X2 size={18} />
+
               <span>Sales Analysis</span>
-              <ChevronDown size={14} />
+
+              <ChevronDown
+                className="admin-chevron"
+                size={16}
+              />
+            </button>
+
+            <div className={`admin-submenu ${salesOpen ? "submenu-open" : ""}`}>
+              <div className="admin-submenu-inner">
+
+                <NavigationLink
+                  onNavigate={onClose}
+                  to="/admin/sales-report"
+                >
+                  Sales Report
+                </NavigationLink>
+
+                <NavigationLink
+                  onNavigate={onClose}
+                  to="/admin/event-end-report"
+                >
+                  Event End Report
+                </NavigationLink>
+
+              </div>
             </div>
-            <NavigationLink onNavigate={onClose} to="/admin/sales-report">Sales Report</NavigationLink>
-            <NavigationLink onNavigate={onClose} to="/admin/event-end-report">Event End Report</NavigationLink>
           </div>
 
+          {/* EVENTS */}
           <div className="admin-nav-group">
-            <div className="admin-nav-parent admin-nav-heading">
-              <Grid2X2 size={17} />
+
+            <button
+              className={`admin-nav-heading ${
+                eventsOpen ? "menu-expanded" : ""
+              }`}
+              onClick={() => setEventsOpen(!eventsOpen)}
+              type="button"
+              aria-expanded={eventsOpen}
+            >
+              <Grid2X2 size={18} />
+
               <span>Events</span>
-              <ChevronDown size={14} />
+
+              <ChevronDown
+                className="admin-chevron"
+                size={16}
+              />
+            </button>
+
+            <div className={`admin-submenu ${eventsOpen ? "submenu-open" : ""}`}>
+              <div className="admin-submenu-inner">
+
+                {eventLinks.map(([label, path]) => (
+                  <NavigationLink
+                    key={path}
+                    onNavigate={onClose}
+                    to={path}
+                  >
+                    {label}
+                  </NavigationLink>
+                ))}
+
+              </div>
             </div>
-            {eventLinks.map(([label, path]) => (
-              <NavigationLink key={path} onNavigate={onClose} to={path}>{label}</NavigationLink>
-            ))}
           </div>
 
-          <NavigationLink className="admin-nav-icon-link" onNavigate={onClose} to="/admin/artists">
-            <Mic2 size={17} /><span>Artists</span>
-          </NavigationLink>
-          <NavigationLink className="admin-nav-icon-link" onNavigate={onClose} to="/admin/venue-booking">
-            <Shield size={17} /><span>Venue &amp; Table Booking</span>
+          {/* ARTISTS */}
+          <NavigationLink
+            className="admin-nav-icon-link"
+            onNavigate={onClose}
+            to="/admin/artists"
+          >
+            <Mic2 size={18} />
+            <span>Artists</span>
           </NavigationLink>
 
-          <p className="admin-nav-caption admin-apps-caption">Apps</p>
-          <NavigationLink className="admin-nav-icon-link" onNavigate={onClose} to="/admin/change-password">
-            <LockKeyhole size={17} /><span>Change Password</span>
+          {/* VENUE */}
+          <NavigationLink
+            className="admin-nav-icon-link"
+            onNavigate={onClose}
+            to="/admin/venue-booking"
+          >
+            <Shield size={18} />
+            <span>Venue &amp; Table Booking</span>
           </NavigationLink>
-          <button className="admin-nav-parent admin-logout" onClick={onLogout} type="button">
-            <LogOut size={18} /><span>Logout</span>
+
+          {/* APPS */}
+          <p className="admin-nav-caption admin-apps-caption">
+            Apps
+          </p>
+
+          <NavigationLink
+            className="admin-nav-icon-link"
+            onNavigate={onClose}
+            to="/admin/change-password"
+          >
+            <LockKeyhole size={18} />
+            <span>Change Password</span>
+          </NavigationLink>
+
+          {/* LOGOUT */}
+          <button
+            className="admin-nav-parent admin-logout"
+            onClick={onLogout}
+            type="button"
+          >
+            <LogOut size={18} />
+            <span>Logout</span>
           </button>
+
         </nav>
       </aside>
     </>

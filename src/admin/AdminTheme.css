@@ -1,0 +1,677 @@
+.admin-shell[data-theme] :is(
+  .admin-catalog-page,
+  .admin-events-page,
+  .admin-artists-page,
+  .admin-club-managers-page,
+  .admin-genres-page,
+  .admin-categories-page,
+  .admin-event-phases-page,
+  .event-end-page,
+  .sales-report-page,
+  .admin-utility-page
+) {
+  background: var(--admin-bg) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(
+  .admin-events-page,
+  .admin-artists-page,
+  .admin-club-managers-page,
+  .admin-genres-page,
+  .admin-categories-page,
+  .admin-event-phases-page,
+  .event-end-page,
+  .sales-report-page,
+  .admin-utility-page
+) {
+  --primary: var(--admin-primary);
+  --primary-dark: var(--admin-primary-hover);
+  --primary-light: var(--admin-primary-soft);
+  --blue: var(--admin-primary);
+  --blue-dark: var(--admin-primary-hover);
+  --blue-light: var(--admin-primary-soft);
+  --black: var(--admin-text);
+  --secondary: var(--admin-muted);
+  --text: var(--admin-text);
+  --text-dark: var(--admin-text);
+  --text-secondary: var(--admin-muted);
+  --text-muted: var(--admin-muted);
+  --muted: var(--admin-muted);
+  --border: var(--admin-border);
+  --background: var(--admin-bg);
+  --page-bg: var(--admin-bg);
+  --card-bg: var(--admin-panel);
+  --surface: var(--admin-panel);
+  --white: var(--admin-panel);
+  --phase-blue: var(--admin-primary);
+  --phase-blue-dark: var(--admin-primary-hover);
+  --phase-blue-light: var(--admin-primary-soft);
+  --phase-blue-soft: var(--admin-row-hover);
+  --phase-bg: var(--admin-bg);
+  --phase-white: var(--admin-panel);
+  --phase-text: var(--admin-text);
+  --phase-muted: var(--admin-muted);
+  --phase-border: var(--admin-border);
+  --er-primary: var(--admin-primary);
+  --er-primary-dark: var(--admin-primary-hover);
+  --er-primary-light: var(--admin-primary-soft);
+  --er-blue: var(--admin-primary);
+  --er-text: var(--admin-text);
+  --er-muted: var(--admin-muted);
+  --er-border: var(--admin-border);
+  --sr-bg: var(--admin-bg);
+  --sr-card: var(--admin-panel);
+  --sr-tint: var(--admin-primary-soft);
+  --sr-line: var(--admin-border);
+  --sr-input-line: var(--admin-control-border);
+  --sr-text: var(--admin-text);
+  --sr-muted: var(--admin-muted);
+  --sr-blue: var(--admin-primary);
+  --sr-blue-dark: var(--admin-primary-hover);
+  --sr-blue-mid: var(--admin-primary);
+  --sr-blue-soft: var(--admin-primary-soft);
+  --sr-blue-pale: var(--admin-row-hover);
+  --sr-navy: var(--admin-primary-hover);
+}
+
+.admin-shell[data-theme] :is(
+  [class*="card"],
+  [class*="panel"],
+  [class*="toolbar"],
+  [class*="banner"],
+  .admin-events-content,
+  .admin-managers-form,
+  .admin-phase-selects,
+  .admin-phase-config,
+  .admin-phase-info,
+  .admin-pick-night,
+  .admin-pick-icon,
+  .sr-section,
+  .sr-ticker
+) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-shell[data-theme] :is(
+  .admin-catalog-page,
+  .admin-events-page,
+  .admin-artists-page,
+  .admin-club-managers-page,
+  .admin-genres-page,
+  .admin-categories-page,
+  .admin-event-phases-page,
+  .event-end-page,
+  .sales-report-page,
+  .admin-utility-page
+) :is(h1, h2, h3, h4, p, label, small, strong, td, th) {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(
+  .admin-catalog-page,
+  .admin-events-page,
+  .admin-artists-page,
+  .admin-club-managers-page,
+  .admin-genres-page,
+  .admin-categories-page,
+  .admin-event-phases-page,
+  .event-end-page,
+  .sales-report-page,
+  .admin-utility-page
+) span:not(.admin-status-pill):not(.admin-type-pill):not(.sr-channel-tag):not(.sr-status):not(.er-badge):not(.admin-count):not(.utility-badge):not(.utility-status) {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-table, .admin-catalog-table, .sr-table) {
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-table, .admin-catalog-table, .sr-table) thead,
+.admin-shell[data-theme] :is(.admin-table, .admin-catalog-table, .sr-table) th {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-table-head) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-table, .admin-catalog-table, .sr-table) td {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-table, .admin-catalog-table, .sr-table) tbody tr:hover td {
+  background: var(--admin-row-hover) !important;
+}
+
+.admin-shell[data-theme] input:not([type="checkbox"]):not([type="radio"]),
+.admin-shell[data-theme] textarea,
+.admin-shell[data-theme] select {
+  border-color: var(--admin-control-border) !important;
+  background-color: var(--admin-control-bg) !important;
+  color: var(--admin-text) !important;
+  color-scheme: inherit;
+}
+
+.admin-shell[data-theme] input::placeholder,
+.admin-shell[data-theme] textarea::placeholder {
+  color: var(--admin-muted) !important;
+  opacity: 1;
+}
+
+.admin-shell[data-theme] select option {
+  background: var(--admin-control-bg);
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme] input:focus,
+.admin-shell[data-theme] textarea:focus,
+.admin-shell[data-theme] select:focus {
+  border-color: var(--admin-primary) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.admin-shell[data-theme] button:not(.admin-primary-button):not(.admin-theme-toggle):not(.admin-nav-heading):not(.admin-nav-child):not(.admin-nav-parent):not(.admin-drawer-backdrop):not(.utility-submit-button):not(.sr-load-button):not(.er-download-button) {
+  border-color: var(--admin-border);
+  background-color: var(--admin-control-bg);
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme] :is(
+  .admin-primary-button,
+  .utility-submit-button,
+  .sr-load-button,
+  .er-download-button
+) {
+  border-color: var(--admin-primary) !important;
+  background: var(--admin-primary) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] :is(
+  .admin-primary-button,
+  .utility-submit-button,
+  .sr-load-button,
+  .er-download-button
+):hover:not(:disabled) {
+  border-color: var(--admin-primary-hover) !important;
+  background: var(--admin-primary-hover) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-tabs button.is-active, .admin-tabs button[aria-selected="true"]) {
+  border-color: var(--admin-primary) !important;
+  background: var(--admin-primary) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] :is(.admin-tabs, .admin-search-bar, .admin-no-result, .utility-security-note, .utility-divider, .er-divider) {
+  border-color: var(--admin-border);
+  background-color: var(--admin-row-hover);
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme] .admin-type-pill {
+  border-color: var(--admin-border);
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary) !important;
+}
+
+.admin-shell[data-theme] .admin-status-pill {
+  border-color: var(--admin-border);
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary) !important;
+}
+
+.admin-shell[data-theme] .admin-status-pill.ongoing {
+  border-color: #9bd6b1;
+  background: #eaf8ef;
+  color: #17653a !important;
+}
+
+.admin-shell[data-theme] .admin-status-pill.upcoming {
+  border-color: #b6caeb;
+  background: #edf4ff;
+  color: #24559b !important;
+}
+
+.admin-shell[data-theme="dark"] .admin-status-pill.ongoing {
+  border-color: #315d49;
+  background: #20372d;
+  color: #b7ebcb !important;
+}
+
+.admin-shell[data-theme="dark"] .admin-status-pill.upcoming {
+  border-color: #385476;
+  background: #233750;
+  color: #c5ddff !important;
+}
+
+.admin-shell[data-theme] :is(.admin-count, .utility-badge, .utility-status) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-primary-soft) !important;
+  color: var(--admin-primary) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-modal, .admin-modal-content, .utility-card, .utility-message, .admin-managers-form) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] .utility-error {
+  border-color: #efb4b8 !important;
+  background: #fff0f1 !important;
+  color: #a42632 !important;
+}
+
+.admin-shell[data-theme] .utility-success {
+  border-color: #9bd6b1 !important;
+  background: #eaf8ef !important;
+  color: #17653a !important;
+}
+
+.admin-shell[data-theme="dark"] .utility-error {
+  border-color: #75434b !important;
+  background: #3a252c !important;
+  color: #ffc2c6 !important;
+}
+
+.admin-shell[data-theme="dark"] .utility-success {
+  border-color: #315d49 !important;
+  background: #20372d !important;
+  color: #b7ebcb !important;
+}
+
+.admin-shell[data-theme] :is(.sr-table-wrapper, .admin-table-card) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+}
+
+.admin-shell[data-theme] :is(.admin-icon-action, .admin-icon-action.delete) {
+  border-color: var(--admin-border);
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary) !important;
+}
+
+.admin-shell[data-theme] .admin-icon-action.delete {
+  color: #d14343 !important;
+}
+
+.admin-shell[data-theme] .admin-theme-toggle {
+  position: fixed;
+  z-index: 1002;
+  top: 14px;
+  right: 22px;
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-panel);
+  color: var(--admin-text);
+  box-shadow: var(--admin-shadow);
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+.admin-shell[data-theme] :is(
+  [class*="card"],
+  [class*="panel"],
+  [class*="toolbar"],
+  [class*="banner"],
+  .admin-events-content,
+  .admin-managers-form,
+  .admin-phase-selects,
+  .admin-phase-config,
+  .admin-phase-info,
+  .admin-pick-night,
+  .sr-section,
+  .sr-ticker
+) {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.admin-shell[data-theme] .admin-theme-toggle svg {
+  color: var(--admin-primary);
+}
+
+.admin-shell[data-theme] .admin-theme-toggle:focus-visible {
+  outline: 2px solid var(--admin-primary);
+  outline-offset: 3px;
+}
+
+.admin-shell[data-theme] * {
+  scrollbar-color: var(--admin-scroll-thumb, #9fb3ca) var(--admin-scroll-track, transparent);
+}
+
+.admin-shell[data-theme] *::-webkit-scrollbar-track {
+  background: var(--admin-scroll-track, transparent);
+}
+
+.admin-shell[data-theme] *::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--admin-scroll-thumb, #9fb3ca);
+}
+
+.admin-shell[data-theme="light"] {
+  --admin-scroll-thumb: #a8b8cd;
+  --admin-scroll-track: #edf2f8;
+}
+
+.admin-shell[data-theme="dark"] {
+  --admin-scroll-thumb: #50627a;
+  --admin-scroll-track: #1a2738;
+}
+
+.admin-shell[data-theme="light"] .admin-sidebar {
+  --sb-text: var(--admin-sidebar-text);
+  --sb-muted: var(--admin-sidebar-muted);
+  --sb-border: #dce5f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  color: var(--admin-sidebar-text);
+  box-shadow: 4px 0 18px rgba(27, 55, 92, 0.04);
+}
+
+.admin-shell[data-theme="light"] .admin-logo {
+  color: var(--admin-sidebar-text);
+}
+
+.admin-shell[data-theme="light"] .admin-logo-lines {
+  border-color: #d7e5f7;
+  background: linear-gradient(145deg, #eaf2ff, #dceaff);
+  color: #2563a8;
+  box-shadow: none;
+}
+
+.admin-shell[data-theme="light"] .admin-logo > span:last-child {
+  color: #2563eb;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-caption {
+  color: #718198;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-heading,
+.admin-shell[data-theme="light"] .admin-nav-parent,
+.admin-shell[data-theme="light"] .admin-nav-child.admin-nav-icon-link {
+  color: var(--admin-sidebar-text);
+}
+
+.admin-shell[data-theme="light"] .admin-nav-child {
+  color: #53667f;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-heading > svg:first-child,
+.admin-shell[data-theme="light"] .admin-nav-icon-link > svg {
+  color: #4774ad;
+}
+
+.admin-shell[data-theme="light"] .admin-chevron {
+  color: #72839a;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-heading:hover,
+.admin-shell[data-theme="light"] .admin-nav-icon-link:hover,
+.admin-shell[data-theme="light"] .admin-nav-child:hover {
+  border-color: #d7e5f7;
+  background: #f0f6ff;
+  color: #173c70;
+  box-shadow: inset 3px 0 0 #6da0e8;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-heading.menu-expanded,
+.admin-shell[data-theme="light"] .admin-nav-child.is-active,
+.admin-shell[data-theme="light"] .admin-nav-icon-link.is-active {
+  border-color: #d4e4f8;
+  background: #e8f1ff;
+  color: #174b8a;
+  box-shadow: inset 3px 0 0 #3779d2;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-heading.menu-expanded > svg:first-child,
+.admin-shell[data-theme="light"] .admin-nav-heading.menu-expanded .admin-chevron,
+.admin-shell[data-theme="light"] .admin-nav-icon-link.is-active > svg {
+  color: #2867b5;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-child::before {
+  background: #91a7c3;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-child.is-active::before {
+  background: #3779d2;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-parent.admin-logout {
+  color: #bd3b48;
+}
+
+.admin-shell[data-theme="light"] .admin-nav-parent.admin-logout:hover {
+  border-color: #f2d5d9;
+  background: #fff2f3;
+  color: #a72c38;
+  box-shadow: inset 3px 0 0 #d45762;
+}
+
+.admin-shell[data-theme="light"] .admin-sidebar .admin-nav-heading:focus-visible,
+.admin-shell[data-theme="light"] .admin-sidebar .admin-nav-child:focus-visible,
+.admin-shell[data-theme="light"] .admin-sidebar .admin-nav-parent:focus-visible,
+.admin-shell[data-theme="light"] .admin-sidebar .admin-logo:focus-visible {
+  outline-color: #2563eb;
+}
+
+.admin-shell[data-theme="light"] .admin-catalog-page .admin-catalog-table td:first-child,
+.admin-shell[data-theme="light"] .admin-catalog-page .admin-catalog-table td {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme="light"] .admin-catalog-page .admin-icon-action {
+  color: #2563eb;
+}
+
+.admin-shell[data-theme] .admin-event-phases-page .admin-phases-panel,
+.admin-shell[data-theme] .admin-event-phases-page .admin-pricing-banner,
+.admin-shell[data-theme] .admin-event-phases-page [class*="card"],
+.admin-shell[data-theme] .admin-event-phases-page [class*="panel"],
+.admin-shell[data-theme] .admin-event-phases-page [class*="table"] {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] .admin-event-phases-page :is(h1, h2, h3, h4, p, label, strong, td, th) {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme] .admin-event-phases-page .admin-pricing-banner span {
+  border-color: var(--admin-border);
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary);
+}
+
+.admin-shell[data-theme="dark"] .admin-event-phases-page::before,
+.admin-shell[data-theme="dark"] .admin-event-phases-page::after {
+  opacity: 0.18;
+}
+
+.admin-shell[data-theme="dark"] .admin-event-phases-page .admin-pricing-banner::before {
+  background: linear-gradient(180deg, var(--admin-primary), var(--admin-primary-hover));
+}
+
+.admin-shell[data-theme] .event-end-page :is(.er-breadcrumb, .er-card, .er-main-card) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-shell[data-theme] .event-end-page :is(.er-header h2, .er-subtitle, .er-field, .er-hint, .er-heading-row h3, .er-heading-row p, .er-current) {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme="dark"] .event-end-page .er-field select option:checked {
+  background: var(--admin-primary-soft);
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme] .sales-report-page :is(.sr-section, .sr-filter-card, .sr-stat-card, .sr-chart-card, .sr-channel-card, .sr-breadcrumb, .sr-ticker) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-panel) !important;
+  color: var(--admin-text) !important;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-hero {
+  border-color: var(--admin-primary) !important;
+  background: var(--admin-primary) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-hero :is(h2, span, p) {
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table thead th {
+  background: var(--admin-table-head) !important;
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme="dark"] .sales-report-page .sr-donut-bg {
+  stroke: #394a60;
+}
+
+.admin-shell[data-theme="dark"] .sales-report-page .sr-live {
+  color: #c5ddff;
+}
+
+.admin-shell[data-theme="dark"] .sales-report-page .sr-channel-tag {
+  background: var(--admin-primary-soft);
+  color: #d8e8ff;
+}
+
+.admin-shell[data-theme="dark"] .sales-report-page .sr-status {
+  border-color: var(--admin-border);
+  background: var(--admin-primary-soft);
+  color: #d8e8ff;
+}
+
+.admin-shell[data-theme="dark"] .admin-club-card {
+  border-color: var(--admin-border);
+  background: var(--admin-panel);
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-shell[data-theme="dark"] .admin-club-card :is(label, p) {
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme="light"] .admin-club-card {
+  border-color: var(--admin-border);
+  border-left-color: var(--admin-primary);
+  background: var(--admin-panel);
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-shell[data-theme="light"] .admin-club-card :is(label, p) {
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme="light"] .admin-club-card select {
+  border-color: var(--admin-control-border);
+  background: var(--admin-control-bg);
+  color: var(--admin-text);
+}
+
+.admin-shell[data-theme] .admin-utility-page :is(.utility-icon, .utility-empty-icon) {
+  background: var(--admin-primary-soft);
+  border-color: var(--admin-border);
+}
+
+.admin-shell[data-theme] .admin-utility-page :is(.utility-badge, .utility-status) {
+  background: var(--admin-primary-soft) !important;
+  color: var(--admin-primary) !important;
+}
+
+.admin-shell[data-theme="dark"] .admin-utility-page :is(h1, h2, h3, h4, p, label, small, strong, .utility-badge, .utility-status, .utility-message, .utility-security-note p) {
+  color: var(--admin-text) !important;
+}
+
+.admin-shell[data-theme="dark"] .admin-utility-page :is(.utility-divider, .utility-security-note) {
+  border-color: var(--admin-border);
+  background: var(--admin-row-hover);
+}
+
+.admin-shell[data-theme="dark"] .admin-utility-page .utility-form-group input:-webkit-autofill,
+.admin-shell[data-theme="dark"] .admin-utility-page .utility-form-group input:-webkit-autofill:hover,
+.admin-shell[data-theme="dark"] .admin-utility-page .utility-form-group input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--admin-text) !important;
+  box-shadow: 0 0 0 1000px var(--admin-control-bg) inset;
+}
+
+.admin-shell[data-theme="dark"] .admin-utility-page .utility-submit-button,
+.admin-shell[data-theme="dark"] .admin-utility-page .utility-submit-button span {
+  color: #ffffff !important;
+}
+
+@media (max-width: 700px) {
+  .admin-shell[data-theme] .admin-theme-toggle {
+    top: 12px;
+    right: 12px;
+    min-height: 42px;
+    width: 42px;
+    padding: 0;
+  }
+
+  .admin-shell[data-theme] .admin-theme-toggle span {
+    display: none;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .admin-shell[data-theme] .admin-theme-toggle {
+    width: 42px;
+    padding: 0;
+  }
+
+  .admin-shell[data-theme] .admin-theme-toggle span {
+    display: none;
+  }
+
+  .admin-shell[data-theme] .admin-heading-row {
+    padding-right: 56px;
+  }
+
+  .admin-shell[data-theme] :is(.sales-report-page .sr-header-right, .event-end-page .er-breadcrumb) {
+    margin-right: 56px;
+  }
+}
+
+@media (min-width: 901px) {
+  .admin-shell[data-theme] .admin-heading-row {
+    padding-right: 150px;
+  }
+
+  .admin-shell[data-theme] :is(.sales-report-page .sr-header-right, .event-end-page .er-breadcrumb) {
+    margin-right: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell,
+  .admin-shell * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

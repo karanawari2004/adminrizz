@@ -1,76 +1,123 @@
-/* =========================================
-   EVENT PHASES PAGE
-========================================= */
+/* =========================================================
+   RIZZTIX - EVENT PHASES
+   Modern White + Royal Blue + Black Theme
+========================================================= */
 
 .admin-event-phases-page {
-  --phase-orange: #ff8a3d;
-  --phase-pink: #ff4f91;
-  --phase-purple: #9475ff;
-  --phase-cyan: #42d9f5;
-  --phase-text: #f4f5ff;
-  --phase-muted: #a4acc5;
+  --phase-blue: #2563c5;
+  --phase-blue-dark: #174b9a;
+  --phase-blue-light: #eaf2ff;
+  --phase-blue-soft: #f3f7ff;
+
+  --phase-bg: #f4f7fc;
+  --phase-white: #ffffff;
+
+  --phase-text: #111827;
+  --phase-muted: #596579;
+
+  --phase-border: #e1e8f2;
+  --phase-green: #15945b;
 
   position: relative;
+  isolation: isolate;
+
   min-height: 100vh;
   padding: 28px;
+
   overflow: hidden;
-  isolation: isolate;
 
   color: var(--phase-text);
 
   background:
-    radial-gradient(circle at 10% 10%, rgba(148, 117, 255, 0.15), transparent 32%),
-    radial-gradient(circle at 90% 85%, rgba(255, 138, 61, 0.12), transparent 30%),
-    linear-gradient(135deg, #101426, #171c32 55%, #101426);
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(37, 99, 197, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f8faff 0%,
+      #f1f5fc 55%,
+      #edf3fc 100%
+    );
+
+  font-family: inherit;
 }
 
-/* =========================================
-   ANIMATED BACKGROUND
-========================================= */
+.admin-event-phases-page *,
+.admin-event-phases-page *::before,
+.admin-event-phases-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   BACKGROUND DECORATION
+========================================================= */
 
 .admin-event-phases-page::before,
 .admin-event-phases-page::after {
   content: "";
+
   position: absolute;
   z-index: -1;
 
-  width: 380px;
-  height: 380px;
+  width: 350px;
+  height: 350px;
 
   border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.17;
+
+  filter: blur(100px);
+
   pointer-events: none;
 
-  animation: phaseGlow 11s ease-in-out infinite alternate;
+  animation: phaseGlow 12s ease-in-out infinite alternate;
 }
 
 .admin-event-phases-page::before {
-  top: 5%;
-  right: -120px;
-  background: var(--phase-purple);
+  top: -140px;
+  right: -100px;
+
+  background: rgba(59, 130, 246, 0.10);
 }
 
 .admin-event-phases-page::after {
-  bottom: 0;
-  left: -130px;
-  background: var(--phase-orange);
+  bottom: -150px;
+  left: -120px;
+
+  background: rgba(96, 165, 250, 0.09);
+
   animation-delay: 2s;
 }
 
 @keyframes phaseGlow {
-  0% {
+  from {
     transform: translate(0, 0) scale(0.9);
   }
 
-  100% {
-    transform: translate(45px, -35px) scale(1.2);
+  to {
+    transform: translate(35px, 25px) scale(1.15);
   }
 }
 
-/* =========================================
+/* =========================================================
+   TEXT COLORS
+========================================================= */
+
+.admin-event-phases-page,
+.admin-event-phases-page h1,
+.admin-event-phases-page h2,
+.admin-event-phases-page h3,
+.admin-event-phases-page h4,
+.admin-event-phases-page p,
+.admin-event-phases-page span,
+.admin-event-phases-page label,
+.admin-event-phases-page strong {
+  color: #111827;
+}
+
+/* =========================================================
    MAIN PANEL
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-phases-panel {
   position: relative;
@@ -78,40 +125,37 @@
   width: 100%;
   max-width: 1150px;
 
-  margin: 35px auto;
-  padding: 30px;
+  margin: 30px auto;
+  padding: 28px;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
+  border: 1px solid #e0e8f3;
+  border-radius: 17px;
 
-  background: rgba(255, 255, 255, 0.055);
-
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  background: #ffffff;
 
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 4px 15px rgba(30, 65, 110, 0.035),
+    0 12px 35px rgba(37, 99, 197, 0.045);
 
-  animation: phasePanelEnter 0.7s ease both;
+  animation: phasePanelEnter 0.65s ease both;
 
   transition:
     border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .admin-event-phases-page .admin-phases-panel:hover {
-  border-color: rgba(148, 117, 255, 0.3);
+  border-color: #c9dcf5;
 
   box-shadow:
-    0 25px 65px rgba(0, 0, 0, 0.3),
-    0 0 30px rgba(148, 117, 255, 0.07);
+    0 12px 35px rgba(37, 99, 197, 0.075);
 }
 
 @keyframes phasePanelEnter {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(22px);
   }
 
   to {
@@ -120,9 +164,9 @@
   }
 }
 
-/* =========================================
+/* =========================================================
    PRICING BANNER
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-pricing-banner {
   position: relative;
@@ -130,90 +174,117 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 25px;
 
-  padding: 28px;
+  padding: 28px 30px;
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 18px;
+  border: 1px solid #cbdcf5;
+  border-radius: 14px;
 
   background:
     linear-gradient(
       120deg,
-      rgba(255, 138, 61, 0.13),
-      rgba(255, 79, 145, 0.12),
-      rgba(148, 117, 255, 0.15)
+      #f1f6ff,
+      #e8f1ff,
+      #f5f9ff
     );
 
-  background-size: 200% 200%;
-
-  animation:
-    phaseBannerEnter 0.8s ease both,
-    phaseBannerGradient 8s ease infinite;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-@keyframes phaseBannerEnter {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
+/* Decorative blue line */
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.admin-event-phases-page .admin-pricing-banner::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #2563c5,
+    #60a5fa
+  );
+
+  transition: width 0.3s ease;
 }
 
-@keyframes phaseBannerGradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
+.admin-event-phases-page .admin-pricing-banner:hover::before {
+  width: 6px;
+}
 
-  50% {
-    background-position: 100% 50%;
-  }
+.admin-event-phases-page .admin-pricing-banner:hover {
+  border-color: #a9c8f2;
+
+  box-shadow:
+    0 9px 25px rgba(37, 99, 197, 0.08);
+
+  transform: translateY(-2px);
 }
 
 .admin-event-phases-page .admin-pricing-banner > div {
   max-width: 750px;
 }
 
+/* Banner label */
+
 .admin-event-phases-page .admin-pricing-banner span {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 
   margin-bottom: 10px;
 
-  color: var(--phase-cyan);
+  padding: 6px 11px;
 
-  font-size: 11px;
+  border: 1px solid #c9dcf8;
+  border-radius: 6px;
+
+  background: #e4efff;
+
+  color: #174b9a;
+
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
-.admin-event-phases-page .admin-pricing-banner h2 {
-  margin: 0 0 12px;
+/* Banner heading */
 
-  color: #ffffff;
+.admin-event-phases-page .admin-pricing-banner h2 {
+  margin: 0 0 10px;
+
+  color: #111827;
 
   font-size: 27px;
-  font-weight: 750;
-  letter-spacing: 0.3px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .admin-event-phases-page .admin-pricing-banner p {
+  max-width: 680px;
+
   margin: 0;
 
-  color: #c0c7df;
+  color: #596579;
 
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.8;
 }
 
-/* =========================================
-   PRIMARY BUTTON
-========================================= */
+/* =========================================================
+   SAVE PRICING BUTTON
+========================================================= */
 
 .admin-event-phases-page .admin-primary-button {
   position: relative;
@@ -221,70 +292,124 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 
-  min-height: 46px;
+  min-height: 45px;
   padding: 12px 25px;
 
   flex-shrink: 0;
 
-  color: #ffffff;
+  overflow: hidden;
 
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-
-  border: none;
-  border-radius: 11px;
+  border: 1px solid #2563c5;
+  border-radius: 9px;
 
   background: linear-gradient(
-    110deg,
-    var(--phase-orange),
-    var(--phase-pink),
-    var(--phase-purple)
+    120deg,
+    #2563c5,
+    #3478d5
   );
 
-  background-size: 200% 200%;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
 
   cursor: pointer;
 
-  box-shadow: 0 7px 22px rgba(255, 79, 145, 0.2);
+  box-shadow:
+    0 5px 14px rgba(37, 99, 197, 0.19);
 
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
-    background-position 0.4s ease;
+    background 0.3s ease;
+}
+
+/* Shine animation */
+
+.admin-event-phases-page .admin-primary-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 65%;
+  height: 100%;
+
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  transition: left 0.65s ease;
+}
+
+.admin-event-phases-page .admin-primary-button:hover::before {
+  left: 140%;
 }
 
 .admin-event-phases-page .admin-primary-button:hover {
+  background: linear-gradient(
+    120deg,
+    #174b9a,
+    #2563c5
+  );
+
+  box-shadow:
+    0 9px 22px rgba(37, 99, 197, 0.28),
+    0 0 0 3px rgba(37, 99, 197, 0.07);
+
   transform: translateY(-3px);
-
-  background-position: 100% 50%;
-
-  box-shadow: 0 12px 28px rgba(255, 79, 145, 0.3);
 }
 
 .admin-event-phases-page .admin-primary-button:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateY(-1px) scale(0.97);
 }
 
-/* =========================================
-   CLUB AND EVENT SELECTS
-========================================= */
+/* =========================================================
+   CLUB AND EVENT SELECT CONTAINER
+========================================================= */
 
 .admin-event-phases-page .admin-phase-selects {
+  position: relative;
+
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  gap: 22px;
+  gap: 24px;
 
-  margin: 30px 0;
+  margin: 27px 0;
   padding: 25px;
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
+  border: 1px solid #e1e9f4;
+  border-radius: 13px;
 
-  background: rgba(10, 15, 32, 0.25);
+  background: #fbfdff;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
+
+.admin-event-phases-page .admin-phase-selects:hover {
+  border-color: #c5d9f4;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 7px 20px rgba(37, 99, 197, 0.045);
+}
+
+/* =========================================================
+   LABELS
+========================================================= */
 
 .admin-event-phases-page .admin-phase-selects label,
 .admin-event-phases-page .admin-phase-inputs label {
@@ -293,89 +418,171 @@
 
   gap: 10px;
 
-  color: #dfe4f7;
+  color: #111827;
 
   font-size: 12px;
   font-weight: 750;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-/* =========================================
+/* =========================================================
    INPUTS AND SELECTS
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-phases-panel input,
 .admin-event-phases-page .admin-phases-panel select {
+  display: block;
+
   width: 100%;
-  min-height: 48px;
+  min-height: 47px;
 
-  padding: 12px 15px;
+  padding: 11px 14px;
 
-  color: #ffffff;
-
-  font-size: 14px;
-
-  background: rgba(10, 15, 32, 0.7);
-
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 11px;
+  border: 1px solid #dce5f1;
+  border-radius: 9px;
 
   outline: none;
 
+  background-color: #ffffff;
+
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 550;
+
+  box-shadow: 0 1px 3px rgba(20, 50, 90, 0.025);
+
   transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease,
-    transform 0.3s ease;
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
+/* Placeholder */
+
 .admin-event-phases-page .admin-phases-panel input::placeholder {
-  color: #818ba7;
+  color: #8490a3;
+  font-weight: 400;
 }
+
+/* Hover */
+
+.admin-event-phases-page .admin-phases-panel input:hover,
+.admin-event-phases-page .admin-phases-panel select:hover {
+  border-color: #8eb6ec;
+
+  background-color: #fbfdff;
+
+  box-shadow:
+    0 3px 10px rgba(37, 99, 197, 0.055);
+}
+
+/* Focus */
 
 .admin-event-phases-page .admin-phases-panel input:focus,
 .admin-event-phases-page .admin-phases-panel select:focus {
-  border-color: var(--phase-purple);
+  border-color: #3478d5;
 
-  background: rgba(20, 25, 48, 0.95);
+  background: #ffffff;
 
-  box-shadow: 0 0 0 3px rgba(148, 117, 255, 0.15);
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 197, 0.11),
+    0 5px 13px rgba(37, 99, 197, 0.06);
 
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   BEAUTIFUL CUSTOM SELECT ARROW
+========================================================= */
+
+.admin-event-phases-page .admin-phases-panel select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  padding-right: 40px;
+
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232563c5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.admin-event-phases-page .admin-phases-panel select:focus {
+  background-color: #ffffff;
 }
 
 .admin-event-phases-page .admin-phases-panel select option {
-  color: #ffffff;
-  background: #171c32;
+  padding: 12px;
+
+  background: #ffffff;
+
+  color: #111827;
 }
 
-/* Date picker icon */
+/* =========================================================
+   DATE PICKER
+========================================================= */
+
+.admin-event-phases-page input[type="datetime-local"] {
+  color-scheme: light;
+}
 
 .admin-event-phases-page input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  filter: invert(1);
-  opacity: 0.8;
+
+  opacity: 0.75;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-/* =========================================
+.admin-event-phases-page input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+/* =========================================================
    PHASE CONFIGURATION
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-phase-config {
-  padding: 28px;
+  position: relative;
 
-  border: 1px solid rgba(66, 217, 245, 0.15);
-  border-radius: 17px;
+  padding: 27px;
 
-  background: rgba(66, 217, 245, 0.035);
+  border: 1px solid #dce8f8;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 15px rgba(37, 99, 197, 0.035);
 
   animation: phaseConfigEnter 0.5s ease both;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.admin-event-phases-page .admin-phase-config:hover {
+  border-color: #c2d8f5;
+
+  box-shadow:
+    0 9px 24px rgba(37, 99, 197, 0.065);
 }
 
 @keyframes phaseConfigEnter {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
 
   to {
@@ -384,155 +591,286 @@
   }
 }
 
+/* Configuration heading */
+
 .admin-event-phases-page .admin-phase-config h3 {
-  margin: 0 0 25px;
+  position: relative;
 
-  color: #ffffff;
+  margin: 0 0 26px;
 
-  font-size: 20px;
-  font-weight: 750;
+  padding-left: 14px;
+
+  color: #111827;
+
+  font-size: 19px;
+  font-weight: 800;
 }
+
+/* Blue heading accent */
+
+.admin-event-phases-page .admin-phase-config h3::before {
+  content: "";
+
+  position: absolute;
+
+  top: 2px;
+  left: 0;
+
+  width: 4px;
+  height: 21px;
+
+  border-radius: 5px;
+
+  background: linear-gradient(
+    180deg,
+    #2563c5,
+    #60a5fa
+  );
+}
+
+/* Input grid */
 
 .admin-event-phases-page .admin-phase-inputs {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  gap: 22px;
+  gap: 23px;
 }
+
+/* =========================================================
+   INFORMATION BOX
+========================================================= */
 
 .admin-event-phases-page .admin-phase-info {
-  margin: 25px 0 0;
-  padding: 15px 18px;
+  position: relative;
 
-  color: #b6c2df;
+  margin: 26px 0 0;
 
-  font-size: 13px;
-  line-height: 1.7;
+  padding: 16px 19px;
 
-  border-left: 3px solid var(--phase-cyan);
+  border: 1px solid #d9e7fa;
+  border-left: 4px solid #3478d5;
 
-  background: rgba(66, 217, 245, 0.06);
-  border-radius: 0 10px 10px 0;
+  border-radius: 8px;
+
+  background: #f1f6ff;
+
+  color: #111827;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.8;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* =========================================
+.admin-event-phases-page .admin-phase-info:hover {
+  background: #eaf2ff;
+
+  border-color: #a9c8ef;
+
+  transform: translateX(3px);
+}
+
+/* =========================================================
    PICK A NIGHT EMPTY STATE
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-pick-night {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  min-height: 250px;
+  min-height: 260px;
 
   padding: 35px 20px;
 
   text-align: center;
 
-  border: 1px dashed rgba(255, 255, 255, 0.17);
-  border-radius: 17px;
+  border: 1px dashed #cbdcf1;
+  border-radius: 14px;
 
-  background: rgba(255, 255, 255, 0.025);
+  background:
+    linear-gradient(
+      135deg,
+      #fbfdff,
+      #f3f7ff
+    );
 
   animation: phaseConfigEnter 0.6s ease both;
 
   transition:
     background 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .admin-event-phases-page .admin-pick-night:hover {
-  background: rgba(255, 255, 255, 0.045);
-  border-color: rgba(66, 217, 245, 0.4);
+  border-color: #8eb6ec;
+
+  background: #f3f8ff;
+
+  box-shadow:
+    0 8px 22px rgba(37, 99, 197, 0.07);
+
+  transform: translateY(-2px);
 }
+
+/* Empty state icon */
 
 .admin-event-phases-page .admin-pick-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 60px;
-  height: 60px;
+  width: 62px;
+  height: 62px;
 
-  margin-bottom: 18px;
+  margin-bottom: 19px;
 
-  color: #ffffff;
-
-  font-size: 27px;
-
-  border-radius: 18px;
+  border: 1px solid #c9dcf8;
+  border-radius: 17px;
 
   background: linear-gradient(
     135deg,
-    var(--phase-orange),
-    var(--phase-pink),
-    var(--phase-purple)
+    #e4efff,
+    #d5e6ff
   );
 
-  box-shadow: 0 8px 25px rgba(255, 79, 145, 0.2);
+  color: #2563c5;
 
-  animation: phaseIconFloat 3s ease-in-out infinite;
+  font-size: 28px;
+  font-weight: 800;
+
+  box-shadow:
+    0 7px 17px rgba(37, 99, 197, 0.10);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
-@keyframes phaseIconFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
+.admin-event-phases-page .admin-pick-night:hover .admin-pick-icon {
+  transform: translateY(-5px) rotate(5deg);
 
-  50% {
-    transform: translateY(-7px);
-  }
+  background: #dceaff;
+
+  box-shadow:
+    0 12px 23px rgba(37, 99, 197, 0.16);
 }
+
+/* Empty state heading */
 
 .admin-event-phases-page .admin-pick-night h3 {
   margin: 0 0 10px;
 
-  color: #ffffff;
+  color: #111827;
 
   font-size: 21px;
+  font-weight: 800;
 }
+
+/* Empty state description */
 
 .admin-event-phases-page .admin-pick-night p {
   max-width: 450px;
 
   margin: 0;
 
-  color: var(--phase-muted);
+  color: #596579;
 
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.8;
 }
 
-/* =========================================
+/* =========================================================
    SUCCESS MESSAGE
-========================================= */
+========================================================= */
 
 .admin-event-phases-page .admin-report-feedback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   margin-top: 22px;
+
   padding: 14px 17px;
 
-  color: #8fffd1;
+  border: 1px solid #bce7cd;
+  border-radius: 9px;
 
-  font-size: 14px;
-  line-height: 1.6;
+  background: #edfaf2;
 
-  background: rgba(46, 213, 145, 0.09);
+  color: #111827;
 
-  border: 1px solid rgba(46, 213, 145, 0.25);
-  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 650;
 
   animation: phaseConfigEnter 0.4s ease both;
 }
 
-/* =========================================
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.admin-event-phases-page {
+  scrollbar-width: thin;
+  scrollbar-color: #a9c5e8 transparent;
+}
+
+.admin-event-phases-page::-webkit-scrollbar,
+.admin-event-phases-page *::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.admin-event-phases-page::-webkit-scrollbar-track,
+.admin-event-phases-page *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-event-phases-page::-webkit-scrollbar-thumb,
+.admin-event-phases-page *::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #a9c5e8;
+}
+
+.admin-event-phases-page::-webkit-scrollbar-thumb:hover,
+.admin-event-phases-page *::-webkit-scrollbar-thumb:hover {
+  background: #3478d5;
+}
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+========================================================= */
+
+.admin-event-phases-page button:focus-visible,
+.admin-event-phases-page input:focus-visible,
+.admin-event-phases-page select:focus-visible {
+  outline: 2px solid #3478d5;
+  outline-offset: 3px;
+}
+
+/* =========================================================
    RESPONSIVE DESIGN
-========================================= */
+========================================================= */
 
 @media (max-width: 900px) {
+  .admin-event-phases-page {
+    padding: 22px 18px;
+  }
+
   .admin-event-phases-page .admin-phases-panel {
-    padding: 23px;
+    padding: 22px;
   }
 
   .admin-event-phases-page .admin-pricing-banner {
@@ -542,24 +880,31 @@
 
 @media (max-width: 650px) {
   .admin-event-phases-page {
-    padding: 18px 13px;
+    padding: 17px 12px;
   }
 
   .admin-event-phases-page .admin-phases-panel {
-    padding: 17px;
+    padding: 16px;
     margin-top: 22px;
-    border-radius: 17px;
+
+    border-radius: 13px;
   }
 
   .admin-event-phases-page .admin-pricing-banner {
     flex-direction: column;
     align-items: flex-start;
+
     gap: 20px;
-    padding: 20px;
+
+    padding: 21px;
   }
 
   .admin-event-phases-page .admin-pricing-banner h2 {
     font-size: 23px;
+  }
+
+  .admin-event-phases-page .admin-pricing-banner p {
+    font-size: 12px;
   }
 
   .admin-event-phases-page .admin-pricing-banner .admin-primary-button {
@@ -573,24 +918,30 @@
   }
 
   .admin-event-phases-page .admin-phase-selects {
-    padding: 19px;
+    padding: 18px;
+    margin: 20px 0;
   }
 
   .admin-event-phases-page .admin-phase-config {
-    padding: 20px;
+    padding: 19px;
+  }
+
+  .admin-event-phases-page .admin-pick-night {
+    min-height: 230px;
+    padding: 25px 16px;
   }
 }
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .admin-event-phases-page *,
   .admin-event-phases-page *::before,
   .admin-event-phases-page *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

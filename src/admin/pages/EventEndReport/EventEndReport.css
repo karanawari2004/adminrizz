@@ -1,27 +1,32 @@
-/* =====================================================
-   RIZZTIX · Event End Report  (same look as the Sales Report demo)
-   Use together with EventEndReport.jsx
-   ===================================================== */
+
+/* =========================================================
+   RIZZTIX - EVENT END REPORT
+   Premium White & Blue Dashboard
+========================================================= */
 
 .event-end-page {
-  --er-bg: #060818;
-  --er-glass: rgba(255, 255, 255, 0.055);
-  --er-line: rgba(255, 255, 255, 0.12);
-  --er-text: #eef2ff;
-  --er-muted: #8b98c4;
-  --er-orange: #ff8a1f;
-  --er-pink: #ff3d81;
-  --er-violet: #8b5cf6;
-  --er-cyan: #22d3ee;
+  --er-primary: #2563c5;
+  --er-primary-dark: #174b9a;
+  --er-primary-light: #eaf2ff;
+  --er-blue: #4389e8;
+  --er-text: #193b65;
+  --er-muted: #788ba5;
+  --er-border: #e1eaf5;
 
   position: relative;
   isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
   min-height: 100vh;
-  padding: 28px 30px 90px;
+  padding: 25px 28px 35px;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(ellipse at 90% 0%, rgba(59, 130, 246, 0.075), transparent 35%),
+    linear-gradient(135deg, #f7faff 0%, #f0f5fd 100%);
+
   color: var(--er-text);
-  background: var(--er-bg);
-  font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
-  overflow-x: clip;
+  font-family: inherit;
 }
 
 .event-end-page *,
@@ -30,54 +35,78 @@
   box-sizing: border-box;
 }
 
-/* ---------- Background: aurora + moving grid + sparks ---------- */
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
 .er-bg {
-  position: sticky;
-  top: 0;
+  position: absolute;
   z-index: -1;
-  height: 100vh;
-  margin: -28px -30px calc(28px - 100vh);
+  inset: 0;
   overflow: hidden;
   pointer-events: none;
 }
 
-.er-aurora span {
+.er-aurora {
   position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.38;
-  mix-blend-mode: screen;
-  animation: er-drift 22s ease-in-out infinite;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  filter: blur(85px);
 }
 
-.er-aurora span:nth-child(1) { background: var(--er-violet); top: -25vmax; left: -15vmax; }
-.er-aurora span:nth-child(2) { background: var(--er-orange); bottom: -30vmax; right: -15vmax; opacity: 0.3; animation-delay: -7s; }
-.er-aurora span:nth-child(3) { background: var(--er-cyan); top: 25vh; left: 40vw; width: 40vmax; height: 40vmax; opacity: 0.16; animation-delay: -13s; }
-.er-aurora span:nth-child(4) { background: var(--er-pink); top: 50vh; left: -10vw; width: 35vmax; height: 35vmax; opacity: 0.18; animation-delay: -3s; }
+.er-aurora span {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.12);
+  animation: erFloat 15s ease-in-out infinite alternate;
+}
 
-@keyframes er-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0) scale(1); }
-  33%      { transform: translate(8vw, 6vh) rotate(40deg) scale(1.15); }
-  66%      { transform: translate(-6vw, 9vh) rotate(-30deg) scale(0.9); }
+.er-aurora span:nth-child(1) {
+  top: -100px;
+  right: 10%;
+}
+
+.er-aurora span:nth-child(2) {
+  top: 40%;
+  left: -120px;
+  animation-delay: 3s;
+}
+
+.er-aurora span:nth-child(3) {
+  right: 15%;
+  bottom: -130px;
+  animation-delay: 5s;
+}
+
+.er-aurora span:nth-child(4) {
+  top: 50%;
+  left: 45%;
+  animation-delay: 7s;
+}
+
+@keyframes erFloat {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(30px, -25px) scale(1.15);
+  }
 }
 
 .er-grid-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.5;
-  background-image:
-    linear-gradient(var(--er-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--er-line) 1px, transparent 1px);
-  background-size: 54px 54px;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
-  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
-  animation: er-grid 20s linear infinite;
-}
+  opacity: 0.12;
 
-@keyframes er-grid {
-  to { background-position: 54px 54px; }
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+
+  background-size: 45px 45px;
 }
 
 .er-sparks {
@@ -85,353 +114,717 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
-/* ---------- Entrance animation ---------- */
-@keyframes er-rise {
-  from { opacity: 0; transform: translateY(34px) scale(0.96); filter: blur(8px); }
-  to   { opacity: 1; transform: none; filter: none; }
-}
+/* =========================================================
+   HEADER
+========================================================= */
 
-.er-header,
-.er-card {
-  animation: er-rise 0.85s cubic-bezier(0.2, 0.9, 0.25, 1) backwards;
-  animation-delay: var(--d, 0s);
-}
-
-.er-header { --d: 0.05s; }
-.er-club-card { --d: 0.15s; }
-.er-main-card { --d: 0.1s; }
-
-/* ---------- Header ---------- */
 .er-header {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 26px;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  animation: erHeaderEnter 0.55s ease both;
 }
 
 .er-header h2 {
   margin: 0;
-  font-size: 34px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  background: linear-gradient(90deg, var(--er-orange), var(--er-pink), var(--er-violet), var(--er-cyan), var(--er-orange));
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: er-flow 7s linear infinite;
-}
-
-@keyframes er-flow {
-  to { background-position: 300% 0; }
+  color: #173e70;
+  font-size: 25px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
 }
 
 .er-subtitle {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: var(--er-muted);
+  margin: 7px 0 0;
+  color: #7b8da6;
+  font-size: 12px;
+  font-weight: 500;
 }
+
+@keyframes erHeaderEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
 
 .er-breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  font-size: 13px;
-  color: var(--er-muted);
-  background: var(--er-glass);
-  border: 1px solid var(--er-line);
-  border-radius: 99px;
-  backdrop-filter: blur(12px);
+  gap: 10px;
+  padding: 10px 15px;
+  border: 1px solid #e2eaf5;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #8092a9;
+  font-size: 11px;
+
+  box-shadow: 0 3px 12px rgba(30, 65, 110, 0.035);
+
+  transition: all 0.25s ease;
 }
 
-.er-breadcrumb b { color: var(--er-line); font-weight: 400; }
-.er-breadcrumb .er-current { color: var(--er-orange); font-weight: 700; }
-
-/* ---------- Glass cards ---------- */
-.er-card {
-  position: relative;
-  margin-bottom: 20px;
-  padding: 26px;
-  overflow: hidden;
-  background: var(--er-glass);
-  border: 1px solid var(--er-line);
-  border-radius: 20px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: border-color 0.35s, box-shadow 0.35s;
-}
-
-/* flowing colour bar on the left edge */
-.er-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--er-orange), var(--er-pink), var(--er-violet));
-  background-size: 100% 300%;
-  animation: er-bar-flow 5s linear infinite;
-}
-
-@keyframes er-bar-flow {
-  to { background-position: 0 300%; }
-}
-
-.er-card:hover {
-  border-color: rgba(255, 138, 31, 0.5);
-  box-shadow: 0 22px 46px -22px rgba(255, 61, 129, 0.55);
-}
-
-.er-card h3 {
-  margin: 0 0 6px;
-  font-size: 19px;
-  font-weight: 700;
-}
-
-.er-card p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--er-muted);
-}
-
-.er-heading-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-
-/* club badge */
-.er-badge {
-  flex-shrink: 0;
-  padding: 8px 18px;
-  font-size: 12px;
-  font-weight: 800;
-  color: #fff;
-  border-radius: 99px;
-  background: linear-gradient(110deg, var(--er-orange), var(--er-pink), var(--er-violet), var(--er-orange));
-  background-size: 250% 100%;
-  animation: er-shimmer 5s linear infinite;
-  box-shadow: 0 8px 22px -8px rgba(255, 61, 129, 0.8);
-}
-
-@keyframes er-shimmer {
-  to { background-position: -250% 0; }
-}
-
-/* ---------- Form fields ---------- */
-.er-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--er-muted);
-}
-
-.er-club-card {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 18px 24px;
-}
-
-.er-club-card .er-field {
-  width: min(360px, 100%);
-  font-size: 14px;
-  letter-spacing: 0.3px;
-  text-transform: none;
-  color: var(--er-text);
-}
-
-.er-select-wrap { position: relative; }
-
-.event-end-page select,
-.event-end-page input[type="date"] {
-  width: 100%;
-  padding: 13px 14px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--er-text);
-  background: rgba(8, 12, 34, 0.7);
-  border: 1px solid var(--er-line);
-  border-radius: 12px;
-  outline: none;
-  color-scheme: dark;
-  cursor: pointer;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, opacity 0.25s;
-}
-
-.er-select-wrap select { padding-right: 70px; }
-
-.event-end-page select:hover:not(:disabled),
-.event-end-page input[type="date"]:hover {
-  border-color: rgba(255, 138, 31, 0.6);
+.er-breadcrumb:hover {
+  border-color: #b9d2f3;
+  box-shadow: 0 5px 16px rgba(37, 99, 235, 0.09);
   transform: translateY(-2px);
 }
 
-.event-end-page select:focus,
-.event-end-page input[type="date"]:focus {
-  border-color: var(--er-orange);
-  box-shadow: 0 0 0 4px rgba(255, 138, 31, 0.22), 0 0 24px -4px rgba(255, 138, 31, 0.5);
+.er-breadcrumb span:first-child {
+  color: var(--er-primary);
+  font-size: 15px;
 }
 
-.event-end-page select:disabled {
-  opacity: 0.6;
+.er-breadcrumb b {
+  color: #b8c7d9;
+}
+
+.er-current {
+  color: #245bb5;
+  font-weight: 700;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.er-card {
+  position: relative;
+  width: 100%;
+
+  border: 1px solid #e1eaf5;
+  border-radius: 13px;
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 10px rgba(30, 65, 110, 0.025),
+    0 8px 25px rgba(30, 65, 110, 0.035);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  animation: erCardEnter 0.6s ease both;
+}
+
+.er-card:hover {
+  border-color: #c8dcf5;
+
+  box-shadow:
+    0 8px 24px rgba(37, 99, 235, 0.055),
+    0 14px 35px rgba(30, 65, 110, 0.035);
+}
+
+@keyframes erCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   CLUB FILTER
+========================================================= */
+
+.er-club-card {
+  padding: 22px;
+  margin-bottom: 17px;
+  animation-delay: 0.1s;
+}
+
+/* =========================================================
+   FIELD LABELS
+========================================================= */
+
+.er-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  color: #304d72;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+/* =========================================================
+   PREMIUM SELECTOR WRAPPER
+========================================================= */
+
+.er-select-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* Custom dropdown arrow for Club selector */
+
+.er-select-wrap::after {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+
+  width: 8px;
+  height: 8px;
+
+  border-right: 1.8px solid #6285b2;
+  border-bottom: 1.8px solid #6285b2;
+
+  content: "";
+  pointer-events: none;
+
+  transform: translateY(-70%) rotate(45deg);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.er-select-wrap:hover::after {
+  border-color: #2563c5;
+}
+
+.er-select-wrap:focus-within::after {
+  border-color: #2563c5;
+  transform: translateY(-25%) rotate(225deg);
+}
+
+/* =========================================================
+   SELECT INPUTS
+========================================================= */
+
+.er-field select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100%;
+  height: 46px;
+
+  padding: 0 40px 0 14px;
+
+  border: 1px solid #dce6f2;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #fafdff
+  );
+
+  color: #263f60;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Club selector spacing */
+
+.er-select-wrap select {
+  padding-right: 75px;
+}
+
+/* Selector hover */
+
+.er-field select:hover {
+  border-color: #8bb5ed;
+
+  background: #f7faff;
+
+  box-shadow:
+    0 3px 12px rgba(37, 99, 235, 0.07);
+}
+
+/* Selector focus */
+
+.er-field select:focus {
+  border-color: #4389e8;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.11),
+    0 5px 14px rgba(37, 99, 235, 0.07);
+}
+
+/* Dropdown open wrapper */
+
+.er-select-wrap:focus-within select {
+  border-color: #4389e8;
+}
+
+/* Native dropdown options */
+
+.er-field select option {
+  padding: 12px;
+  background: #ffffff;
+  color: #263f60;
+  font-weight: 500;
+}
+
+.er-field select option:checked {
+  background: #eaf2ff;
+  color: #174b9a;
+}
+
+/* Disabled selector */
+
+.er-field select:disabled {
+  border-color: #e3eaf3;
+  background: #f4f7fb;
+  color: #a3b2c5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-.event-end-page select option {
-  background: #0d1330;
-  color: var(--er-text);
-}
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
 
-/* clear (×) button inside the club select */
 .er-clear {
   position: absolute;
   top: 50%;
-  right: 38px;
+  right: 39px;
+
   display: grid;
+  width: 27px;
+  height: 27px;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
+
+  border: 1px solid #dce9fb;
+  border-radius: 7px;
+
+  background: #edf4ff;
+  color: #3478d3;
+
   font-size: 18px;
-  line-height: 1;
-  color: var(--er-muted);
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  border-radius: 50%;
+  font-weight: 500;
+
   cursor: pointer;
+
   transform: translateY(-50%);
-  transition: background 0.25s, color 0.25s, transform 0.25s;
+
+  transition: all 0.25s ease;
 }
 
 .er-clear:hover {
-  color: #fff;
-  background: linear-gradient(135deg, var(--er-orange), var(--er-pink));
+  border-color: #2563c5;
+  background: #2563c5;
+  color: #ffffff;
+
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+
   transform: translateY(-50%) rotate(90deg);
 }
 
-/* hint text next to the club select */
+/* =========================================================
+   HINT
+========================================================= */
+
 .er-hint {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 12px;
+
+  margin: 15px 0 0;
+
+  color: #7186a2;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .er-hint i {
-  position: relative;
+  width: 7px;
+  height: 7px;
   flex-shrink: 0;
-  width: 9px;
-  height: 9px;
+
   border-radius: 50%;
-  background: var(--er-orange);
-  box-shadow: 0 0 12px var(--er-orange);
+  background: #3b82e6;
+
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+
+  animation: erPulse 2s ease infinite;
 }
 
-.er-hint i::after {
+@keyframes erPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(59, 130, 246, 0.04);
+  }
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.er-main-card {
+  padding: 27px;
+  animation-delay: 0.2s;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.er-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.er-heading-row h3 {
+  margin: 0 0 9px;
+
+  color: #1c416f;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.2px;
+}
+
+.er-heading-row h3::before {
+  display: inline-block;
+
+  width: 4px;
+  height: 16px;
+
+  margin-right: 9px;
+
+  border-radius: 5px;
+  background: #367fe0;
+
   content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--er-orange);
-  animation: er-ping 1.8s ease-out infinite;
+  vertical-align: -3px;
 }
 
-@keyframes er-ping {
-  to { transform: scale(3.2); opacity: 0; }
+.er-heading-row p {
+  max-width: 690px;
+  margin: 0;
+
+  color: #8191a7;
+  font-size: 11px;
+  line-height: 1.7;
 }
+
+/* =========================================================
+   CLUB BADGE
+========================================================= */
+
+.er-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+  padding: 0 13px;
+
+  border: 1px solid #cfe0fa;
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #edf5ff, #e4efff);
+
+  color: #245bb5;
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition: all 0.25s ease;
+}
+
+.er-badge:hover {
+  border-color: #8bb8f4;
+  background: #dceaff;
+
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   DATE FIELDS
+========================================================= */
 
 .er-date-fields {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 258px));
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  max-width: 700px;
 }
+
+.er-date-fields .er-field {
+  min-width: 0;
+}
+
+.er-field input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 13px;
+
+  border: 1px solid #dce6f2;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #fbfdff;
+  color: #263f60;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.er-field input:hover {
+  border-color: #8bb5ed;
+  background: #f7faff;
+}
+
+.er-field input:focus {
+  border-color: #4389e8;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10),
+    0 4px 12px rgba(37, 99, 235, 0.07);
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
 
 .er-divider {
+  width: 100%;
   height: 1px;
-  margin: 28px 0;
-  background: linear-gradient(90deg, var(--er-orange), var(--er-pink), var(--er-violet), transparent);
-  transform-origin: left;
-  animation: er-draw 1.2s cubic-bezier(0.2, 0.9, 0.25, 1) 0.4s backwards;
+
+  margin: 27px 0;
+
+  background: linear-gradient(
+    90deg,
+    #d8e5f5,
+    #eaf0f8,
+    transparent
+  );
 }
 
-@keyframes er-draw {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+/* =========================================================
+   COMPLETED EVENT SELECTOR
+========================================================= */
+
+.er-completed-field {
+  max-width: 480px;
+  margin-bottom: 23px;
 }
 
-.er-completed-field { width: min(440px, 100%); }
+.er-completed-field select {
+  height: 46px;
+}
 
-/* ---------- Download button ---------- */
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
+
 .er-download-button {
   position: relative;
-  margin-top: 22px;
-  padding: 14px 28px;
+
+  display: inline-flex;
+  min-height: 45px;
+
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
   overflow: hidden;
+
+  padding: 0 21px;
+
+  border: 1px solid #2563c5;
+  border-radius: 8px;
+
+  background: linear-gradient(115deg, #2563c5, #347fe1);
+
+  color: #ffffff;
+
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 800;
-  color: #fff;
-  background: linear-gradient(110deg, var(--er-orange), var(--er-pink), var(--er-violet), var(--er-orange));
-  background-size: 250% 100%;
-  border: none;
-  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 700;
+
   cursor: pointer;
-  animation: er-shimmer 5s linear infinite;
-  box-shadow: 0 10px 28px -8px rgba(255, 61, 129, 0.75);
-  transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s;
+
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.19);
+
+  transition: all 0.28s ease;
 }
 
-.er-download-button::after {
-  content: "";
+.er-download-button::before {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.7s;
+  top: 0;
+  left: -110%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+
+  content: "";
+
+  transition: left 0.55s ease;
+}
+
+.er-download-button:hover:not(:disabled)::before {
+  left: 130%;
 }
 
 .er-download-button:hover:not(:disabled) {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 18px 38px -8px rgba(255, 61, 129, 0.95);
+  background: linear-gradient(115deg, #174b9a, #2563c5);
+
+  box-shadow:
+    0 7px 18px rgba(37, 99, 235, 0.28),
+    0 0 0 3px rgba(37, 99, 235, 0.07);
+
+  transform: translateY(-3px);
 }
 
-.er-download-button:hover:not(:disabled)::after { transform: translateX(120%); }
-.er-download-button:active:not(:disabled) { transform: scale(0.96); }
+.er-download-button:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
 
 .er-download-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  animation: none;
+  border-color: #d8e1ed;
+  background: #e9eef5;
+  color: #9baabd;
   box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.85;
 }
 
-/* ---------- Responsive ---------- */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
 @media (max-width: 900px) {
-  .event-end-page { padding: 20px 14px 70px; }
-  .er-bg { margin: -20px -14px calc(20px - 100vh); }
-  .er-header h2 { font-size: 28px; }
-  .er-heading-row { flex-direction: column; }
-  .er-date-fields { grid-template-columns: 1fr; }
+  .event-end-page {
+    padding: 24px;
+  }
+
+  .er-main-card {
+    padding: 23px;
+  }
 }
 
-/* ---------- Respect "reduce motion" ---------- */
+@media (max-width: 700px) {
+  .event-end-page {
+    padding: 18px;
+  }
+
+  .er-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .er-header h2 {
+    font-size: 22px;
+  }
+
+  .er-breadcrumb {
+    flex-wrap: wrap;
+  }
+
+  .er-club-card,
+  .er-main-card {
+    padding: 20px;
+  }
+
+  .er-date-fields {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .er-heading-row {
+    flex-direction: column;
+  }
+
+  .er-badge {
+    align-self: flex-start;
+  }
+
+  .er-download-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .event-end-page {
+    padding: 13px;
+  }
+
+  .er-main-card {
+    padding: 16px;
+  }
+
+  .er-club-card {
+    padding: 17px;
+  }
+
+  .er-heading-row h3 {
+    font-size: 15px;
+  }
+
+  .er-heading-row p {
+    font-size: 10px;
+  }
+
+  .er-breadcrumb {
+    font-size: 10px;
+    padding: 9px 11px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .event-end-page *,
   .event-end-page *::before,
