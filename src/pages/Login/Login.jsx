@@ -9,6 +9,83 @@ import {
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
+/* Barcode stripe thicknesses (top to bottom) */
+const BAR_HEIGHTS = [3, 2, 4, 2, 3, 4, 2, 3, 2, 3, 4, 2, 3];
+
+/* RIZZTIX ticket logo */
+function RizzTixLogo({ className = "" }) {
+  let y = 20;
+  const bars = BAR_HEIGHTS.map((h, i) => {
+    const bar = { key: i, y, h };
+    y += h + 2;
+    return bar;
+  });
+
+  return (
+    <svg
+      className={`rizztix-logo ${className}`}
+      viewBox="0 0 240 100"
+      role="img"
+      aria-label="RIZZTIX"
+    >
+      {/* Ticket outline with notches on the divider */}
+      <path
+        d="M11 3 H62 A8 8 0 0 0 78 3 H229 Q237 3 237 11 V89 Q237 97 229 97 H78 A8 8 0 0 0 62 97 H11 Q3 97 3 89 V11 Q3 3 11 3 Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+
+      {/* Divider */}
+      <path d="M70 11 V89" stroke="currentColor" strokeWidth="3" />
+
+      {/* Barcode */}
+      {bars.map((b) => (
+        <rect
+          key={b.key}
+          x="15"
+          y={b.y}
+          width="43"
+          height={b.h}
+          fill="currentColor"
+        />
+      ))}
+
+      {/* RIZZ (solid) */}
+      <text
+        x="84"
+        y="71"
+        fontSize="58"
+        fontWeight="900"
+        fontFamily="Montserrat, Poppins, 'Arial Black', Arial, sans-serif"
+        fill="currentColor"
+        textLength="88"
+        lengthAdjust="spacingAndGlyphs"
+      >
+        RIZZ
+      </text>
+
+      {/* TIX (outline) */}
+      <text
+        x="174"
+        y="71"
+        fontSize="58"
+        fontWeight="900"
+        fontFamily="Montserrat, Poppins, 'Arial Black', Arial, sans-serif"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        textLength="58"
+        lengthAdjust="spacingAndGlyphs"
+      >
+        TIX
+      </text>
+    </svg>
+  );
+}
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +121,11 @@ export default function Login() {
 
       <div className="bg-decoration decoration-one"></div>
       <div className="bg-decoration decoration-two"></div>
+
+      {/* Logo */}
+      <div className="login-logo">
+        <RizzTixLogo />
+      </div>
 
       {/* Login Card */}
       <section className="login-card">
