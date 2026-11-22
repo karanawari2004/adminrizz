@@ -1,3 +1,4 @@
+
 /* =====================================================
    RIZZTIX · Sales Report  —  Professional White & Blue
    Complete stylesheet
@@ -571,45 +572,55 @@
   padding-left: 20px;
 }
 
-/* ---------- Monthly revenue line chart ---------- */
-.sr-line-chart {
+/* ---------- Monthly revenue bar chart ---------- */
+.sr-bar-chart {
   display: block;
   width: 100%;
   height: 220px;
   margin: 18px 0 30px;
+  overflow: visible;
 }
 
-.sr-line-grid line {
+.sr-bar-grid line {
   stroke: var(--sr-line);
   stroke-dasharray: 4 5;
   stroke-width: 1;
 }
 
-.sr-line-path {
-  fill: none;
-  stroke: var(--sr-blue-mid);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
+.sr-bar {
+  fill: #2563eb;
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: sr-bar-grow 0.9s cubic-bezier(0.2, 0.9, 0.25, 1) backwards;
+  transition: fill 0.2s ease;
 }
 
-.sr-line-point {
-  fill: var(--sr-card);
-  stroke: var(--sr-blue-mid);
-  stroke-width: 3;
+.sr-bar:hover {
+  fill: #1e40af;
 }
 
-.sr-line-value {
+.sr-bar-value {
   fill: var(--sr-blue-dark);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-anchor: middle;
 }
 
-.sr-line-month {
+.sr-bar-month {
   fill: var(--sr-muted);
   font-size: 11px;
   text-anchor: middle;
+}
+
+@keyframes sr-bar-grow {
+  from {
+    transform: scaleY(0);
+    opacity: 0.3;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
 /* ---------- Channel cards ---------- */

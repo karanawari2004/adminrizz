@@ -26,20 +26,20 @@ const salesData = {
     { name: "Preorder Extra (Online)", amount: 0, icon: "⭐" },
   ],
 
-  // SAMPLE values for the line chart. Connect to your real per-month revenue.
+  // SAMPLE values for the bar chart. Connect to your real per-month revenue.
   monthly: [
-    { month: "Jan", value: 1800 },
-    { month: "Feb", value: 2800 },
-    { month: "Mar", value: 3700 },
-    { month: "Apr", value: 4900 },
-    { month: "May", value: 6100 },
-    { month: "Jun", value: 7200 },
-    { month: "Jul", value: 8400 },
-    { month: "Aug", value: 9600 },
-    { month: "Sep", value: 10800 },
-    { month: "Oct", value: 12000 },
+    { month: "Jan", value: 11000},
+    { month: "Feb", value: 50000 },
+    { month: "Mar", value: 5000 },
+    { month: "Apr", value: 15000},
+    { month: "May", value: 2000 },
+    { month: "Jun", value: 30000 },
+    { month: "Jul", value: 20000 },
+    { month: "Aug", value: 10000 },
+    { month: "Sep", value: 15000},
+    { month: "Oct", value: 1000 },
     { month: "Nov", value: 14000 },
-    { month: "Dec", value: 15500 },
+    { month: "Dec", value: 100},
   ],
 
   events: [
@@ -298,52 +298,100 @@ function DonutChart({ channels, total }) {
   );
 }
 
-/* Line chart: revenue by month */
-function LineChart({ data }) {
-  const max = Math.max(...data.map((item) => Number(item.value) || 0), 1);
-  const chart = { left: 38, right: 562, top: 26, bottom: 166 };
-  const points = data.map((item, index) => {
-    const value = Number(item.value) || 0;
-    const x = chart.left + (index * (chart.right - chart.left)) / Math.max(data.length - 1, 1);
-    const y = chart.bottom - (value / max) * (chart.bottom - chart.top);
+/* Bar chart: revenue by month (12 vertical bars) */
+function BarChart({ data }) {
+  const [ready, setReady] = useState(prefersReduced());
 
-    return { ...item, value, x, y };
-  });
-  const linePath = points
-    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
-    .join(" ");
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 900);
+    return () => clearTimeout(t);
+  }, []);
+
+  const max = Math.max(...data.map((d) => Number(d.value) || 0), 1);
+
+  const getBarColor = (value) => {
+    const percentage = (Number(value) / max) * 100;
+
+    if (percentage <= 20) return "#BFDBFE";
+    if (percentage <= 40) return "#93C5FD";
+    if (percentage <= 60) return "#60A5FA";
+    if (percentage <= 80) return "#3B82F6";
+    return "#1D4ED8";
+  };
 
   return (
-    <svg
-      aria-label="Monthly revenue line chart"
-      className="sr-line-chart"
-      preserveAspectRatio="none"
-      role="img"
-      viewBox="0 0 600 220"
+    <div
+      className="sr-bars sr-bars-12"
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        gap: "10px",
+        width: "100%",
+        height: "220px",
+        padding: "12px 4px 0",
+        boxSizing: "border-box",
+      }}
     >
-      <g className="sr-line-grid" aria-hidden="true">
-        {[0, 1, 2, 3].map((index) => {
-          const y = chart.top + (index * (chart.bottom - chart.top)) / 3;
-          return <line key={index} x1={chart.left} x2={chart.right} y1={y} y2={y} />;
-        })}
-      </g>
-      <path className="sr-line-path" d={linePath} />
-      {points.map((point) => (
-        <g key={point.month}>
-          <circle className="sr-line-point" cx={point.x} cy={point.y} r="4">
-            <title>{`${point.month}: ${formatCurrency(point.value)}`}</title>
-          </circle>
-          {point.value > 0 && (
-            <text className="sr-line-value" x={point.x} y={Math.max(point.y - 12, 14)}>
-              {formatCompact(point.value)}
-            </text>
-          )}
-          <text className="sr-line-month" x={point.x} y="204">
-            {point.month}
-          </text>
-        </g>
-      ))}
-    </svg>
+      {data.map((d) => {
+        const value = Number(d.value) || 0;
+        const barHeight = Math.max((value / max) * 100, 4);
+
+        return (
+          <div
+            key={d.month}
+            title={`${d.month}: ${formatCurrency(value)}`}
+            style={{
+              flex: "1 1 0",
+              minWidth: 0,
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <em
+              style={{
+                minHeight: "18px",
+                marginBottom: "5px",
+                fontSize: "10px",
+                fontStyle: "normal",
+                fontWeight: 600,
+                color: "#64748B",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {value > 0 ? formatCompact(value) : ""}
+            </em>
+
+            <div
+              style={{
+                width: " min(22px, 75%)",
+                height: ready ? `${barHeight}%` : "0%",
+                minHeight: ready ? "5px" : "0",
+                backgroundColor: getBarColor(value),
+                borderRadius: "8px 8px 0 0",
+                transition: "height 900ms cubic-bezier(0.22, 1, 0.36, 1), background-color 250ms ease",
+                boxShadow: value > 0 ? "0 3px 10px rgba(37, 99, 235, 0.12)" : "none",
+              }}
+            />
+
+            <span
+              style={{
+                marginTop: "8px",
+                fontSize: "11px",
+                lineHeight: 1,
+                color: "#475569",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {d.month}
+            </span>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -598,7 +646,7 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
 
               <Tilt className="sr-chart-card" delay={0.2}>
                 <span className="sr-card-label">Revenue By Month (₹)</span>
-                <LineChart data={salesData.monthly} />
+                <BarChart data={salesData.monthly} />
               </Tilt>
             </div>
 
