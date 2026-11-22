@@ -1,6 +1,6 @@
 .admin-shell {
   --admin-bg: #f3f6fb;
-  --admin-sidebar: #ffffff;
+  --admin-sidebar: #0b1b33;
   --admin-panel: #ffffff;
   --admin-border: #dce3ed;
   --admin-text: #1d2939;
@@ -10,7 +10,8 @@
   --admin-primary-soft: #eaf2ff;
   --admin-control-bg: #ffffff;
   --admin-control-border: #cbd5e1;
-  --admin-table-head: #eaf2ff;
+  --admin-table-head: #2563eb;
+  --admin-table-head-text: #ffffff;
   --admin-row-hover: #f4f7fc;
   --admin-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
   --admin-sidebar-text: #24364d;
@@ -30,7 +31,7 @@
 
 .admin-shell[data-theme="dark"] {
   --admin-bg: #172131;
-  --admin-sidebar: #0d1a2c;
+  --admin-sidebar: #0b1b33;
   --admin-panel: #202c3d;
   --admin-border: #37465b;
   --admin-text: #edf2f8;
@@ -40,7 +41,8 @@
   --admin-primary-soft: #263b58;
   --admin-control-bg: #202c3d;
   --admin-control-border: #4a5a70;
-  --admin-table-head: #293950;
+  --admin-table-head: #2563eb;
+  --admin-table-head-text: #ffffff;
   --admin-row-hover: #26364a;
   --admin-shadow: 0 8px 24px rgba(4, 10, 20, 0.22);
   --admin-sidebar-text: #edf2f8;
@@ -138,7 +140,7 @@
     border: 1px solid var(--admin-border);
     border-radius: 8px;
     background: var(--admin-sidebar);
-    color: var(--admin-text);
+    color: #f1f5fb;
     cursor: pointer;
   }
   .admin-content { padding-top: 66px; }

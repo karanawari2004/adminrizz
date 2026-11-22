@@ -1,23 +1,27 @@
 /* =====================================================
    RIZZTIX · Sales Report  —  Professional White & Blue
-   Drop-in replacement for the old SalesReportForm.css
-   (same class names, so SalesReportForm.jsx needs no change)
+   Complete stylesheet
    ===================================================== */
 
 .sales-report-page {
-  --sr-bg: #f4f7fd;          /* page background (very light blue-white) */
-  --sr-card: #ffffff;        /* cards */
-  --sr-tint: #eaf1ff;        /* light blue fill */
-  --sr-line: #dce6f7;        /* card borders */
-  --sr-input-line: #7c93bf;  /* input borders */
-  --sr-text: #0f2a5c;        /* deep navy text */
-  --sr-muted: #52648a;       /* secondary text */
-  --sr-blue: #1d4ed8;        /* main brand blue */
-  --sr-blue-dark: #1e40af;   /* hover */
+  --sr-bg: #f4f7fd;
+  --sr-card: #ffffff;
+  --sr-tint: #eaf1ff;
+  --sr-line: #dce6f7;
+  --sr-input-line: #7c93bf;
+  --sr-text: #0f2a5c;
+  --sr-muted: #52648a;
+  --sr-blue: #1d4ed8;
+  --sr-blue-dark: #1e40af;
   --sr-blue-mid: #2563eb;
   --sr-blue-soft: #7fb0f5;
   --sr-blue-pale: #c2d8fb;
   --sr-navy: #14306e;
+  --sr-chart-blue: #4f83f1;
+  --sr-chart-purple: #9b64e8;
+  --sr-chart-coral: #f06b77;
+  --sr-chart-teal: #24a99a;
+  --sr-chart-amber: #e7a52f;
 
   position: relative;
   isolation: isolate;
@@ -43,7 +47,7 @@
 /* ---------- Gentle entrance ---------- */
 @keyframes sr-rise {
   from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
 }
 
 .sr-header,
@@ -402,7 +406,6 @@
   box-shadow: 0 1px 2px rgba(15, 42, 92, 0.05), 0 10px 24px -16px rgba(29, 78, 216, 0.25);
   overflow: hidden;
   transition: border-color 0.25s, box-shadow 0.25s;
-  /* turns off the 3D tilt from the JSX for a calmer, professional feel */
   transform: none !important;
 }
 
@@ -470,13 +473,9 @@
 }
 
 .sr-stat-card.sr-hero > span,
-.sr-stat-card.sr-hero p {
-  color: #dce8ff;
-}
+.sr-stat-card.sr-hero p { color: #dce8ff; }
 
-.sr-stat-card.sr-hero h2 {
-  color: #fff;
-}
+.sr-stat-card.sr-hero h2 { color: #fff; }
 
 .sr-stat-card.sr-hero .sr-icon {
   background: rgba(255, 255, 255, 0.18);
@@ -515,11 +514,11 @@
   transition: stroke-dasharray 1.4s cubic-bezier(0.2, 0.9, 0.25, 1);
 }
 
-/* four clearly different blues */
-.sr-donut-seg.online    { stroke: var(--sr-blue-mid); }
-.sr-donut-seg.offline   { stroke: var(--sr-blue-soft); }
-.sr-donut-seg.ground    { stroke: var(--sr-navy); }
-.sr-donut-seg.guestlist { stroke: var(--sr-blue-pale); }
+/* Category colors: distinct and easy to identify */
+.sr-donut-seg.online    { stroke: #2563eb; } /* Online - Royal Blue */
+.sr-donut-seg.offline   { stroke: #0d9488; } /* Offline - Teal */
+.sr-donut-seg.ground    { stroke: #f59e0b; } /* Ground - Amber */
+.sr-donut-seg.guestlist { stroke: #8b5cf6; } /* Guest List - Violet */
 
 .sr-donut-center {
   position: absolute;
@@ -529,8 +528,16 @@
   text-align: center;
 }
 
-.sr-donut-center strong { font-size: 30px; font-weight: 700; color: var(--sr-text); }
-.sr-donut-center span { font-size: 12.5px; color: var(--sr-muted); }
+.sr-donut-center strong {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--sr-text);
+}
+
+.sr-donut-center span {
+  font-size: 12.5px;
+  color: var(--sr-muted);
+}
 
 .sr-legend {
   flex: 1;
@@ -546,66 +553,63 @@
   color: var(--sr-text);
 }
 
+/* Legend colors match donut segments */
 .sr-legend i {
   width: 12px;
   height: 12px;
+  flex-shrink: 0;
   border-radius: 4px;
 }
 
-.sr-legend i.online    { background: var(--sr-blue-mid); }
-.sr-legend i.offline   { background: var(--sr-blue-soft); }
-.sr-legend i.ground    { background: var(--sr-navy); }
-.sr-legend i.guestlist { background: var(--sr-blue-pale); }
+.sr-legend i.online    { background: #2563eb; }
+.sr-legend i.offline   { background: #0d9488; }
+.sr-legend i.ground    { background: #f59e0b; }
+.sr-legend i.guestlist { background: #8b5cf6; }
 
 .sr-legend b {
   margin-left: auto;
   padding-left: 20px;
 }
 
-/* ---------- Bar chart ---------- */
-.sr-bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  height: 180px;
+/* ---------- Monthly revenue line chart ---------- */
+.sr-line-chart {
+  display: block;
+  width: 100%;
+  height: 220px;
   margin: 18px 0 30px;
-  border-bottom: 1px solid var(--sr-line);
 }
 
-.sr-bars > div {
-  position: relative;
-  flex: 1;
-  height: 0;
-  background: var(--sr-blue-mid);
-  border-radius: 8px 8px 0 0;
-  transition: height 1.2s cubic-bezier(0.2, 0.9, 0.25, 1), background 0.2s;
+.sr-line-grid line {
+  stroke: var(--sr-line);
+  stroke-dasharray: 4 5;
+  stroke-width: 1;
 }
 
-.sr-bars > div:hover { background: var(--sr-navy); }
+.sr-line-path {
+  fill: none;
+  stroke: var(--sr-blue-mid);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
 
-.sr-bars em {
-  position: absolute;
-  top: -24px;
-  left: 50%;
-  transform: translateX(-50%);
+.sr-line-point {
+  fill: var(--sr-card);
+  stroke: var(--sr-blue-mid);
+  stroke-width: 3;
+}
+
+.sr-line-value {
+  fill: var(--sr-blue-dark);
   font-size: 11px;
-  font-style: normal;
   font-weight: 700;
-  white-space: nowrap;
-  color: var(--sr-text);
-  opacity: 0;
-  transition: opacity 0.2s;
+  text-anchor: middle;
 }
 
-.sr-bars > div:hover em { opacity: 1; }
-
-.sr-bars span {
-  position: absolute;
-  bottom: -24px;
-  left: 50%;
-  transform: translateX(-50%);
+.sr-line-month {
+  fill: var(--sr-muted);
   font-size: 11px;
-  color: var(--sr-muted);
+  text-anchor: middle;
 }
 
 /* ---------- Channel cards ---------- */
@@ -626,15 +630,15 @@
   border-radius: 99px;
 }
 
-.sr-channel-tag.online    { background: #dbe7ff; color: #1d4ed8; }
-.sr-channel-tag.offline   { background: #e6f0ff; color: #2c5fb8; }
-.sr-channel-tag.ground    { background: var(--sr-navy); color: #fff; }
-.sr-channel-tag.guestlist { background: #eef4ff; color: #3b5a96; }
+.sr-channel-tag.online    { background: #dbeafe; color: #1d4ed8; }
+.sr-channel-tag.offline   { background: #ccfbf1; color: #0f766e; }
+.sr-channel-tag.ground    { background: #fef3c7; color: #b45309; }
+.sr-channel-tag.guestlist { background: #ede9fe; color: #6d28d9; }
 
-.sr-channel-card.online    { border-top: 3px solid var(--sr-blue-mid); }
-.sr-channel-card.offline   { border-top: 3px solid var(--sr-blue-soft); }
-.sr-channel-card.ground    { border-top: 3px solid var(--sr-navy); }
-.sr-channel-card.guestlist { border-top: 3px solid var(--sr-blue-pale); }
+.sr-channel-card.online    { border-top: 3px solid #2563eb; }
+.sr-channel-card.offline   { border-top: 3px solid #0d9488; }
+.sr-channel-card.ground    { border-top: 3px solid #f59e0b; }
+.sr-channel-card.guestlist { border-top: 3px solid #8b5cf6; }
 
 /* ---------- Sections ---------- */
 .sr-section {
@@ -689,10 +693,12 @@
 }
 
 .sr-table-wrapper::-webkit-scrollbar { height: 8px; }
+
 .sr-table-wrapper::-webkit-scrollbar-thumb {
   background: #a9c0ee;
   border-radius: 99px;
 }
+
 .sr-table-wrapper::-webkit-scrollbar-track { background: #eef3fc; }
 
 .sr-table {
@@ -723,7 +729,10 @@
   transition: background 0.2s;
 }
 
-.sr-table tbody td:first-child { font-weight: 700; font-size: 16px; }
+.sr-table tbody td:first-child {
+  font-weight: 700;
+  font-size: 16px;
+}
 
 .sr-table tbody tr:last-child td { border-bottom: 0; }
 .sr-table tbody tr:hover td { background: #f1f6ff; }
@@ -761,7 +770,7 @@
 
 @keyframes sr-fill {
   from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  to { transform: scaleX(1); }
 }
 
 /* ---------- Status pill + footer note ---------- */

@@ -26,13 +26,20 @@ const salesData = {
     { name: "Preorder Extra (Online)", amount: 0, icon: "⭐" },
   ],
 
-  // SAMPLE values for the bar chart. Connect to your real per-day revenue.
-  daily: [
-    { day: "15", value: 2000 },
-    { day: "16", value: 3500 },
-    { day: "17", value: 9000 },
-    { day: "18", value: 5000 },
-    { day: "19", value: 4500 },
+  // SAMPLE values for the line chart. Connect to your real per-month revenue.
+  monthly: [
+    { month: "Jan", value: 1800 },
+    { month: "Feb", value: 2800 },
+    { month: "Mar", value: 3700 },
+    { month: "Apr", value: 4900 },
+    { month: "May", value: 6100 },
+    { month: "Jun", value: 7200 },
+    { month: "Jul", value: 8400 },
+    { month: "Aug", value: 9600 },
+    { month: "Sep", value: 10800 },
+    { month: "Oct", value: 12000 },
+    { month: "Nov", value: 14000 },
+    { month: "Dec", value: 15500 },
   ],
 
   events: [
@@ -82,6 +89,14 @@ const formatFixedCurrency = (amount) =>
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
+
+/* Compact currency for narrow bar labels: ₹14K, ₹1.2L, ₹2.5Cr */
+const formatCompact = (n) => {
+  if (n >= 10000000) return `₹${+(n / 10000000).toFixed(1)}Cr`;
+  if (n >= 100000) return `₹${+(n / 100000).toFixed(1)}L`;
+  if (n >= 1000) return `₹${+(n / 1000).toFixed(1)}K`;
+  return `₹${n}`;
+};
 
 const fmtDate = (d) => d.split("-").reverse().join("-");
 
@@ -283,29 +298,52 @@ function DonutChart({ channels, total }) {
   );
 }
 
-/* Bar chart: revenue by day */
-function BarChart({ data }) {
-  const [ready, setReady] = useState(prefersReduced());
+/* Line chart: revenue by month */
+function LineChart({ data }) {
+  const max = Math.max(...data.map((item) => Number(item.value) || 0), 1);
+  const chart = { left: 38, right: 562, top: 26, bottom: 166 };
+  const points = data.map((item, index) => {
+    const value = Number(item.value) || 0;
+    const x = chart.left + (index * (chart.right - chart.left)) / Math.max(data.length - 1, 1);
+    const y = chart.bottom - (value / max) * (chart.bottom - chart.top);
 
-  useEffect(() => {
-    const t = setTimeout(() => setReady(true), 900);
-    return () => clearTimeout(t);
-  }, []);
-
-  const max = Math.max(...data.map((d) => d.value), 1);
+    return { ...item, value, x, y };
+  });
+  const linePath = points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+    .join(" ");
 
   return (
-    <div className="sr-bars">
-      {data.map((d) => (
-        <div
-          key={d.day}
-          style={{ height: ready ? `${Math.max((d.value / max) * 100, 4)}%` : "0%" }}
-        >
-          <em>{formatCurrency(d.value)}</em>
-          <span>{d.day}</span>
-        </div>
+    <svg
+      aria-label="Monthly revenue line chart"
+      className="sr-line-chart"
+      preserveAspectRatio="none"
+      role="img"
+      viewBox="0 0 600 220"
+    >
+      <g className="sr-line-grid" aria-hidden="true">
+        {[0, 1, 2, 3].map((index) => {
+          const y = chart.top + (index * (chart.bottom - chart.top)) / 3;
+          return <line key={index} x1={chart.left} x2={chart.right} y1={y} y2={y} />;
+        })}
+      </g>
+      <path className="sr-line-path" d={linePath} />
+      {points.map((point) => (
+        <g key={point.month}>
+          <circle className="sr-line-point" cx={point.x} cy={point.y} r="4">
+            <title>{`${point.month}: ${formatCurrency(point.value)}`}</title>
+          </circle>
+          {point.value > 0 && (
+            <text className="sr-line-value" x={point.x} y={Math.max(point.y - 12, 14)}>
+              {formatCompact(point.value)}
+            </text>
+          )}
+          <text className="sr-line-month" x={point.x} y="204">
+            {point.month}
+          </text>
+        </g>
       ))}
-    </div>
+    </svg>
   );
 }
 
@@ -559,8 +597,8 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
               </Tilt>
 
               <Tilt className="sr-chart-card" delay={0.2}>
-                <span className="sr-card-label">Revenue By Day (₹)</span>
-                <BarChart data={salesData.daily} />
+                <span className="sr-card-label">Revenue By Month (₹)</span>
+                <LineChart data={salesData.monthly} />
               </Tilt>
             </div>
 
