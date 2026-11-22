@@ -12,6 +12,7 @@
   --text-light: #64748b;
   --border: #d7e1ef;
   --white: #ffffff;
+  --brand-orange: #ff5128;
 }
 
 /* RESET */
@@ -24,6 +25,7 @@
   width: 100%;
   position: relative;
   display: flex;
+  flex-direction: column; /* logo on top, card below */
   align-items: center;
   justify-content: center;
   padding: 25px 20px;
@@ -33,6 +35,25 @@
   font-family: 'Inter', sans-serif;
   overflow: hidden;
   isolation: isolate;
+}
+
+/* ==========================================
+   LOGO (just above the login box)
+========================================== */
+
+.login-logo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px; /* gap between logo and box */
+}
+
+.rizztix-logo {
+  display: block;
+  width: 170px;
+  height: auto;
+  color: var(--brand-orange);
 }
 
 /* ==========================================
@@ -579,6 +600,14 @@
     padding: 15px;
   }
 
+  .rizztix-logo {
+    width: 130px;
+  }
+
+  .login-logo {
+    margin-bottom: 10px;
+  }
+
   .login-card {
     max-width: 100%;
     padding: 30px 18px 24px;
@@ -680,82 +709,5 @@
   *::after {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-
-
-
-
-.login-logo {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.rizztix-logo {
-  display: block;
-  width: 190px;
-  height: auto;
-  color: #fff;
-}
-
-@media (max-width: 600px) {
-  .rizztix-logo { width: 150px; }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Logo pinned at the top of the page, centered */
-.login-logo {
-  position: absolute;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-}
-
-/* Orange logo */
-.rizztix-logo {
-  display: block;
-  width: 190px;
-  height: auto;
-  color: #ff5128;
-}
-
-@media (max-width: 600px) {
-  .login-logo { top: 18px; }
-  .rizztix-logo { width: 140px; }
-}
-
-/* On short screens, put the logo back in the normal flow so it can't overlap the card */
-@media (max-height: 780px) {
-  .login-logo {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin-bottom: 20px;
   }
 }
