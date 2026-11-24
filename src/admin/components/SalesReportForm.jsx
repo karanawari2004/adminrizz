@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./SalesReportForm.css";
 
 /* =====================================================
-   DATA  (replace with your API response later)
+   DATA
    ===================================================== */
 const salesData = {
   ticketsSold: 29,
@@ -26,22 +26,6 @@ const salesData = {
     { name: "Preorder Extra (Online)", amount: 0, icon: "⭐" },
   ],
 
-  // SAMPLE values for the bar chart. Connect to your real per-month revenue.
-  monthly: [
-    { month: "Jan", value: 11000},
-    { month: "Feb", value: 50000 },
-    { month: "Mar", value: 5000 },
-    { month: "Apr", value: 15000},
-    { month: "May", value: 2000 },
-    { month: "Jun", value: 30000 },
-    { month: "Jul", value: 20000 },
-    { month: "Aug", value: 10000 },
-    { month: "Sep", value: 15000},
-    { month: "Oct", value: 1000 },
-    { month: "Nov", value: 14000 },
-    { month: "Dec", value: 100},
-  ],
-
   events: [
     {
       name: "GOA SUNSPLASH",
@@ -58,9 +42,36 @@ const salesData = {
   ],
 
   categories: [
-    { name: "GA", sold: 6, capacity: 100, revenue: 0, price: 0, online: 6, offline: 0, guestlist: 0 },
-    { name: "VVIP", sold: 17, capacity: 100, revenue: 6000, price: 1000, online: 6, offline: 0, guestlist: 5 },
-    { name: "Couple Entry", sold: 6, capacity: 100, revenue: 8000, price: 2000, online: 4, offline: 0, guestlist: 0 },
+    {
+      name: "GA",
+      sold: 6,
+      capacity: 100,
+      revenue: 0,
+      price: 0,
+      online: 6,
+      offline: 0,
+      guestlist: 0,
+    },
+    {
+      name: "VVIP",
+      sold: 17,
+      capacity: 100,
+      revenue: 6000,
+      price: 1000,
+      online: 6,
+      offline: 0,
+      guestlist: 5,
+    },
+    {
+      name: "Couple Entry",
+      sold: 6,
+      capacity: 100,
+      revenue: 8000,
+      price: 2000,
+      online: 4,
+      offline: 0,
+      guestlist: 0,
+    },
   ],
 
   staff: [
@@ -73,6 +84,72 @@ const salesData = {
       minSpend: 140000,
     },
   ],
+};
+
+/* =====================================================
+   YEARLY SALES TREND DATA
+   Sample data for chart demonstration
+   ===================================================== */
+const yearlySalesData = [
+  { month: "Jan", sales: 18000, online: 12000, offline: 3000, onGround: 2000, guestlist: 1000 },
+  { month: "Feb", sales: 24000, online: 16000, offline: 4000, onGround: 3000, guestlist: 1000 },
+  { month: "Mar", sales: 21000, online: 13000, offline: 4000, onGround: 3000, guestlist: 1000 },
+  { month: "Apr", sales: 32000, online: 22000, offline: 4000, onGround: 4000, guestlist: 2000 },
+  { month: "May", sales: 39000, online: 27000, offline: 5000, onGround: 5000, guestlist: 2000 },
+  { month: "Jun", sales: 46000, online: 32000, offline: 6000, onGround: 6000, guestlist: 2000 },
+  { month: "Jul", sales: 54890, online: 38000, offline: 7000, onGround: 7500, guestlist: 2390 },
+  { month: "Aug", sales: 42000, online: 29000, offline: 5000, onGround: 6000, guestlist: 2000 },
+  { month: "Sep", sales: 48000, online: 33000, offline: 6000, onGround: 7000, guestlist: 2000 },
+  { month: "Oct", sales: 36000, online: 24000, offline: 5000, onGround: 5000, guestlist: 2000 },
+  { month: "Nov", sales: 51000, online: 35000, offline: 7000, onGround: 7000, guestlist: 2000 },
+  { month: "Dec", sales: 57000, online: 39000, offline: 8000, onGround: 8000, guestlist: 2000 },
+];
+
+/* =====================================================
+   FILTER OPTIONS
+   ===================================================== */
+const CLUB_OPTIONS = [
+  { value: "All Partners", desc: "Every club", initials: "AP", tone: "blue" },
+  { value: "Thalaasa", desc: "12 events", initials: "TH", tone: "teal" },
+  { value: "Goa Club", desc: "8 events", initials: "GC", tone: "amber" },
+  { value: "Rizztixx", desc: "5 events", initials: "RZ", tone: "violet" },
+];
+
+const EVENT_TYPE_OPTIONS = [
+  { value: "All Types", dot: "#9aa4b5" },
+  { value: "Ongoing", dot: "#14a38b" },
+  { value: "Upcoming", dot: "#4f7cff" },
+  { value: "Past", dot: "#e8a23a" },
+];
+
+const EVENT_OPTIONS = [
+  { value: "GOA SUNSPLASH", desc: "Ended · 17 Nov", dot: "#9aa4b5" },
+  { value: "Starly", desc: "Upcoming", dot: "#4f7cff" },
+  { value: "After Dark", desc: "Ongoing", dot: "#14a38b" },
+];
+
+const CHANNEL_OPTIONS = [
+  { value: "All Channels", dot: "#9aa4b5" },
+  { value: "Online", dot: "#4f7cff" },
+  { value: "Offline", dot: "#14a38b" },
+  { value: "On Ground", dot: "#e8a23a" },
+  { value: "Guestlist", dot: "#8b6cf0" },
+];
+
+const EMPLOYEE_OPTIONS = [
+  { value: "All Employees", desc: "Everyone", initials: "AE", tone: "blue" },
+  { value: "System Admin", desc: "Admin", initials: "SA", tone: "violet" },
+  { value: "Thalaasa Employee", desc: "THEM1594", initials: "TE", tone: "teal" },
+  { value: "Box Office", desc: "Counter sales", initials: "BO", tone: "amber" },
+];
+
+const DEFAULTS = {
+  eventType: "All Types",
+  event: "GOA SUNSPLASH",
+  channel: "All Channels",
+  employee: "All Employees",
+  fromDate: "2026-11-15",
+  toDate: "2026-11-19",
 };
 
 /* =====================================================
@@ -90,7 +167,6 @@ const formatFixedCurrency = (amount) =>
     maximumFractionDigits: 2,
   })}`;
 
-/* Compact currency for narrow bar labels: ₹14K, ₹1.2L, ₹2.5Cr */
 const formatCompact = (n) => {
   if (n >= 10000000) return `₹${+(n / 10000000).toFixed(1)}Cr`;
   if (n >= 100000) return `₹${+(n / 100000).toFixed(1)}L`;
@@ -100,17 +176,387 @@ const formatCompact = (n) => {
 
 const fmtDate = (d) => d.split("-").reverse().join("-");
 
+const toISO = (d) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+    d.getDate()
+  ).padStart(2, "0")}`;
+
+const getPreset = (key) => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  if (key === "today") return [toISO(today), toISO(today)];
+
+  if (key === "last7") {
+    const start = new Date(today);
+    start.setDate(start.getDate() - 6);
+    return [toISO(start), toISO(today)];
+  }
+
+  if (key === "thisMonth") {
+    return [
+      toISO(new Date(today.getFullYear(), today.getMonth(), 1)),
+      toISO(new Date(today.getFullYear(), today.getMonth() + 1, 0)),
+    ];
+  }
+
+  return [
+    toISO(new Date(today.getFullYear(), today.getMonth() - 1, 1)),
+    toISO(new Date(today.getFullYear(), today.getMonth(), 0)),
+  ];
+};
+
 const prefersReduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* =====================================================
+   THEME DETECTION
+   ===================================================== */
+const THEME_ATTRS = [
+  "data-theme",
+  "data-bs-theme",
+  "data-mode",
+  "data-color-scheme",
+];
+
+const detectDark = (startEl) => {
+  if (typeof document === "undefined") return false;
+
+  const roots = [];
+
+  for (
+    let n = startEl ? startEl.parentElement : null;
+    n && n.nodeType === 1;
+    n = n.parentElement
+  ) {
+    roots.push(n);
+  }
+
+  [document.body, document.documentElement].forEach((e) => {
+    if (e && !roots.includes(e)) roots.push(e);
+  });
+
+  for (const el of roots) {
+    if (!el) continue;
+
+    for (const attr of THEME_ATTRS) {
+      const v = el.getAttribute(attr);
+      if (v) return /dark/i.test(v);
+    }
+
+    const cls = typeof el.className === "string" ? el.className : "";
+
+    if (/(^|\s)(dark|dark-mode|dark-theme|theme-dark)(\s|$)/i.test(cls))
+      return true;
+
+    if (/(^|\s)(light|light-mode|light-theme|theme-light)(\s|$)/i.test(cls))
+      return false;
+  }
+
+  const rgb = (getComputedStyle(document.body).color || "").match(
+    /\d+(\.\d+)?/g
+  );
+
+  if (rgb && rgb.length >= 3) {
+    const [r, g, b] = rgb.slice(0, 3).map(Number);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.55;
+  }
+
+  return false;
+};
+
+function useDarkMode(theme, rootRef) {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (theme === "light" || theme === "dark") return undefined;
+
+    const update = () => setDark(detectDark(rootRef.current));
+
+    update();
+
+    const onClick = () => setTimeout(update, 80);
+    window.addEventListener("click", onClick);
+
+    const observer = new MutationObserver(update);
+
+    [document.documentElement, document.body].forEach((el) => {
+      if (el) {
+        observer.observe(el, {
+          attributes: true,
+          attributeFilter: ["class", ...THEME_ATTRS],
+        });
+      }
+    });
+
+    const mq = window.matchMedia
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+      : null;
+
+    if (mq && mq.addEventListener) mq.addEventListener("change", update);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("click", onClick);
+      if (mq && mq.removeEventListener) mq.removeEventListener("change", update);
+    };
+  }, [theme, rootRef]);
+
+  if (theme === "dark") return true;
+  if (theme === "light") return false;
+
+  return dark;
+}
+
+/* =====================================================
+   ICONS
+   ===================================================== */
+const ICONS = {
+  store: (
+    <>
+      <path d="M4 9l1.2-4.5h13.6L20 9" />
+      <path d="M5 9v11h14V9" />
+      <path d="M9.5 20v-5h5v5" />
+      <path d="M4 9a2.67 2.67 0 005.33 0 2.67 2.67 0 005.34 0A2.67 2.67 0 0020 9" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M16 3v4M8 3v4M3 11h18" />
+    </>
+  ),
+  calendarEvent: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M16 3v4M8 3v4M3 11h18" />
+      <rect x="8" y="15" width="3" height="3" rx="0.5" />
+    </>
+  ),
+  grid: (
+    <>
+      <rect x="4" y="4" width="6" height="6" rx="1.2" />
+      <rect x="14" y="4" width="6" height="6" rx="1.2" />
+      <rect x="4" y="14" width="6" height="6" rx="1.2" />
+      <rect x="14" y="14" width="6" height="6" rx="1.2" />
+    </>
+  ),
+  route: (
+    <>
+      <circle cx="6" cy="19" r="2" />
+      <circle cx="18" cy="5" r="2" />
+      <path d="M8 19h5a3.5 3.5 0 000-7h-2a3.5 3.5 0 010-7h5" />
+    </>
+  ),
+  user: (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0116 0" />
+    </>
+  ),
+  chevronDown: <path d="M6 9l6 6 6-6" />,
+  chevronRight: <path d="M9 6l6 6-6 6" />,
+  check: <path d="M5 12l5 5L20 7" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="M21 21l-4.3-4.3" />
+    </>
+  ),
+  arrowRight: <path d="M5 12h14M13 6l6 6-6 6" />,
+  home: (
+    <>
+      <path d="M3 11l9-8 9 8" />
+      <path d="M5 10v10h14V10" />
+    </>
+  ),
+  chart: <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />,
+};
+
+function Icon({ name, size = 16 }) {
+  return (
+    <svg
+      className="sr-ico"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {ICONS[name]}
+    </svg>
+  );
+}
+
+/* =====================================================
+   PREMIUM DROPDOWN
+   ===================================================== */
+function Dropdown({
+  label,
+  icon,
+  value,
+  onChange,
+  options,
+  searchable = false,
+}) {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const rootRef = useRef(null);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const onDown = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target))
+        setOpen(false);
+    };
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open && searchable && searchRef.current) searchRef.current.focus();
+    if (!open) setQuery("");
+  }, [open, searchable]);
+
+  const visible = options.filter((o) =>
+    o.value.toLowerCase().includes(query.trim().toLowerCase())
+  );
+
+  const choose = (v) => {
+    onChange(v);
+    setOpen(false);
+  };
+
+  return (
+    <div className="sr-field" ref={rootRef}>
+      <span className="sr-field-label">{label}</span>
+
+      <div className="sr-dd">
+        <button
+          type="button"
+          className={`sr-dd-btn${open ? " open" : ""}`}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={`${label}: ${value}`}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="sr-dd-icon">
+            <Icon name={icon} size={15} />
+          </span>
+
+          <span className="sr-dd-value">{value}</span>
+
+          <span className="sr-dd-chevron">
+            <Icon name="chevronDown" size={16} />
+          </span>
+        </button>
+
+        {open && (
+          <div className="sr-dd-menu" role="listbox">
+            {searchable && (
+              <div className="sr-dd-search">
+                <Icon name="search" size={14} />
+                <input
+                  ref={searchRef}
+                  type="text"
+                  placeholder="Search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+            )}
+
+            {visible.length === 0 && (
+              <div className="sr-dd-empty">No results</div>
+            )}
+
+            {visible.map((o) => {
+              const selected = o.value === value;
+
+              return (
+                <div
+                  key={o.value}
+                  role="option"
+                  aria-selected={selected}
+                  className={`sr-dd-option${selected ? " selected" : ""}`}
+                  onClick={() => choose(o.value)}
+                >
+                  {o.initials ? (
+                    <span className={`sr-dd-avatar sr-tone-${o.tone}`}>
+                      {o.initials}
+                    </span>
+                  ) : (
+                    <span
+                      className="sr-dd-dot"
+                      style={{ background: o.dot }}
+                    />
+                  )}
+
+                  <span className="sr-dd-text">
+                    <b>{o.value}</b>
+                    {o.desc && <span>{o.desc}</span>}
+                  </span>
+
+                  <span className="sr-dd-check">
+                    <Icon name="check" size={15} />
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function DateField({ label, value, onChange }) {
+  return (
+    <div className="sr-field">
+      <span className="sr-field-label">{label}</span>
+
+      <div className="sr-date-box">
+        <Icon name="calendar" size={16} />
+
+        <input
+          type="date"
+          value={value}
+          aria-label={label}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* =====================================================
    ANIMATION COMPONENTS
    ===================================================== */
-
-/* Numbers that count up from 0 */
-function CountUp({ to, prefix = "", decimals = 0, duration = 1900, delay = 400 }) {
+function CountUp({
+  to,
+  prefix = "",
+  decimals = 0,
+  duration = 1900,
+  delay = 400,
+}) {
   const [val, setVal] = useState(prefersReduced() ? to : 0);
 
   useEffect(() => {
@@ -118,15 +564,21 @@ function CountUp({ to, prefix = "", decimals = 0, duration = 1900, delay = 400 }
       setVal(to);
       return undefined;
     }
+
     let raf;
     const t0 = performance.now() + delay;
+
     const tick = (now) => {
       const p = Math.max(0, Math.min((now - t0) / duration, 1));
       const eased = 1 - Math.pow(1 - p, 4);
+
       setVal(to * eased);
+
       if (p < 1) raf = requestAnimationFrame(tick);
     };
+
     raf = requestAnimationFrame(tick);
+
     return () => cancelAnimationFrame(raf);
   }, [to, duration, delay]);
 
@@ -141,100 +593,17 @@ function CountUp({ to, prefix = "", decimals = 0, duration = 1900, delay = 400 }
   );
 }
 
-/* Card that tilts in 3D and has a spotlight following the mouse */
-function Tilt({ className = "", delay = 0, children }) {
-  const onMove = (e) => {
-    if (prefersReduced()) return;
-    const el = e.currentTarget;
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-    el.style.setProperty("--mx", `${x}px`);
-    el.style.setProperty("--my", `${y}px`);
-    const rx = (y / r.height - 0.5) * -9;
-    const ry = (x / r.width - 0.5) * 9;
-    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-  };
-
-  const onLeave = (e) => {
-    e.currentTarget.style.transform = "";
-  };
-
+function Box({ className = "", delay = 0, children }) {
   return (
-    <div
-      className={className}
-      style={{ "--d": `${delay}s` }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-    >
+    <div className={className} style={{ "--d": `${delay}s` }}>
       {children}
     </div>
   );
 }
 
-/* Floating glowing sparks behind the page */
-function Sparks() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (prefersReduced()) return undefined;
-    const cv = ref.current;
-    const parent = cv.parentElement;
-    const cx = cv.getContext("2d");
-    const colors = ["#ff8a1f", "#ff3d81", "#8b5cf6", "#22d3ee"];
-    let W = 0;
-    let H = 0;
-    let raf;
-
-    const size = () => {
-      W = cv.width = parent.clientWidth;
-      H = cv.height = parent.clientHeight;
-    };
-    size();
-
-    const ro = new ResizeObserver(size);
-    ro.observe(parent);
-
-    const particles = Array.from({ length: 55 }, (_, i) => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 2.2 + 0.5,
-      v: Math.random() * 0.5 + 0.15,
-      c: colors[i % 4],
-      o: Math.random() * 0.6 + 0.2,
-    }));
-
-    const loop = () => {
-      cx.clearRect(0, 0, W, H);
-      particles.forEach((p) => {
-        p.y -= p.v;
-        p.x += Math.sin(p.y / 60) * 0.3;
-        if (p.y < -10) {
-          p.y = H + 10;
-          p.x = Math.random() * W;
-        }
-        cx.beginPath();
-        cx.arc(p.x, p.y, p.r, 0, 7);
-        cx.fillStyle = p.c;
-        cx.globalAlpha = p.o;
-        cx.shadowBlur = 12;
-        cx.shadowColor = p.c;
-        cx.fill();
-      });
-      raf = requestAnimationFrame(loop);
-    };
-    loop();
-
-    return () => {
-      cancelAnimationFrame(raf);
-      ro.disconnect();
-    };
-  }, []);
-
-  return <canvas ref={ref} className="sr-sparks" />;
-}
-
-/* Donut chart: tickets by channel */
+/* =====================================================
+   DONUT CHART
+   ===================================================== */
 function DonutChart({ channels, total }) {
   const [ready, setReady] = useState(prefersReduced());
 
@@ -245,6 +614,7 @@ function DonutChart({ channels, total }) {
 
   const C = 2 * Math.PI * 48;
   let acc = 0;
+
   const segments = channels.map((ch) => {
     const len = total ? (ch.tickets / total) * C : 0;
     const seg = { ...ch, len, offset: -acc };
@@ -257,6 +627,7 @@ function DonutChart({ channels, total }) {
       <div className="sr-donut-box">
         <svg className="sr-donut" viewBox="0 0 120 120">
           <circle className="sr-donut-bg" cx="60" cy="60" r="48" />
+
           {segments.map(
             (s) =>
               s.len > 0 && (
@@ -298,99 +669,550 @@ function DonutChart({ channels, total }) {
   );
 }
 
-/* Bar chart: revenue by month (12 vertical bars) */
+/* =====================================================
+   REVENUE BY CHANNEL BAR CHART
+   ===================================================== */
 function BarChart({ data }) {
   const [ready, setReady] = useState(prefersReduced());
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 900);
+    const t = setTimeout(() => setReady(true), 300);
     return () => clearTimeout(t);
   }, []);
 
   const max = Math.max(...data.map((d) => Number(d.value) || 0), 1);
 
-  const getBarColor = (value) => {
-    const percentage = (Number(value) / max) * 100;
-
-    if (percentage <= 20) return "#BFDBFE";
-    if (percentage <= 40) return "#93C5FD";
-    if (percentage <= 60) return "#60A5FA";
-    if (percentage <= 80) return "#3B82F6";
-    return "#1D4ED8";
+  const barColors = {
+    Online: "#2563EB",
+    "Offline (Paid)": "#10B981",
+    "On Ground": "#F59E0B",
+    Guestlist: "#8B5CF6",
   };
 
   return (
+    <div className="sr-revenue-chart">
+      <div className="sr-revenue-chart-legend">
+        <span>
+          <i />
+          Total Revenue
+        </span>
+      </div>
+
+      <div className="sr-revenue-bars">
+        {data.map((d) => {
+          const value = Number(d.value) || 0;
+          const barHeight = value > 0 ? (value / max) * 100 : 0;
+          const color = barColors[d.name] || "#3B82F6";
+
+          return (
+            <div
+              className="sr-revenue-bar-item"
+              key={d.name}
+              title={`${d.name}: ${formatCurrency(value)}`}
+            >
+              <strong className="sr-revenue-value">
+                {formatCurrency(value)}
+              </strong>
+
+              <div className="sr-revenue-track">
+                <div
+                  className="sr-revenue-fill"
+                  style={{
+                    height: ready ? `${barHeight}%` : "0%",
+                    backgroundColor: color,
+                  }}
+                />
+              </div>
+
+              <span className="sr-revenue-label">{d.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* =====================================================
+   YEARLY SALES TRENDS LINE CHART
+   ===================================================== */
+function YearlySalesTrendChart() {
+  const [activeIndex, setActiveIndex] = useState(6);
+
+  const width = 1000;
+  const height = 390;
+
+  const left = 78;
+  const right = 35;
+  const top = 45;
+  const bottom = 65;
+
+  const chartWidth = width - left - right;
+  const chartHeight = height - top - bottom;
+
+  const maxSales = 60000;
+
+  const x = (index) =>
+    left + (index / (yearlySalesData.length - 1)) * chartWidth;
+
+  const y = (value) =>
+    top + chartHeight - (value / maxSales) * chartHeight;
+
+  const points = yearlySalesData.map((item, index) => ({
+    x: x(index),
+    y: y(item.sales),
+    ...item,
+  }));
+
+  // Smooth curve using cubic Bezier control points.
+  const createSmoothPath = (data) => {
+    if (!data.length) return "";
+
+    let path = `M ${data[0].x} ${data[0].y}`;
+
+    for (let i = 0; i < data.length - 1; i++) {
+      const current = data[i];
+      const next = data[i + 1];
+
+      const controlX = (current.x + next.x) / 2;
+
+      path += ` C ${controlX} ${current.y}, ${controlX} ${next.y}, ${next.x} ${next.y}`;
+    }
+
+    return path;
+  };
+
+  const linePath = createSmoothPath(points);
+
+  const areaPath = `${linePath} L ${points[points.length - 1].x} ${
+    top + chartHeight
+  } L ${points[0].x} ${top + chartHeight} Z`;
+
+  const activePoint = points[activeIndex];
+
+  const formatTooltip = (value) =>
+    `₹${Number(value).toLocaleString("en-IN")}`;
+
+  const tooltipWidth = 220;
+  const tooltipHeight = 154;
+
+  const tooltipX = Math.min(
+    Math.max(activePoint.x - tooltipWidth / 2, left),
+    width - right - tooltipWidth
+  );
+
+  const tooltipY =
+    activePoint.y - tooltipHeight - 35 > top
+      ? activePoint.y - tooltipHeight - 35
+      : activePoint.y + 35;
+
+  return (
     <div
-      className="sr-bars sr-bars-12"
       style={{
-        display: "flex",
-        alignItems: "flex-end",
-        justifyContent: "space-between",
-        gap: "10px",
         width: "100%",
-        height: "220px",
-        padding: "12px 4px 0",
+        background: "#111827",
+        border: "1px solid #263244",
+        borderRadius: "18px",
+        padding: "26px 24px 18px",
+        color: "#E5E7EB",
         boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
-      {data.map((d) => {
-        const value = Number(d.value) || 0;
-        const barHeight = Math.max((value / max) * 100, 4);
-
-        return (
-          <div
-            key={d.month}
-            title={`${d.month}: ${formatCurrency(value)}`}
+      {/* CHART HEADER */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          flexWrap: "wrap",
+          gap: "15px",
+          marginBottom: "12px",
+        }}
+      >
+        <div>
+          <h3
             style={{
-              flex: "1 1 0",
-              minWidth: 0,
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "center",
+              margin: 0,
+              fontSize: "19px",
+              fontWeight: 700,
+              color: "#F9FAFB",
+              letterSpacing: "-0.4px",
             }}
           >
-            <em
-              style={{
-                minHeight: "18px",
-                marginBottom: "5px",
-                fontSize: "10px",
-                fontStyle: "normal",
-                fontWeight: 600,
-                color: "#64748B",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {value > 0 ? formatCompact(value) : ""}
-            </em>
+            Yearly Sales Trends (2023)
+          </h3>
 
-            <div
-              style={{
-                width: " min(22px, 75%)",
-                height: ready ? `${barHeight}%` : "0%",
-                minHeight: ready ? "5px" : "0",
-                backgroundColor: getBarColor(value),
-                borderRadius: "8px 8px 0 0",
-                transition: "height 900ms cubic-bezier(0.22, 1, 0.36, 1), background-color 250ms ease",
-                boxShadow: value > 0 ? "0 3px 10px rgba(37, 99, 235, 0.12)" : "none",
-              }}
+          <p
+            style={{
+              margin: "7px 0 0",
+              fontSize: "13px",
+              color: "#94A3B8",
+            }}
+          >
+            Total Sales vs Time
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            background: "#1E293B",
+            border: "1px solid #334155",
+            padding: "8px 13px",
+            borderRadius: "9px",
+            fontSize: "12px",
+            color: "#CBD5E1",
+          }}
+        >
+          <span
+            style={{
+              width: "8px",
+              height: "8px",
+              borderRadius: "50%",
+              background: "#F97316",
+              display: "inline-block",
+            }}
+          />
+          Total Sales
+        </div>
+      </div>
+
+      {/* SVG LINE CHART */}
+      <div style={{ width: "100%", position: "relative" }}>
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          role="img"
+          aria-label="Yearly sales trends line chart for 2023"
+          style={{
+            width: "100%",
+            display: "block",
+            overflow: "visible",
+          }}
+        >
+          <defs>
+            <linearGradient
+              id="yearlySalesGradient"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="0%"
+                stopColor="#F97316"
+                stopOpacity="0.35"
+              />
+              <stop
+                offset="65%"
+                stopColor="#F97316"
+                stopOpacity="0.10"
+              />
+              <stop
+                offset="100%"
+                stopColor="#F97316"
+                stopOpacity="0.01"
+              />
+            </linearGradient>
+
+            <filter
+              id="yearlySalesGlow"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Y AXIS LABEL */}
+          <text
+            x="18"
+            y="25"
+            fill="#94A3B8"
+            fontSize="12"
+            fontWeight="600"
+          >
+            Sales
+          </text>
+
+          {/* GRID AND Y LABELS */}
+          {[0, 10000, 20000, 30000, 40000, 50000, 60000].map(
+            (value) => {
+              const position = y(value);
+
+              return (
+                <g key={value}>
+                  <line
+                    x1={left}
+                    y1={position}
+                    x2={width - right}
+                    y2={position}
+                    stroke="#334155"
+                    strokeWidth="1"
+                    strokeDasharray="3 6"
+                    opacity="0.65"
+                  />
+
+                  <text
+                    x={left - 14}
+                    y={position + 4}
+                    fill="#94A3B8"
+                    fontSize="12"
+                    textAnchor="end"
+                  >
+                    {value === 0 ? "₹0" : `₹${value / 1000}k`}
+                  </text>
+                </g>
+              );
+            }
+          )}
+
+          {/* VERTICAL GRID */}
+          {points.map((point, index) => (
+            <line
+              key={`grid-${point.month}`}
+              x1={point.x}
+              y1={top}
+              x2={point.x}
+              y2={top + chartHeight}
+              stroke="#334155"
+              strokeWidth="1"
+              strokeDasharray="3 7"
+              opacity="0.28"
+            />
+          ))}
+
+          {/* AREA GRADIENT */}
+          <path
+            d={areaPath}
+            fill="url(#yearlySalesGradient)"
+          />
+
+          {/* ORANGE SALES LINE */}
+          <path
+            d={linePath}
+            fill="none"
+            stroke="#F97316"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#yearlySalesGlow)"
+          />
+
+          {/* ACTIVE MONTH GUIDE */}
+          <line
+            x1={activePoint.x}
+            y1={activePoint.y}
+            x2={activePoint.x}
+            y2={top + chartHeight}
+            stroke="#F97316"
+            strokeWidth="1.2"
+            strokeDasharray="4 5"
+            opacity="0.75"
+          />
+
+          {/* MONTH POINTS */}
+          {points.map((point, index) => (
+            <g
+              key={point.month}
+              onMouseEnter={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              onClick={() => setActiveIndex(index)}
+              tabIndex={0}
+              role="button"
+              aria-label={`${point.month}: ${formatTooltip(point.sales)}`}
+              style={{ cursor: "pointer", outline: "none" }}
+            >
+              <circle
+                cx={point.x}
+                cy={point.y}
+                r={index === activeIndex ? 8 : 5}
+                fill={index === activeIndex ? "#F97316" : "#111827"}
+                stroke="#F97316"
+                strokeWidth={index === activeIndex ? 3 : 2}
+              />
+
+              {index === activeIndex && (
+                <>
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r="13"
+                    fill="#F97316"
+                    opacity="0.16"
+                  />
+
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r="5"
+                    fill="#FB923C"
+                  />
+
+                  <text
+                    x={point.x}
+                    y={point.y - 17}
+                    fill="#FDBA74"
+                    fontSize="13"
+                    fontWeight="700"
+                    textAnchor="middle"
+                  >
+                    {formatTooltip(point.sales)}
+                  </text>
+                </>
+              )}
+            </g>
+          ))}
+
+          {/* MONTH LABELS */}
+          {points.map((point, index) => (
+            <text
+              key={`month-${point.month}`}
+              x={point.x}
+              y={top + chartHeight + 32}
+              fill={index === activeIndex ? "#FDBA74" : "#94A3B8"}
+              fontSize="12"
+              fontWeight={index === activeIndex ? "700" : "500"}
+              textAnchor="middle"
+            >
+              {point.month}
+            </text>
+          ))}
+
+          {/* FLOATING TOOLTIP */}
+          <g
+            transform={`translate(${tooltipX}, ${tooltipY})`}
+            style={{ pointerEvents: "none" }}
+          >
+            <rect
+              width={tooltipWidth}
+              height={tooltipHeight}
+              rx="11"
+              fill="#1E293B"
+              stroke="#475569"
+              strokeWidth="1"
+              opacity="0.98"
             />
 
-            <span
-              style={{
-                marginTop: "8px",
-                fontSize: "11px",
-                lineHeight: 1,
-                color: "#475569",
-                whiteSpace: "nowrap",
-              }}
+            <text
+              x="15"
+              y="23"
+              fill="#FB923C"
+              fontSize="11"
+              fontWeight="700"
+              letterSpacing="1"
             >
-              {d.month}
-            </span>
-          </div>
-        );
-      })}
+              {activePoint.month.toUpperCase()} 2023
+            </text>
+
+            <text
+              x="15"
+              y="48"
+              fill="#F8FAFC"
+              fontSize="13"
+              fontWeight="600"
+            >
+              Total Sales: {formatTooltip(activePoint.sales)}
+            </text>
+
+            <line
+              x1="15"
+              y1="61"
+              x2={tooltipWidth - 15}
+              y2="61"
+              stroke="#475569"
+            />
+
+            {[
+              {
+                label: "Online",
+                value: activePoint.online,
+                color: "#3B82F6",
+              },
+              {
+                label: "Offline",
+                value: activePoint.offline,
+                color: "#10B981",
+              },
+              {
+                label: "On Ground",
+                value: activePoint.onGround,
+                color: "#F59E0B",
+              },
+              {
+                label: "Guestlist",
+                value: activePoint.guestlist,
+                color: "#A78BFA",
+              },
+            ].map((item, index) => (
+              <g key={item.label} transform={`translate(0, ${79 + index * 17})`}>
+                <circle
+                  cx="19"
+                  cy="0"
+                  r="3.5"
+                  fill={item.color}
+                />
+
+                <text
+                  x="29"
+                  y="4"
+                  fill="#CBD5E1"
+                  fontSize="10.5"
+                >
+                  {item.label}
+                </text>
+
+                <text
+                  x={tooltipWidth - 15}
+                  y="4"
+                  fill="#F8FAFC"
+                  fontSize="10.5"
+                  fontWeight="600"
+                  textAnchor="end"
+                >
+                  {formatTooltip(item.value)}
+                </text>
+              </g>
+            ))}
+          </g>
+        </svg>
+      </div>
+
+      {/* CHART FOOTER */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+          borderTop: "1px solid #263244",
+          paddingTop: "15px",
+          marginTop: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "#94A3B8" }}>
+          Hover over any month to view sales details
+        </span>
+
+        <span
+          style={{
+            fontSize: "12px",
+            color: "#FDBA74",
+            fontWeight: 600,
+          }}
+        >
+          Peak Month: {activePoint.month} · {formatTooltip(activePoint.sales)}
+        </span>
+      </div>
     </div>
   );
 }
@@ -405,6 +1227,7 @@ function Section({ title, subtitle, children }) {
         <h3>{title}</h3>
         {subtitle && <p>{subtitle}</p>}
       </div>
+
       <div className="sr-section-content">{children}</div>
     </section>
   );
@@ -412,68 +1235,194 @@ function Section({ title, subtitle, children }) {
 
 function StatCard({ icon, title, value, subtitle, hero = false, delay = 0 }) {
   return (
-    <Tilt className={`sr-stat-card${hero ? " sr-hero" : ""}`} delay={delay}>
+    <Box className={`sr-stat-card${hero ? " sr-hero" : ""}`} delay={delay}>
       <span>
         {icon && <b className="sr-icon">{icon}</b>}
         {title}
       </span>
+
       <h2>{value}</h2>
+
       {subtitle && <p>{subtitle}</p>}
-    </Tilt>
+    </Box>
+  );
+}
+
+/* =====================================================
+   TICKET SOLD LIQUID CONTAINER
+   ===================================================== */
+function TicketSoldCard({ sold, capacity, delay = 0 }) {
+  const safeSold = Math.max(0, Number(sold) || 0);
+  const safeCapacity = Math.max(0, Number(capacity) || 0);
+
+  const rawPercent =
+    safeCapacity > 0 ? (safeSold / safeCapacity) * 100 : 0;
+
+  const fillPercent =
+    safeSold > 0 ? Math.min(100, Math.max(8, rawPercent)) : 0;
+
+  const percentage =
+    safeCapacity > 0 ? Math.min(100, rawPercent) : 0;
+
+  return (
+    <Box className="sr-stat-card sr-ticket-vessel" delay={delay}>
+      <span className="sr-ticket-header">
+        <b className="sr-icon">🎟️</b>
+        TICKETS SOLD
+      </span>
+
+      {fillPercent > 0 && (
+        <div
+          className="sr-ticket-liquid"
+          style={{ height: `${fillPercent}%` }}
+          aria-hidden="true"
+        >
+          <span className="sr-ticket-wave sr-ticket-wave-one" />
+          <span className="sr-ticket-wave sr-ticket-wave-two" />
+          <span className="sr-ticket-wave sr-ticket-wave-three" />
+        </div>
+      )}
+
+      <div className="sr-ticket-count">
+        <strong>{safeSold.toLocaleString("en-IN")}</strong>
+        <span>Tickets Sold</span>
+
+        <div className="sr-ticket-capacity">
+          <span>{safeCapacity.toLocaleString("en-IN")} Capacity</span>
+          <span>{percentage.toFixed(1)}% Filled</span>
+        </div>
+      </div>
+    </Box>
   );
 }
 
 /* =====================================================
    MAIN PAGE
    ===================================================== */
-export default function SalesReportForm({ club = "Thalaasa" }) {
-  const [selectedClub, setSelectedClub] = useState(club);
-  const [eventType, setEventType] = useState("All Types");
-  const [event, setEvent] = useState("GOA SUNSPLASH");
-  const [channel, setChannel] = useState("All Channels");
-  const [employee, setEmployee] = useState("All Employees");
+export default function SalesReportForm({
+  club = "Thalaasa",
+  theme = "auto",
+}) {
+  const rootRef = useRef(null);
+  const dark = useDarkMode(theme, rootRef);
 
-  const [fromDate, setFromDate] = useState("2026-11-15");
-  const [toDate, setToDate] = useState("2026-11-19");
+  const [selectedClub, setSelectedClub] = useState(club);
+  const [eventType, setEventType] = useState(DEFAULTS.eventType);
+  const [event, setEvent] = useState(DEFAULTS.event);
+  const [channel, setChannel] = useState(DEFAULTS.channel);
+  const [employee, setEmployee] = useState(DEFAULTS.employee);
+
+  const [fromDate, setFromDate] = useState(DEFAULTS.fromDate);
+  const [toDate, setToDate] = useState(DEFAULTS.toDate);
 
   const [loaded, setLoaded] = useState(false);
 
   const ev = salesData.events[0];
-  const totalTickets = salesData.channels.reduce((sum, c) => sum + c.tickets, 0);
-  const guestlist = salesData.channels.find((c) => c.name === "Guestlist");
-  const topCategory = [...salesData.categories].sort((a, b) => b.sold - a.sold)[0];
+
+  const totalTickets = salesData.channels.reduce(
+    (sum, c) => sum + c.tickets,
+    0
+  );
+
+  const guestlist = salesData.channels.find(
+    (c) => c.name === "Guestlist"
+  );
+
+  const topCategory = [...salesData.categories].sort(
+    (a, b) => b.sold - a.sold
+  )[0];
+
+  const appliedCount = [
+    selectedClub !== club,
+    eventType !== DEFAULTS.eventType,
+    event !== DEFAULTS.event,
+    channel !== DEFAULTS.channel,
+    employee !== DEFAULTS.employee,
+    fromDate !== DEFAULTS.fromDate || toDate !== DEFAULTS.toDate,
+  ].filter(Boolean).length;
+
+  const applyPreset = (key) => {
+    const [from, to] = getPreset(key);
+    setFromDate(from);
+    setToDate(to);
+  };
+
+  const resetFilters = () => {
+    setSelectedClub(club);
+    setEventType(DEFAULTS.eventType);
+    setEvent(DEFAULTS.event);
+    setChannel(DEFAULTS.channel);
+    setEmployee(DEFAULTS.employee);
+    setFromDate(DEFAULTS.fromDate);
+    setToDate(DEFAULTS.toDate);
+  };
 
   const tickerItems = [
-    { icon: "🔥", text: `${ev.name} · ${salesData.ticketsSold} tickets sold` },
-    { icon: "💰", text: `${formatCurrency(salesData.totalRevenue)} online revenue` },
+    {
+      icon: "🔥",
+      text: `${ev.name} · ${salesData.ticketsSold} tickets sold`,
+    },
+    {
+      icon: "💰",
+      text: `${formatCurrency(salesData.totalRevenue)} online revenue`,
+    },
     {
       icon: "🍾",
-      text: `${salesData.bookings} table bookings · ${formatCurrency(salesData.tableRevenue)}`,
+      text: `${salesData.bookings} table bookings · ${formatCurrency(
+        salesData.tableRevenue
+      )}`,
     },
-    { icon: "🎉", text: `${guestlist ? guestlist.tickets : 0} guestlist entries` },
-    { icon: "⚡", text: `${topCategory.name} is the top-selling category` },
+    {
+      icon: "🎉",
+      text: `${guestlist ? guestlist.tickets : 0} guestlist entries`,
+    },
+    {
+      icon: "⚡",
+      text: `${topCategory.name} is the top-selling category`,
+    },
   ];
 
-  return (
-    <div className="sales-report-page">
-      <div className="sr-bg" aria-hidden="true">
-        <div className="sr-aurora">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="sr-grid-bg" />
-        <Sparks />
-      </div>
+  const channelRevenueData = salesData.channels.map((item) => ({
+    name: item.name,
+    value: item.amount,
+  }));
 
-      {/* HEADER */}
+  return (
+    <div
+      ref={rootRef}
+      className={`sales-report-page${dark ? " sr-dark" : ""}`}
+    >
+      {/* HEADING */}
       <header className="sr-header">
-        <div>
-          <h2>Sales Report</h2>
-          <p className="sr-subtitle">
-            {event} · {fmtDate(fromDate)} to {fmtDate(toDate)} · {selectedClub}
-          </p>
+        <div className="sr-title-block">
+          <span className="sr-title-icon">
+            <Icon name="chart" size={24} />
+          </span>
+
+          <div>
+            <h2>
+              Sales <em>Report</em>
+            </h2>
+
+            <div className="sr-title-bar" />
+
+            <div className="sr-subtitle">
+              <span className="sr-event-pill">
+                <Icon name="calendarEvent" size={14} />
+                {event}
+              </span>
+
+              <span className="sr-sep" />
+
+              <span>
+                {fmtDate(fromDate)} to {fmtDate(toDate)}
+              </span>
+
+              <span className="sr-sep" />
+
+              <b>{selectedClub}</b>
+            </div>
+          </div>
         </div>
 
         <div className="sr-header-right">
@@ -482,108 +1431,124 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
           </div>
 
           <div className="sr-breadcrumb">
-            <span>⌂</span>
+            <Icon name="home" size={14} />
             <span>Sales Analysis</span>
-            <b>/</b>
+            <Icon name="chevronRight" size={13} />
             <span className="sr-current">Sales Report</span>
           </div>
         </div>
       </header>
 
-      {/* CLUB FILTER */}
-      <div className="sr-filter-card sr-club-filter">
-        <label>Club (Admin)</label>
+      {/* FILTERS */}
+      <div className="sr-filter-card">
+        <div className="sr-filter-top">
+          <h3>Filters</h3>
 
-        <select value={selectedClub} onChange={(e) => setSelectedClub(e.target.value)}>
-          <option>Thalaasa</option>
-          <option>All Partners</option>
-          <option>Goa Club</option>
-          <option>Rizztixx</option>
-        </select>
-      </div>
-
-      {/* DATE RANGE */}
-      <div className="sr-filter-card sr-date-filter">
-        <div className="sr-filter-heading">
-          <div>
-            <h3>Event Date Range</h3>
-            <p>
-              Filters Events By Start Date And Matches The Sales Report. Pick Ongoing,
-              Upcoming, Or Past, Then Click Load Report.
-            </p>
-          </div>
-
-          <span className="sr-club-badge">{selectedClub}</span>
+          <span className="sr-applied">
+            {appliedCount === 0
+              ? "No filters applied"
+              : `${appliedCount} applied`}
+          </span>
         </div>
-
-        <div className="sr-date-fields">
-          <label>
-            From
-            <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
-          </label>
-
-          <label>
-            To
-            <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
-          </label>
-        </div>
-      </div>
-
-      {/* REPORT FILTERS */}
-      <div className="sr-filter-card sr-main-filter">
-        <h3>Sales Report</h3>
 
         <div className="sr-filter-grid">
-          <label>
-            Event Type
-            <select value={eventType} onChange={(e) => setEventType(e.target.value)}>
-              <option>All Types</option>
-              <option>Ongoing</option>
-              <option>Upcoming</option>
-              <option>Past</option>
-            </select>
-          </label>
+          <Dropdown
+            label="Club (admin)"
+            icon="store"
+            value={selectedClub}
+            onChange={setSelectedClub}
+            options={CLUB_OPTIONS}
+          />
 
-          <label>
-            Event
-            <select value={event} onChange={(e) => setEvent(e.target.value)}>
-              <option>GOA SUNSPLASH</option>
-              <option>Starly</option>
-              <option>After Dark</option>
-            </select>
-          </label>
+          <DateField
+            label="From"
+            value={fromDate}
+            onChange={setFromDate}
+          />
 
-          <label>
-            Sale Channel
-            <select value={channel} onChange={(e) => setChannel(e.target.value)}>
-              <option>All Channels</option>
-              <option>Online</option>
-              <option>Offline</option>
-              <option>On Ground</option>
-              <option>Guestlist</option>
-            </select>
-          </label>
+          <DateField
+            label="To"
+            value={toDate}
+            onChange={setToDate}
+          />
 
-          <label>
-            Sold By (Employee)
-            <select value={employee} onChange={(e) => setEmployee(e.target.value)}>
-              <option>All Employees</option>
-              <option>System Admin</option>
-              <option>Thalaasa Employee</option>
-              <option>Box Office</option>
-            </select>
+          <Dropdown
+            label="Event type"
+            icon="grid"
+            value={eventType}
+            onChange={setEventType}
+            options={EVENT_TYPE_OPTIONS}
+          />
 
-            <small>
-              Filters Offline Ticket Sales And Table Bookings.
-              <br />
-              Referred Via Emp Ref.
-            </small>
-          </label>
+          <Dropdown
+            label="Event"
+            icon="calendarEvent"
+            value={event}
+            onChange={setEvent}
+            options={EVENT_OPTIONS}
+            searchable
+          />
+
+          <Dropdown
+            label="Sale channel"
+            icon="route"
+            value={channel}
+            onChange={setChannel}
+            options={CHANNEL_OPTIONS}
+          />
+
+          <Dropdown
+            label="Sold by (employee)"
+            icon="user"
+            value={employee}
+            onChange={setEmployee}
+            options={EMPLOYEE_OPTIONS}
+            searchable
+          />
         </div>
 
-        <button className="sr-load-button" onClick={() => setLoaded(true)} type="button">
-          ✨ Load Report ↗
-        </button>
+        <div className="sr-presets">
+          <button type="button" onClick={() => applyPreset("today")}>
+            Today
+          </button>
+
+          <button type="button" onClick={() => applyPreset("last7")}>
+            Last 7 days
+          </button>
+
+          <button type="button" onClick={() => applyPreset("thisMonth")}>
+            This month
+          </button>
+
+          <button type="button" onClick={() => applyPreset("lastMonth")}>
+            Last month
+          </button>
+        </div>
+
+        <p className="sr-filter-note">
+          Filters events by start date and matches the sales report.
+          Employee filter applies to offline ticket sales and table
+          bookings (referred via Emp Ref).
+        </p>
+
+        <div className="sr-filter-actions">
+          <button
+            type="button"
+            className="sr-reset"
+            onClick={resetFilters}
+          >
+            Reset filters
+          </button>
+
+          <button
+            className="sr-load-button"
+            onClick={() => setLoaded(true)}
+            type="button"
+          >
+            Load report
+            <Icon name="arrowRight" size={16} />
+          </button>
+        </div>
       </div>
 
       {loaded && (
@@ -602,11 +1567,9 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
 
           {/* SUMMARY CARDS */}
           <div className="sr-summary-grid">
-            <StatCard
-              icon="🎟️"
-              title="Tickets Sold"
-              value={<CountUp to={salesData.ticketsSold} />}
-              subtitle={`${ev.orders} Bookings (Orders)`}
+            <TicketSoldCard
+              sold={ev.sold}
+              capacity={ev.capacity}
               delay={0.1}
             />
 
@@ -614,7 +1577,12 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
               hero
               icon="💰"
               title="Total Revenue"
-              value={<CountUp to={salesData.totalRevenue} prefix="₹" />}
+              value={
+                <CountUp
+                  to={salesData.totalRevenue}
+                  prefix="₹"
+                />
+              }
               subtitle="All channels"
               delay={0.2}
             />
@@ -622,7 +1590,12 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
             <StatCard
               icon="🍾"
               title="Table Revenue"
-              value={<CountUp to={salesData.tableRevenue} prefix="₹" />}
+              value={
+                <CountUp
+                  to={salesData.tableRevenue}
+                  prefix="₹"
+                />
+              }
               subtitle={`${salesData.bookings} bookings · ${salesData.guests} guests`}
               delay={0.3}
             />
@@ -630,8 +1603,16 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
             <StatCard
               icon="📈"
               title="Rizztixx Commission (2%)"
-              value={<CountUp to={ev.commission} prefix="₹" decimals={2} />}
-              subtitle={`CGST ${formatFixedCurrency(ev.cgst)} · SGST ${formatFixedCurrency(ev.sgst)}`}
+              value={
+                <CountUp
+                  to={ev.commission}
+                  prefix="₹"
+                  decimals={2}
+                />
+              }
+              subtitle={`CGST ${formatFixedCurrency(
+                ev.cgst
+              )} · SGST ${formatFixedCurrency(ev.sgst)}`}
               delay={0.4}
             />
           </div>
@@ -639,47 +1620,33 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
           {/* CHANNEL OVERVIEW */}
           <Section title="Channel Overview">
             <div className="sr-chart-grid">
-              <Tilt className="sr-chart-card" delay={0.1}>
-                <span className="sr-card-label">Tickets By Channel</span>
-                <DonutChart channels={salesData.channels} total={totalTickets} />
-              </Tilt>
+              <Box className="sr-chart-card" delay={0.1}>
+                <span className="sr-card-label">
+                  Tickets By Channel
+                </span>
 
-              <Tilt className="sr-chart-card" delay={0.2}>
-                <span className="sr-card-label">Revenue By Month (₹)</span>
-                <BarChart data={salesData.monthly} />
-              </Tilt>
+                <DonutChart
+                  channels={salesData.channels}
+                  total={totalTickets}
+                />
+              </Box>
+
+              <Box className="sr-chart-card" delay={0.2}>
+                <span className="sr-card-label">
+                  Revenue By Channel (₹)
+                </span>
+
+                <BarChart data={channelRevenueData} />
+              </Box>
             </div>
+          </Section>
 
-            <div className="sr-channel-grid">
-              {salesData.channels.map((item, i) => (
-                <Tilt
-                  className={`sr-channel-card ${item.color}`}
-                  delay={0.15 + i * 0.1}
-                  key={item.name}
-                >
-                  <div className="sr-channel-card-heading">
-                    <span>Channel</span>
-                    <b className={`sr-channel-tag ${item.color}`}>
-                      {item.name.replace(" (Paid)", "").toUpperCase()}
-                    </b>
-                  </div>
-
-                  <h2 className={item.name === "Guestlist" ? "sr-small-title" : ""}>
-                    {item.name === "Guestlist" ? (
-                      "Complimentary (No Revenue)"
-                    ) : item.tickets === 0 ? (
-                      "—"
-                    ) : (
-                      <CountUp to={item.amount} prefix="₹" />
-                    )}
-                  </h2>
-
-                  <p>
-                    {item.tickets} Orders · {item.tickets} Tickets
-                  </p>
-                </Tilt>
-              ))}
-            </div>
+          {/* NEW YEARLY SALES TREND GRAPH */}
+          <Section
+            title="Yearly Sales Trends"
+            subtitle="Monthly revenue performance and sales channel breakdown."
+          >
+            <YearlySalesTrendChart />
           </Section>
 
           {/* TABLE BOOKINGS */}
@@ -691,18 +1658,41 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
             </div>
 
             <div className="sr-booking-grid">
-              <StatCard icon="📅" title="Bookings" value={<CountUp to={salesData.bookings} />} delay={0.1} />
-              <StatCard icon="👥" title="Guests" value={<CountUp to={salesData.guests} />} delay={0.2} />
+              <StatCard
+                icon="📅"
+                title="Bookings"
+                value={<CountUp to={salesData.bookings} />}
+                delay={0.1}
+              />
+
+              <StatCard
+                icon="👥"
+                title="Guests"
+                value={<CountUp to={salesData.guests} />}
+                delay={0.2}
+              />
+
               <StatCard
                 icon="💵"
                 title="Revenue Collected"
-                value={<CountUp to={salesData.tableRevenue} prefix="₹" />}
+                value={
+                  <CountUp
+                    to={salesData.tableRevenue}
+                    prefix="₹"
+                  />
+                }
                 delay={0.3}
               />
+
               <StatCard
                 icon="🍸"
                 title="Min. Spend Total"
-                value={<CountUp to={salesData.minSpend} prefix="₹" />}
+                value={
+                  <CountUp
+                    to={salesData.minSpend}
+                    prefix="₹"
+                  />
+                }
                 delay={0.4}
               />
             </div>
@@ -716,7 +1706,12 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
                   key={item.name}
                   icon={item.icon}
                   title={item.name}
-                  value={<CountUp to={item.amount} prefix="₹" />}
+                  value={
+                    <CountUp
+                      to={item.amount}
+                      prefix="₹"
+                    />
+                  }
                   delay={0.1 + i * 0.1}
                 />
               ))}
@@ -753,20 +1748,37 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
 
                       <td>
                         <strong>{item.sold}</strong>
-                        <span className="sr-capacity">/ {item.capacity}</span>
+                        <span className="sr-capacity">
+                          / {item.capacity}
+                        </span>
 
                         <div className="sr-progress">
-                          <div style={{ width: `${(item.sold / item.capacity) * 100}%` }} />
+                          <div
+                            style={{
+                              width: `${
+                                item.capacity > 0
+                                  ? Math.min(
+                                      100,
+                                      (item.sold / item.capacity) * 100
+                                    )
+                                  : 0
+                              }%`,
+                            }}
+                          />
                         </div>
                       </td>
 
                       <td>{formatFixedCurrency(item.revenue)}</td>
-                      <td>{formatFixedCurrency(item.commission)} ⓘ</td>
+                      <td>
+                        {formatFixedCurrency(item.commission)} ⓘ
+                      </td>
                       <td>{formatFixedCurrency(item.cgst)}</td>
                       <td>{formatFixedCurrency(item.sgst)}</td>
 
                       <td>
-                        <span className="sr-status">{item.status}</span>
+                        <span className="sr-status">
+                          {item.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
@@ -801,10 +1813,23 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
 
                       <td>
                         <strong>{item.sold}</strong>
-                        <span className="sr-capacity">/ {item.capacity}</span>
+                        <span className="sr-capacity">
+                          / {item.capacity}
+                        </span>
 
                         <div className="sr-progress">
-                          <div style={{ width: `${(item.sold / item.capacity) * 100}%` }} />
+                          <div
+                            style={{
+                              width: `${
+                                item.capacity > 0
+                                  ? Math.min(
+                                      100,
+                                      (item.sold / item.capacity) * 100
+                                    )
+                                  : 0
+                              }%`,
+                            }}
+                          />
                         </div>
                       </td>
 
@@ -841,13 +1866,21 @@ export default function SalesReportForm({ club = "Thalaasa" }) {
                   <tr>
                     <td>{salesData.bookings}</td>
                     <td>{salesData.guests}</td>
-                    <td>{formatFixedCurrency(salesData.tableRevenue)}</td>
-                    <td>{formatFixedCurrency(salesData.minSpend)}</td>
+                    <td>
+                      {formatFixedCurrency(salesData.tableRevenue)}
+                    </td>
+                    <td>
+                      {formatFixedCurrency(salesData.minSpend)}
+                    </td>
                     <td>₹7,741.39 ⓘ</td>
                     <td>₹590.44</td>
                     <td>₹590.45</td>
+
                     <td>
-                      <button className="sr-view-button" type="button">
+                      <button
+                        className="sr-view-button"
+                        type="button"
+                      >
                         View Table Bookings
                       </button>
                     </td>
