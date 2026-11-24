@@ -5,7 +5,7 @@ import "./SalesReportForm.css";
    DATA
    ===================================================== */
 const salesData = {
-  ticketsSold: 29,
+  ticketsSold: 250,
   totalRevenue: 14000,
   bookings: 3,
   guests: 24,
@@ -20,10 +20,10 @@ const salesData = {
   ],
 
   addons: [
-    { name: "Ticket Add-On", amount: 0, icon: "🎟️" },
-    { name: "Table Add-On", amount: 0, icon: "🍾" },
-    { name: "Preorder", amount: 0, icon: "🛒" },
-    { name: "Preorder Extra (Online)", amount: 0, icon: "⭐" },
+    { name: "Ticket Add-On", amount: 10, icon: "🎟️" },
+    { name: "Table Add-On", amount: 20, icon: "🍾" },
+    { name: "Preorder", amount: 30, icon: "🛒" },
+    { name: "Preorder Extra (Online)", amount: 40, icon: "⭐" },
   ],
 
   events: [
@@ -31,7 +31,7 @@ const salesData = {
       name: "GOA SUNSPLASH",
       date: "17 Nov 2026, 11:06 PM",
       orders: 29,
-      sold: 29,
+      sold: 200,
       capacity: 300,
       revenue: 14000,
       commission: 495.6,
@@ -662,6 +662,90 @@ function DonutChart({ channels, total }) {
             <i className={ch.color} />
             {ch.name}
             <b>{ch.tickets}</b>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AddonsDonutChart({ data = [] }) {
+  const colors = ["#3B82F6", "#8B5CF6", "#10B981", "#F59E0B"];
+  const addons = Array.isArray(data) ? data : [];
+  const total = addons.reduce(
+    (sum, item) => sum + (Number(item.amount) || 0),
+    0
+  );
+  const radius = 48;
+  const circumference = 2 * Math.PI * radius;
+  const segments = addons.reduce((result, item, index) => {
+    const amount = Number(item.amount) || 0;
+    const percentage = total > 0 ? (amount / total) * 100 : 0;
+    const previous = result[result.length - 1];
+
+    return [
+      ...result,
+      {
+        ...item,
+        amount,
+        percentage,
+        color: colors[index % colors.length],
+        dash: (percentage / 100) * circumference,
+        offset: previous ? previous.offset + previous.dash : 0,
+      },
+    ];
+  }, []);
+
+  return (
+    <div className="sr-addon-donut-layout">
+      <div className="sr-donut-box">
+        <svg
+          className="sr-donut"
+          viewBox="0 0 120 120"
+          role="img"
+          aria-label="Add-on revenue breakdown"
+        >
+          <circle className="sr-donut-bg" cx="60" cy="60" r={radius} />
+          {segments.map(
+            (item) =>
+              item.dash > 0 && (
+                <circle
+                  key={item.name}
+                  className="sr-donut-seg"
+                  cx="60"
+                  cy="60"
+                  r={radius}
+                  style={{
+                    stroke: item.color,
+                    strokeDasharray: `${item.dash} ${circumference - item.dash}`,
+                    strokeDashoffset: -item.offset,
+                    strokeLinecap: "butt",
+                  }}
+                />
+              )
+          )}
+        </svg>
+
+        <div className="sr-donut-center">
+          <strong>
+            <CountUp to={total} prefix="₹" />
+          </strong>
+          <span>Total Revenue</span>
+        </div>
+      </div>
+
+      <div className="sr-addon-donut-legend">
+        {segments.map((item) => (
+          <div className="sr-addon-legend-item" key={item.name}>
+            <span
+              className="sr-addon-legend-dot"
+              style={{ backgroundColor: item.color }}
+            />
+            <span className="sr-addon-legend-name">{item.name}</span>
+            <span className="sr-addon-legend-value">
+              <strong>{formatCurrency(item.amount)}</strong>
+              <span>{item.percentage.toFixed(1)}%</span>
+            </span>
           </div>
         ))}
       </div>
@@ -1382,10 +1466,12 @@ export default function SalesReportForm({
     },
   ];
 
-  const channelRevenueData = salesData.channels.map((item) => ({
-    name: item.name,
-    value: item.amount,
-  }));
+  const channelRevenueData = salesData.channels
+    .filter((item) => item.name !== "Guestlist")
+    .map((item) => ({
+      name: item.name,
+      value: item.amount,
+    }));
 
   return (
     <div
@@ -1700,21 +1786,24 @@ export default function SalesReportForm({
 
           {/* ADDONS */}
           <Section title="Add-Ons & Preorder (Booking Snapshots)">
-            <div className="sr-addon-grid">
-              {salesData.addons.map((item, i) => (
-                <StatCard
-                  key={item.name}
-                  icon={item.icon}
-                  title={item.name}
-                  value={
-                    <CountUp
-                      to={item.amount}
-                      prefix="₹"
-                    />
-                  }
-                  delay={0.1 + i * 0.1}
-                />
-              ))}
+            <div className="sr-addon-overview-grid">
+              <Box className="sr-chart-card" delay={0.1}>
+                <span className="sr-card-label">Add-Ons Revenue (₹)</span>
+                <AddonsDonutChart data={salesData.addons} />
+              </Box>
+
+              <StatCard
+                icon="🎟️"
+                title="Guestlist"
+                value={
+                  <CountUp
+                    to={guestlist ? guestlist.amount : 0}
+                    prefix="₹"
+                  />
+                }
+                subtitle={`${guestlist ? guestlist.tickets : 0} tickets · Complimentary`}
+                delay={0.2}
+              />
             </div>
           </Section>
 

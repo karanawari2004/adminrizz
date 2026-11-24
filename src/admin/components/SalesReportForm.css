@@ -1,9 +1,4 @@
 /* =====================================================
-   PREMIUM SALES REPORT TABLE
-   Modern · Clean · Professional · Responsive
-   ===================================================== */
-
-/* =====================================================
    RIZZTIX · SALES REPORT
    Professional White & Blue Dashboard
    Purple Fluid Vessel + Category + Revenue Graphs
@@ -664,6 +659,12 @@
   margin-bottom: 18px;
 }
 
+.sr-addon-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 /* =====================================================
    TICKER
    ===================================================== */
@@ -1093,6 +1094,61 @@
 .sr-legend b {
   margin-left: auto;
   padding-left: 20px;
+}
+
+.sr-addon-donut-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  min-height: 200px;
+}
+
+.sr-addon-donut-layout .sr-donut-center strong {
+  font-size: clamp(15px, 2.2vw, 22px);
+}
+
+.sr-addon-donut-legend {
+  flex: 1;
+  min-width: 230px;
+}
+
+.sr-addon-legend-item {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: var(--sr-text);
+}
+
+.sr-addon-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.sr-addon-legend-name {
+  min-width: 0;
+  font-size: 13px;
+}
+
+.sr-addon-legend-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.sr-addon-legend-value strong {
+  font-size: 14px;
+  color: var(--sr-text);
+}
+
+.sr-addon-legend-value > span {
+  font-size: 11px;
+  color: var(--sr-muted);
 }
 
 /* =====================================================
@@ -1946,7 +2002,8 @@
 @media (max-width: 900px) {
   .sales-report-page { padding: 20px 14px 70px; }
 
-  .sr-chart-grid { grid-template-columns: 1fr; }
+  .sr-chart-grid,
+  .sr-addon-overview-grid { grid-template-columns: 1fr; }
 
   .sr-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
@@ -2053,174 +2110,181 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =====================================================
-   RIZZTIX — PREMIUM DASHBOARD TABLE
-   Modern SaaS · Indigo · Violet · Clean UI
+   SALES REPORT TABLE
+   Responsive · Light & Dark Theme · Status Badges
    ===================================================== */
 
-.sales-table-card {
-  width: 100%;
-  padding: 25px;
-  background: #ffffff;
-  border: 1px solid #e9eaf5;
-  border-radius: 22px;
-  box-shadow: 0 10px 35px rgba(42, 45, 100, 0.055);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-/* TABLE TOP AREA */
-
-.sales-table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 22px;
-}
-
-.sales-table-title {
-  color: #20264b;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-}
-
-.sales-table-subtitle {
-  margin-top: 5px;
-  color: #9299b1;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* TABLE SCROLL */
+/* ---------- TABLE CARD CONTAINER ---------- */
 
 .sr-table-wrapper {
   width: 100%;
-  padding: 0;
-  background: #f7f7fc;
-  border: 1px solid #ececf5;
-  border-radius: 17px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ---------- HORIZONTAL SCROLL ---------- */
+
+.sr-table-scroll {
+  width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 10px;
   scrollbar-width: thin;
-  scrollbar-color: #b8b5dc transparent;
+  scrollbar-color: #cbd5e1 transparent;
 }
 
-.sr-table-wrapper::-webkit-scrollbar {
-  height: 6px;
+.sr-table-scroll::-webkit-scrollbar {
+  height: 7px;
 }
 
-.sr-table-wrapper::-webkit-scrollbar-thumb {
-  background: #b8b5dc;
+.sr-table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sr-table-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
   border-radius: 20px;
 }
 
-/* TABLE */
+.sr-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ---------- TABLE STRUCTURE ---------- */
 
 .sr-table {
   width: 100%;
-  min-width: 950px;
+  min-width: 850px;
   border-collapse: separate;
-  border-spacing: 0 7px;
-  padding: 0 9px 9px;
+  border-spacing: 0;
+  background: transparent;
   font-family: inherit;
-  color: #333957;
   font-size: 13px;
+  color: #263449;
 }
 
-/* TABLE HEADING */
+/* ---------- TABLE HEADER ---------- */
+
+.sr-table thead {
+  background: #f7f9fc;
+}
 
 .sr-table thead th {
-  padding: 19px 17px;
-  background: #f0effb;
-  color: #77799a;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.9px;
+  padding: 15px 16px;
+  color: #718096;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.65px;
   text-transform: uppercase;
   text-align: left;
   white-space: nowrap;
-  border-bottom: 1px solid #e4e2f3;
-}
-
-.sr-table thead th:first-child {
-  border-radius: 11px 0 0 11px;
+  border-bottom: 1px solid #e5eaf2;
+  border-right: 1px solid #edf0f5;
 }
 
 .sr-table thead th:last-child {
-  border-radius: 0 11px 11px 0;
+  border-right: none;
 }
 
-/* TABLE ROW */
+/* ---------- TABLE BODY ---------- */
 
 .sr-table tbody tr {
   background: #ffffff;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 7px rgba(45, 43, 100, 0.025);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* TABLE CELLS */
-
 .sr-table tbody td {
-  padding: 18px 17px;
-  color: #596078;
+  padding: 15px 16px;
+  color: #344256;
   font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
-  border-top: 1px solid #f0eff7;
-  border-bottom: 1px solid #f0eff7;
-  transition: all 0.25s ease;
-}
-
-.sr-table tbody td:first-child {
-  color: #36366f;
-  font-weight: 750;
-  border-left: 1px solid #f0eff7;
-  border-radius: 12px 0 0 12px;
+  border-bottom: 1px solid #edf0f5;
+  border-right: 1px solid #f0f2f6;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
 .sr-table tbody td:last-child {
-  border-right: 1px solid #f0eff7;
-  border-radius: 0 12px 12px 0;
+  border-right: none;
 }
 
-/* ALTERNATE ROW */
-
-.sr-table tbody tr:nth-child(even) {
-  background: #fcfbff;
+.sr-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-/* HOVER EFFECT */
+/* ---------- FIRST COLUMN ---------- */
+
+.sr-table tbody td:first-child {
+  color: #243b63;
+  font-weight: 700;
+}
+
+/* ---------- ROW HOVER ---------- */
 
 .sr-table tbody tr:hover {
-  background: #f3f0ff;
-  transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(106, 91, 205, 0.09);
+  background: #f2f6ff;
 }
 
 .sr-table tbody tr:hover td {
-  color: #5143a3;
-  border-color: #e5defe;
+  color: #1e3a68;
 }
 
-.sr-table tbody tr:hover td:first-child {
-  color: #6549c9;
+/* ---------- ALTERNATE ROW ---------- */
+
+.sr-table tbody tr:nth-child(even) {
+  background: #fbfcfe;
 }
 
-/* TOTAL ROW */
+.sr-table tbody tr:nth-child(even):hover {
+  background: #f2f6ff;
+}
+
+/* ---------- TOTAL / SUMMARY ROW ---------- */
 
 .sr-table tbody tr.sr-total-row {
-  background: linear-gradient(100deg, #eeeaff, #f4f0ff);
+  background: #edf4ff;
 }
 
 .sr-table tbody tr.sr-total-row td {
-  color: #6346c8;
+  color: #2455a4;
   font-weight: 800;
-  border-color: #dfd6ff;
+  border-top: 1px solid #d6e4fb;
+  border-bottom: none;
 }
 
 /* =====================================================
-   PREMIUM STATUS BADGES
+   STATUS BADGES
+   Reusable pill-shaped badge classes
    ===================================================== */
 
 .sr-status,
@@ -2228,233 +2292,258 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border-radius: 8px;
+  gap: 6px;
+  min-height: 26px;
+  padding: 5px 11px;
+  border-radius: 50px;
   font-size: 11px;
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.sr-status::before,
-.sr-badge::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
+.sr-status:hover,
+.sr-badge:hover {
+  transform: translateY(-1px);
 }
 
-/* SUCCESS */
+/* Success */
 
 .sr-status-success,
 .sr-badge-success {
-  color: #168653;
-  background: #e7f8ef;
-  border-color: #c9efd9;
+  color: #15803d;
+  background: #dcfce7;
+  border-color: #bbf7d0;
 }
 
-/* PENDING */
+/* Pending */
 
 .sr-status-pending,
 .sr-badge-pending {
-  color: #b07813;
-  background: #fff5df;
-  border-color: #f5e4b8;
+  color: #a16207;
+  background: #fef3c7;
+  border-color: #fde68a;
 }
 
-/* FAILED */
+/* Failed / Rejected */
 
 .sr-status-failed,
 .sr-badge-failed {
-  color: #c43e55;
-  background: #fff0f2;
-  border-color: #f8d6dd;
+  color: #b91c1c;
+  background: #fee2e2;
+  border-color: #fecaca;
 }
 
-/* PROCESSING */
+/* Processing */
 
 .sr-status-processing,
 .sr-badge-processing {
-  color: #4d61d5;
-  background: #eef0ff;
-  border-color: #d9ddff;
+  color: #1d4ed8;
+  background: #dbeafe;
+  border-color: #bfdbfe;
 }
 
-/* ACTIVE */
+/* Cancelled */
+
+.sr-status-cancelled,
+.sr-badge-cancelled {
+  color: #64748b;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+/* Active */
 
 .sr-status-active,
 .sr-badge-active {
-  color: #078b83;
-  background: #e4f8f5;
-  border-color: #c6eee8;
+  color: #047857;
+  background: #d1fae5;
+  border-color: #a7f3d0;
 }
 
-/* INACTIVE */
+/* Inactive */
 
 .sr-status-inactive,
-.sr-badge-inactive,
-.sr-status-cancelled,
-.sr-badge-cancelled {
-  color: #747b91;
-  background: #f0f1f6;
-  border-color: #e1e3eb;
+.sr-badge-inactive {
+  color: #475569;
+  background: #e2e8f0;
+  border-color: #cbd5e1;
 }
 
 /* =====================================================
-   DARK MODE
+   DARK THEME
+   Add class "sr-dark" to the parent container.
    ===================================================== */
 
-.sr-dark .sales-table-card {
-  background: #17172a;
-  border-color: #2c2c48;
-}
-
-.sr-dark .sales-table-title {
-  color: #eeeeff;
-}
-
-.sr-dark .sales-table-subtitle {
-  color: #9898b7;
-}
-
 .sr-dark .sr-table-wrapper {
-  background: #17172a;
-  border-color: #30304b;
+  background: #151e2e;
+  border-color: #29364b;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.sr-dark .sr-table {
+  color: #e2e8f0;
+}
+
+.sr-dark .sr-table thead {
+  background: #1c293d;
 }
 
 .sr-dark .sr-table thead th {
-  background: #272541;
-  color: #b5b1d5;
-  border-color: #393654;
+  color: #9aaac0;
+  border-bottom-color: #334158;
+  border-right-color: #29364b;
 }
 
 .sr-dark .sr-table tbody tr {
-  background: #1d1d33;
+  background: #151e2e;
 }
 
 .sr-dark .sr-table tbody tr:nth-child(even) {
-  background: #22223a;
+  background: #192437;
 }
 
 .sr-dark .sr-table tbody td {
-  color: #c8c8df;
-  border-color: #30304b;
+  color: #d6deeb;
+  border-bottom-color: #29364b;
+  border-right-color: #29364b;
 }
 
 .sr-dark .sr-table tbody td:first-child {
-  color: #e1dcff;
+  color: #e6edff;
 }
 
-.sr-dark .sr-table tbody tr:hover {
-  background: #302b50;
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
+.sr-dark .sr-table tbody tr:hover,
+.sr-dark .sr-table tbody tr:nth-child(even):hover {
+  background: #243650;
 }
 
 .sr-dark .sr-table tbody tr:hover td {
   color: #ffffff;
-  border-color: #49416f;
 }
 
 .sr-dark .sr-table tbody tr.sr-total-row {
-  background: #332b59;
+  background: #203452;
 }
 
 .sr-dark .sr-table tbody tr.sr-total-row td {
-  color: #c9baff;
-  border-color: #51417e;
+  color: #93c5fd;
+  border-top-color: #36577f;
 }
 
-/* DARK BADGES */
+.sr-dark .sr-table-scroll {
+  scrollbar-color: #475569 transparent;
+}
+
+.sr-dark .sr-table-scroll::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.sr-dark .sr-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Dark theme status badges */
 
 .sr-dark .sr-status-success,
 .sr-dark .sr-badge-success {
-  color: #83e0aa;
-  background: #173a2b;
-  border-color: #285d40;
+  color: #86efac;
+  background: rgba(22, 101, 52, 0.25);
+  border-color: rgba(74, 222, 128, 0.25);
 }
 
 .sr-dark .sr-status-pending,
 .sr-dark .sr-badge-pending {
-  color: #f6d27b;
-  background: #44361e;
-  border-color: #685126;
+  color: #fcd34d;
+  background: rgba(161, 98, 7, 0.22);
+  border-color: rgba(250, 204, 21, 0.25);
 }
 
 .sr-dark .sr-status-failed,
 .sr-dark .sr-badge-failed {
-  color: #f4a1ad;
-  background: #47242e;
-  border-color: #6c3441;
+  color: #fca5a5;
+  background: rgba(153, 27, 27, 0.25);
+  border-color: rgba(248, 113, 113, 0.25);
 }
 
 .sr-dark .sr-status-processing,
 .sr-dark .sr-badge-processing {
-  color: #aab5ff;
-  background: #292c54;
-  border-color: #42477c;
+  color: #93c5fd;
+  background: rgba(29, 78, 216, 0.22);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+.sr-dark .sr-status-cancelled,
+.sr-dark .sr-badge-cancelled {
+  color: #cbd5e1;
+  background: rgba(71, 85, 105, 0.3);
+  border-color: rgba(148, 163, 184, 0.2);
 }
 
 .sr-dark .sr-status-active,
 .sr-dark .sr-badge-active {
-  color: #81ddd2;
-  background: #153b39;
-  border-color: #28615a;
+  color: #6ee7b7;
+  background: rgba(4, 120, 87, 0.22);
+  border-color: rgba(52, 211, 153, 0.25);
 }
 
 .sr-dark .sr-status-inactive,
-.sr-dark .sr-badge-inactive,
-.sr-dark .sr-status-cancelled,
-.sr-dark .sr-badge-cancelled {
-  color: #c3c5d7;
-  background: #34344b;
-  border-color: #494961;
+.sr-dark .sr-badge-inactive {
+  color: #cbd5e1;
+  background: rgba(71, 85, 105, 0.3);
+  border-color: rgba(148, 163, 184, 0.2);
 }
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
    ===================================================== */
 
 @media (max-width: 768px) {
-  .sales-table-card {
-    padding: 16px;
-    border-radius: 17px;
-  }
-
-  .sales-table-header {
-    align-items: flex-start;
-    flex-direction: column;
+  .sr-table-wrapper {
+    padding: 14px;
+    border-radius: 13px;
   }
 
   .sr-table {
-    min-width: 780px;
+    min-width: 750px;
+    font-size: 12px;
   }
 
   .sr-table thead th {
-    padding: 15px 13px;
+    padding: 12px;
+    font-size: 10px;
   }
 
   .sr-table tbody td {
-    padding: 15px 13px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .sr-status,
+  .sr-badge {
+    padding: 5px 9px;
+    font-size: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .sales-table-card {
-    padding: 11px;
+  .sr-table-wrapper {
+    padding: 10px;
   }
 
   .sr-table {
-    min-width: 700px;
+    min-width: 680px;
   }
 }
 
-/* ACCESSIBILITY */
+/* ---------- ACCESSIBILITY ---------- */
 
 @media (prefers-reduced-motion: reduce) {
+  .sr-table-wrapper,
   .sr-table tbody tr,
   .sr-table tbody td,
   .sr-status,
@@ -2462,10 +2551,3 @@
     transition: none;
   }
 }
-
-
-
-
-
-
-
