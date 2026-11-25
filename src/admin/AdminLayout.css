@@ -37,9 +37,9 @@
 }
 
 .admin-shell[data-theme="dark"] {
-  --admin-bg: #172131;
+  --admin-bg: #0d0d22;
   --admin-sidebar: #0b1b33;
-  --admin-panel: #202c3d;
+  --admin-panel: #191d21;
   --admin-border: #37465b;
   --admin-text: #edf2f8;
   --admin-muted: #aab6c6;
