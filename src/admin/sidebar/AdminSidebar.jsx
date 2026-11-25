@@ -1,205 +1,277 @@
 import { useState } from "react";
-
+import { Link, NavLink } from "react-router-dom";
 import {
-  ChevronDown,
-  Grid2X2,
+  Ticket,
+  BarChart3,
+  CalendarDays,
+  CalendarCheck,
+  Building2,
+  Users,
+  Tags,
+  Music2,
+  Mic2,
   LockKeyhole,
   LogOut,
-  Mic2,
-  Shield,
+  ChevronDown,
+  ChevronLeft,
+  Menu,
+  X,
 } from "lucide-react";
 
-import { Link, NavLink } from "react-router-dom";
 import "./AdminSidebar.css";
 
-const eventLinks = [
-  ["Events List", "/admin/events"],
-  ["Event Phases", "/admin/event-phases"],
-  ["Clubs", "/admin/clubs"],
-  ["Club Managers (Invite)", "/admin/club-managers"],
-  ["Category Management", "/admin/categories"],
-  ["Genres Management", "/admin/genres"],
-];
-
-function NavigationLink({ to, children, className = "", onNavigate }) {
-  return (
-    <NavLink
-      className={({ isActive }) =>
-        `admin-nav-child ${isActive ? "is-active" : ""} ${className}`
-      }
-      onClick={onNavigate}
-      to={to}
-    >
-      {children}
-    </NavLink>
-  );
-}
-
-export default function AdminSidebar({ isOpen, onClose, onLogout }) {
+function AdminSidebar({ isOpen, onClose, onLogout }) {
+  const [collapsed, setCollapsed] = useState(false);
   const [salesOpen, setSalesOpen] = useState(true);
   const [eventsOpen, setEventsOpen] = useState(true);
+
+  const closeSidebar = () => {
+    if (onClose) onClose();
+  };
+
+  const handleGroupClick = (group) => {
+    if (collapsed) {
+      setCollapsed(false);
+
+      if (group === "sales") setSalesOpen(true);
+      if (group === "events") setEventsOpen(true);
+
+      return;
+    }
+
+    if (group === "sales") setSalesOpen(!salesOpen);
+    if (group === "events") setEventsOpen(!eventsOpen);
+  };
+
+  const eventLinks = [
+    { name: "Events List", path: "/admin/events", icon: CalendarDays },
+    { name: "Event Phases", path: "/admin/event-phases", icon: CalendarCheck },
+    { name: "Clubs", path: "/admin/clubs", icon: Building2 },
+    { name: "Club Managers", path: "/admin/club-managers", icon: Users },
+    { name: "Category Management", path: "/admin/categories", icon: Tags },
+    { name: "Genres Management", path: "/admin/genres", icon: Music2 },
+  ];
+
+  const NavItem = ({ to, icon: Icon, children }) => (
+    <NavLink
+      to={to}
+      end
+      title={collapsed ? children : ""}
+      onClick={closeSidebar}
+      className={({ isActive }) =>
+        `mini-nav-link ${isActive ? "active" : ""}`
+      }
+    >
+      <span className="mini-nav-icon">
+        <Icon size={19} strokeWidth={1.8} />
+      </span>
+
+      <span className="mini-nav-label">{children}</span>
+
+      <span className="mini-active-dot" />
+    </NavLink>
+  );
 
   return (
     <>
       {isOpen && (
-        <button
-          aria-label="Close admin navigation"
-          className="admin-drawer-backdrop"
-          onClick={onClose}
-          type="button"
+        <div
+          className="mini-sidebar-overlay"
+          onClick={closeSidebar}
         />
       )}
 
       <aside
-        className={`admin-sidebar ${
-          isOpen ? "admin-sidebar-open" : ""
-        }`}
+        className={`mini-sidebar ${
+          collapsed ? "collapsed" : ""
+        } ${isOpen ? "mobile-open" : ""}`}
       >
-        {/* Logo */}
-        <Link
-          aria-label="Rizztix admin home"
-          className="admin-logo"
-          onClick={onClose}
-          to="/admin/sales-report"
+        {/* BRAND HEADER */}
+        <div className="mini-sidebar-header">
+          <Link
+            to="/admin/sales-report"
+            className="mini-brand"
+            onClick={closeSidebar}
+            title="RIZZ TIX"
+          >
+            <div className="mini-brand-logo">
+              <Ticket size={23} />
+            </div>
+
+            <div className="mini-brand-details">
+              <h2>RIZZ<span>TIX</span></h2>
+              <p>ADMIN PANEL</p>
+            </div>
+          </Link>
+
+          <button
+            className="mini-mobile-close"
+            onClick={closeSidebar}
+            aria-label="Close sidebar"
+          >
+            <X size={19} />
+          </button>
+        </div>
+
+        {/* COLLAPSE BUTTON */}
+        <button
+          className="mini-collapse-button"
+          onClick={() => setCollapsed(!collapsed)}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          <span aria-hidden="true" className="admin-logo-lines">
-            ▤
-          </span>
+          {collapsed ? (
+            <Menu size={18} />
+          ) : (
+            <ChevronLeft size={18} />
+          )}
+        </button>
 
-          <strong>RIZZ</strong>
-          <span>TIX</span>
-        </Link>
+        {/* NAVIGATION */}
+        <div className="mini-sidebar-scroll">
 
-        <nav aria-label="Admin navigation" className="admin-navigation">
-
-          <p className="admin-nav-caption">Management</p>
+          <div className="mini-section-title">
+            <span>OVERVIEW</span>
+          </div>
 
           {/* SALES ANALYSIS */}
-          <div className="admin-nav-group">
-
+          <div className="mini-nav-group">
             <button
-              className={`admin-nav-heading ${
-                salesOpen ? "menu-expanded" : ""
+              className={`mini-parent-link ${
+                salesOpen && !collapsed ? "expanded" : ""
               }`}
-              onClick={() => setSalesOpen(!salesOpen)}
-              type="button"
-              aria-expanded={salesOpen}
+              onClick={() => handleGroupClick("sales")}
+              title={collapsed ? "Sales Analysis" : ""}
             >
-              <Grid2X2 size={18} />
+              <span className="mini-nav-icon">
+                <BarChart3 size={19} />
+              </span>
 
-              <span>Sales Analysis</span>
+              <span className="mini-nav-label">
+                Sales Analysis
+              </span>
 
               <ChevronDown
-                className="admin-chevron"
                 size={16}
+                className={`mini-parent-chevron ${
+                  salesOpen ? "rotated" : ""
+                }`}
               />
             </button>
 
-            <div className={`admin-submenu ${salesOpen ? "submenu-open" : ""}`}>
-              <div className="admin-submenu-inner">
+            <div
+              className={`mini-submenu ${
+                salesOpen && !collapsed ? "show" : ""
+              }`}
+            >
+              <NavItem
+                to="/admin/sales-report"
+                icon={BarChart3}
+              >
+                Sales Report
+              </NavItem>
 
-                <NavigationLink
-                  onNavigate={onClose}
-                  to="/admin/sales-report"
-                >
-                  Sales Report
-                </NavigationLink>
-
-                <NavigationLink
-                  onNavigate={onClose}
-                  to="/admin/event-end-report"
-                >
-                  Event End Report
-                </NavigationLink>
-
-              </div>
+              <NavItem
+                to="/admin/event-end-report"
+                icon={CalendarCheck}
+              >
+                Event End Report
+              </NavItem>
             </div>
           </div>
 
           {/* EVENTS */}
-          <div className="admin-nav-group">
-
+          <div className="mini-nav-group">
             <button
-              className={`admin-nav-heading ${
-                eventsOpen ? "menu-expanded" : ""
+              className={`mini-parent-link ${
+                eventsOpen && !collapsed ? "expanded" : ""
               }`}
-              onClick={() => setEventsOpen(!eventsOpen)}
-              type="button"
-              aria-expanded={eventsOpen}
+              onClick={() => handleGroupClick("events")}
+              title={collapsed ? "Events" : ""}
             >
-              <Grid2X2 size={18} />
+              <span className="mini-nav-icon">
+                <CalendarDays size={19} />
+              </span>
 
-              <span>Events</span>
+              <span className="mini-nav-label">
+                Events
+              </span>
 
               <ChevronDown
-                className="admin-chevron"
                 size={16}
+                className={`mini-parent-chevron ${
+                  eventsOpen ? "rotated" : ""
+                }`}
               />
             </button>
 
-            <div className={`admin-submenu ${eventsOpen ? "submenu-open" : ""}`}>
-              <div className="admin-submenu-inner">
-
-                {eventLinks.map(([label, path]) => (
-                  <NavigationLink
-                    key={path}
-                    onNavigate={onClose}
-                    to={path}
-                  >
-                    {label}
-                  </NavigationLink>
-                ))}
-
-              </div>
+            <div
+              className={`mini-submenu ${
+                eventsOpen && !collapsed ? "show" : ""
+              }`}
+            >
+              {eventLinks.map((item) => (
+                <NavItem
+                  key={item.path}
+                  to={item.path}
+                  icon={item.icon}
+                >
+                  {item.name}
+                </NavItem>
+              ))}
             </div>
           </div>
 
-          {/* ARTISTS */}
-          <NavigationLink
-            className="admin-nav-icon-link"
-            onNavigate={onClose}
-            to="/admin/artists"
-          >
-            <Mic2 size={18} />
-            <span>Artists</span>
-          </NavigationLink>
+          <div className="mini-section-title mini-section-spaced">
+            <span>MANAGEMENT</span>
+          </div>
 
-          {/* VENUE */}
-          <NavigationLink
-            className="admin-nav-icon-link"
-            onNavigate={onClose}
+          <NavItem to="/admin/artists" icon={Mic2}>
+            Artists
+          </NavItem>
+
+          <NavItem
             to="/admin/venue-booking"
+            icon={Building2}
           >
-            <Shield size={18} />
-            <span>Venue &amp; Table Booking</span>
-          </NavigationLink>
+            Venue & Table Booking
+          </NavItem>
 
-          {/* APPS */}
-          <p className="admin-nav-caption admin-apps-caption">
-            Apps
-          </p>
+          <div className="mini-section-title mini-section-spaced">
+            <span>SETTINGS</span>
+          </div>
 
-          <NavigationLink
-            className="admin-nav-icon-link"
-            onNavigate={onClose}
+          <NavItem
             to="/admin/change-password"
+            icon={LockKeyhole}
           >
-            <LockKeyhole size={18} />
-            <span>Change Password</span>
-          </NavigationLink>
+            Change Password
+          </NavItem>
+        </div>
 
-          {/* LOGOUT */}
+        {/* FOOTER */}
+        <div className="mini-sidebar-footer">
+
           <button
-            className="admin-nav-parent admin-logout"
+            className="mini-logout-button"
             onClick={onLogout}
-            type="button"
+            title={collapsed ? "Logout" : ""}
           >
-            <LogOut size={18} />
-            <span>Logout</span>
+            <LogOut size={19} />
+            <span className="mini-nav-label">Logout</span>
           </button>
 
-        </nav>
+          <div className="mini-sidebar-status">
+            <span className="mini-status-dot" />
+            <span className="mini-status-text">
+              System Online
+            </span>
+          </div>
+
+        </div>
       </aside>
     </>
   );
 }
+
+export default AdminSidebar;
