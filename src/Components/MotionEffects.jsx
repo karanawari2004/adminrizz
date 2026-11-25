@@ -68,7 +68,7 @@ export function Preloader() {
               }}
             >
               <div className="preloader-word">
-                RIZZTIX
+                RIZZTIXX
               </div>
             </motion.div>
           </div>

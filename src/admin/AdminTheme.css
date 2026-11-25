@@ -446,6 +446,34 @@
   color: #ffffff !important;
 }
 
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-gradient-card.sr-gradient-violet {
+  border-color: transparent !important;
+  background: var(--sr-gradient-background) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-gradient-card.sr-gradient-blue {
+  border-color: transparent !important;
+  background: var(--sr-gradient-background) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-gradient-card.sr-gradient-orange {
+  border-color: transparent !important;
+  background: var(--sr-gradient-background) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-gradient-card.sr-gradient-teal {
+  border-color: transparent !important;
+  background: var(--sr-gradient-background) !important;
+  color: #ffffff !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-stat-card.sr-gradient-card :is(h2, span, p) {
+  color: #ffffff !important;
+}
+
 .admin-shell[data-theme] .sales-report-page .sr-table thead th {
   background: var(--admin-table-head) !important;
   color: var(--admin-text) !important;
@@ -584,4 +612,35 @@
   border-color: var(--admin-border) !important;
   background: var(--admin-table-head) !important;
   color: var(--admin-table-head-text) !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table-wrapper {
+  border-color: #2b3749 !important;
+  background: #1e293b !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table {
+  background: #1e293b !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table thead th {
+  border-right-color: transparent !important;
+  border-bottom-color: #2b3749 !important;
+  background: #1e293b !important;
+  color: #9aa8bb !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table tbody td {
+  border-right-color: transparent !important;
+  border-bottom-color: #2b3749 !important;
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table tbody td:first-child {
+  color: #f1f5f9 !important;
+}
+
+.admin-shell[data-theme] .sales-report-page .sr-table tbody tr:hover td {
+  background: #263449 !important;
 }

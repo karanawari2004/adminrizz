@@ -14,7 +14,7 @@ const salesData = {
 
   channels: [
     { name: "Online", tickets: 16, amount: 14000, color: "online" },
-    { name: "Offline (Paid)", tickets: 0, amount: 0, color: "offline" },
+    { name: "Offline (Paid)", tickets: 0, amount: 17000, color: "offline" },
     { name: "On Ground", tickets: 8, amount: 10000, color: "ground" },
     { name: "Guestlist", tickets: 5, amount: 0, color: "guestlist" },
   ],
@@ -49,7 +49,7 @@ const salesData = {
       revenue: 0,
       price: 0,
       online: 6,
-      offline: 0,
+      offline: 10,
       guestlist: 0,
     },
     {
@@ -59,7 +59,7 @@ const salesData = {
       revenue: 6000,
       price: 1000,
       online: 6,
-      offline: 0,
+      offline: 20,
       guestlist: 5,
     },
     {
@@ -69,7 +69,7 @@ const salesData = {
       revenue: 8000,
       price: 2000,
       online: 4,
-      offline: 0,
+      offline: 15,
       guestlist: 0,
     },
   ],
@@ -1317,9 +1317,22 @@ function Section({ title, subtitle, children }) {
   );
 }
 
-function StatCard({ icon, title, value, subtitle, hero = false, delay = 0 }) {
+function StatCard({
+  icon,
+  title,
+  value,
+  subtitle,
+  hero = false,
+  className = "",
+  delay = 0,
+}) {
   return (
-    <Box className={`sr-stat-card${hero ? " sr-hero" : ""}`} delay={delay}>
+    <Box
+      className={`sr-stat-card${hero ? " sr-hero" : ""}${
+        className ? ` ${className}` : ""
+      }`}
+      delay={delay}
+    >
       <span>
         {icon && <b className="sr-icon">{icon}</b>}
         {title}
@@ -1342,40 +1355,37 @@ function TicketSoldCard({ sold, capacity, delay = 0 }) {
   const rawPercent =
     safeCapacity > 0 ? (safeSold / safeCapacity) * 100 : 0;
 
-  const fillPercent =
-    safeSold > 0 ? Math.min(100, Math.max(8, rawPercent)) : 0;
-
   const percentage =
     safeCapacity > 0 ? Math.min(100, rawPercent) : 0;
 
   return (
-    <Box className="sr-stat-card sr-ticket-vessel" delay={delay}>
+    <Box
+      className="sr-stat-card sr-ticket-vessel sr-gradient-card sr-gradient-violet"
+      delay={delay}
+    >
       <span className="sr-ticket-header">
         <b className="sr-icon">🎟️</b>
         TICKETS SOLD
       </span>
 
-      {fillPercent > 0 && (
-        <div
-          className="sr-ticket-liquid"
-          style={{ height: `${fillPercent}%` }}
-          aria-hidden="true"
-        >
-          <span className="sr-ticket-wave sr-ticket-wave-one" />
-          <span className="sr-ticket-wave sr-ticket-wave-two" />
-          <span className="sr-ticket-wave sr-ticket-wave-three" />
+      <div className="sr-ticket-main">
+        <div className="sr-ticket-quantity">
+          <strong>{safeSold.toLocaleString("en-IN")}</strong>
+          <span>
+            of <b>{safeCapacity.toLocaleString("en-IN")}</b>
+          </span>
         </div>
-      )}
 
-      <div className="sr-ticket-count">
-        <strong>{safeSold.toLocaleString("en-IN")}</strong>
-        <span>Tickets Sold</span>
-
-        <div className="sr-ticket-capacity">
-          <span>{safeCapacity.toLocaleString("en-IN")} Capacity</span>
-          <span>{percentage.toFixed(1)}% Filled</span>
+        <div
+          className="sr-ticket-progress"
+          style={{ "--ticket-fill": `${percentage}%` }}
+          role="img"
+          aria-label={`${percentage.toFixed(1)}% of ticket capacity filled`}
+        >
+          <span>{Math.round(percentage)}%</span>
         </div>
       </div>
+      <p className="sr-ticket-caption">{percentage.toFixed(1)}% filled</p>
     </Box>
   );
 }
@@ -1661,6 +1671,7 @@ export default function SalesReportForm({
 
             <StatCard
               hero
+              className="sr-gradient-card sr-gradient-blue"
               icon="💰"
               title="Total Revenue"
               value={
@@ -1674,6 +1685,7 @@ export default function SalesReportForm({
             />
 
             <StatCard
+              className="sr-gradient-card sr-gradient-orange"
               icon="🍾"
               title="Table Revenue"
               value={
@@ -1687,6 +1699,7 @@ export default function SalesReportForm({
             />
 
             <StatCard
+              className="sr-gradient-card sr-gradient-teal"
               icon="📈"
               title="Rizztixx Commission (2%)"
               value={
@@ -1745,13 +1758,16 @@ export default function SalesReportForm({
 
             <div className="sr-booking-grid">
               <StatCard
+                className="sr-gradient-card sr-gradient-violet"
                 icon="📅"
-                title="Bookings"
+                title="Total Bookings"
                 value={<CountUp to={salesData.bookings} />}
+                subtitle={`${salesData.guests} guests`}
                 delay={0.1}
               />
 
               <StatCard
+                className="sr-gradient-card sr-gradient-blue"
                 icon="👥"
                 title="Guests"
                 value={<CountUp to={salesData.guests} />}
@@ -1759,6 +1775,7 @@ export default function SalesReportForm({
               />
 
               <StatCard
+                className="sr-gradient-card sr-gradient-orange"
                 icon="💵"
                 title="Revenue Collected"
                 value={
@@ -1771,6 +1788,7 @@ export default function SalesReportForm({
               />
 
               <StatCard
+                className="sr-gradient-card sr-gradient-teal"
                 icon="🍸"
                 title="Min. Spend Total"
                 value={
