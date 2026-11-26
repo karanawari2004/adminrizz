@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import AdminHeading from "../../AdminHeading";
 import "./ClubManagersPage.css";
@@ -8,85 +9,125 @@ export default function ClubManagersPage() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  function invite(event) {
+  const handleInvite = (event) => {
     event.preventDefault();
-    setMessage(`Demo invite prepared for ${name} (${email}).`);
-  }
+
+    if (!club || !email.trim() || !name.trim()) {
+      setMessage("Please fill in all fields.");
+      return;
+    }
+
+    setMessage(`Invitation prepared for ${name}.`);
+    setEmail("");
+    setName("");
+  };
+
+  const handleRefresh = () => {
+    setMessage("Manager list refreshed.");
+  };
 
   return (
     <div className="admin-club-managers-page">
+
       <AdminHeading
         title="Club Managers"
         section="Events"
-        parent="Club Management"
+        parent="Club Managers"
       />
 
-      <section className="admin-managers-form">
-        <label className="admin-manager-club">
-          Club
+      <div className="admin-managers-content">
+
+        {/* CLUB SELECT */}
+        <div className="admin-manager-club">
+          <label htmlFor="club">Club</label>
+
           <select
-            onChange={(event) => setClub(event.target.value)}
+            id="club"
             value={club}
+            onChange={(e) => setClub(e.target.value)}
           >
             <option value="">Select A Club</option>
-            <option>Maushi</option>
-            <option>Nesco</option>
-            <option>Sunburn</option>
+            <option value="Maushi">Maushi</option>
+            <option value="Nesco">Nesco</option>
+            <option value="Sunburn">Sunburn</option>
           </select>
-        </label>
+        </div>
 
-        <h2>Invite Club Manager</h2>
+        {/* INVITE MANAGER */}
+        <h2 className="admin-manager-heading">
+          Invite Club Manager
+        </h2>
 
-        <form onSubmit={invite}>
-          <label>
-            Email Address
+        <form
+          className="admin-manager-invite-form"
+          onSubmit={handleInvite}
+        >
+
+          <div className="admin-manager-field">
+            <label htmlFor="manager-email">
+              Email Address
+            </label>
+
             <input
-              onChange={(event) => setEmail(event.target.value)}
-              required
+              id="manager-email"
               type="email"
               value={email}
-            />
-          </label>
-
-          <label>
-            Name
-            <input
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Display Name"
+              onChange={(e) => setEmail(e.target.value)}
               required
-              value={name}
             />
-          </label>
+          </div>
+
+          <div className="admin-manager-field">
+            <label htmlFor="manager-name">
+              Name
+            </label>
+
+            <input
+              id="manager-name"
+              type="text"
+              placeholder="Display Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
 
           <button
-            className="admin-primary-button"
-            disabled={!club}
             type="submit"
+            className="admin-manager-invite-button"
+            disabled={!club}
           >
             Send Invite
           </button>
+
         </form>
 
+        {/* MESSAGE */}
         {message && (
-          <p className="admin-report-feedback" role="status">
+          <p className="admin-manager-message" role="status">
             {message}
           </p>
         )}
 
-        <h2 className="admin-managers-list-title">
+        {/* MANAGERS */}
+        <h2 className="admin-manager-list-heading">
           Managers For This Club
         </h2>
 
-        <p className="admin-no-result">No Result Found!</p>
+        <p className="admin-manager-empty">
+          No Result Found!
+        </p>
 
+        {/* REFRESH */}
         <button
-          className="admin-primary-button"
-          onClick={() => setMessage("Manager list refreshed.")}
           type="button"
+          className="admin-manager-refresh-button"
+          onClick={handleRefresh}
         >
           Refresh
         </button>
-      </section>
+
+      </div>
     </div>
   );
 }

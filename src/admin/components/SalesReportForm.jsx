@@ -1422,7 +1422,7 @@ export default function SalesReportForm({
     (c) => c.name === "Guestlist"
   );
 
-  const topCategory = [...salesData.categories].sort(
+  const topCatagory = [...salesData.categories].sort(
     (a, b) => b.sold - a.sold
   )[0];
 
@@ -1472,7 +1472,7 @@ export default function SalesReportForm({
     },
     {
       icon: "⚡",
-      text: `${topCategory.name} is the top-selling category`,
+      text: `${topCatagory.name} is the top-selling Catagory`,
     },
   ];
 
@@ -1894,16 +1894,16 @@ export default function SalesReportForm({
             </div>
           </Section>
 
-          {/* CATEGORY BREAKDOWN */}
+          {/* Catagory BREAKDOWN */}
           <Section
-            title="Category Breakdown"
+            title="Catagory Breakdown"
             subtitle={`Ticket Types For ${event}. Includes All Tiers On The Event, Even With Zero Sales.`}
           >
             <div className="sr-table-wrapper">
               <table className="sr-table">
                 <thead>
                   <tr>
-                    <th>Category</th>
+                    <th>Catagory</th>
                     <th>Tickets Sold</th>
                     <th>Online Revenue</th>
                     <th>Price</th>

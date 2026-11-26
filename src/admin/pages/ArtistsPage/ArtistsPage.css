@@ -1,393 +1,959 @@
-/* =====================================================
-   ARTISTS PAGE - WHITE & BLUE THEME
-   BLACK TEXT THROUGHOUT
-===================================================== */
+
+/* =========================================================
+   RIZZTIX - ARTISTS PAGE
+   Artists List + Add/Edit Artist Modal
+   Light and Dark Theme
+========================================================= */
+
+/* =========================================================
+   THEME VARIABLES
+========================================================= */
 
 .admin-artists-page {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --border: #e2e8f0;
+  --primary: #ff5733;
+  --primary-hover: #e84625;
+  --primary-text: #c93a1a;
+  --primary-soft: #fff0ec;
+  --on-primary: #ffffff;
+
+  --bg: #f5f5f7;
+  --panel: #ffffff;
+  --panel-light: #f5f6f7;
+  --field: #ffffff;
+  --head: #f5f6f7;
+  --row-hover: #fafafb;
+
+  --border: #e4e5e9;
+  --border-strong: #cfd1d7;
+
+  --text: #1f2024;
+  --muted: #6b6e76;
+
+  --danger: #c62f2f;
+  --ok: #17794a;
+  --scheme: light;
 
   width: 100%;
-  min-height: 100%;
-  padding: 26px 28px;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 25px;
+
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: var(--scheme);
+
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   box-sizing: border-box;
-  background: #f5f8ff;
-  color: #000000;
-  font-family: inherit;
 }
 
-/* Force all normal text to black */
-.admin-artists-page,
-.admin-artists-page h1,
-.admin-artists-page h2,
-.admin-artists-page h3,
-.admin-artists-page h4,
-.admin-artists-page p,
-.admin-artists-page label,
-.admin-artists-page span,
-.admin-artists-page strong,
-.admin-artists-page td,
-.admin-artists-page th {
-  color: #000000;
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+.admin-artists-page.is-dark,
+.dark .admin-artists-page,
+[data-theme="dark"] .admin-artists-page {
+  --primary-text: #ff795c;
+  --primary-soft: rgba(255, 87, 51, 0.14);
+
+  --bg: #202638;
+  --panel: #293144;
+  --panel-light: #30394e;
+  --field: #252e40;
+  --head: #30394d;
+  --row-hover: #303a50;
+
+  --border: #414b61;
+  --border-strong: #727c91;
+
+  --text: #f2f3f7;
+  --muted: #a6adbd;
+
+  --danger: #ff9a9a;
+  --ok: #6fdca0;
+  --scheme: dark;
 }
 
-/* =====================================================
-   CONTENT
-===================================================== */
+/* BOX SIZING */
+
+.admin-artists-page *,
+.artist-modal-overlay *,
+.admin-artists-page *::before,
+.admin-artists-page *::after,
+.artist-modal-overlay *::before,
+.artist-modal-overlay *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
 .admin-artists-content {
   width: 100%;
+  min-width: 0;
   margin-top: 22px;
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--panel);
+
+  animation: artistFade 0.3s ease;
 }
 
-/* =====================================================
+@keyframes artistFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
    TOOLBAR
-===================================================== */
+========================================================= */
 
 .admin-artists-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding: 17px 19px;
+  flex-wrap: wrap;
+  gap: 13px;
 
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  margin-bottom: 20px;
 }
 
-/* Search input */
+/* SEARCH */
 
-.admin-artists-toolbar input {
-  width: 320px;
-  max-width: 100%;
+.admin-artist-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex: 1;
+  max-width: 500px;
+  min-width: 200px;
+
   height: 42px;
-  padding: 0 14px;
-  box-sizing: border-box;
+  padding: 0 13px;
 
-  background: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #dce4f0;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  outline: none;
 
-  font-size: 13px;
-  font-weight: 500;
+  background: var(--field);
+  color: var(--muted);
+
   transition: 0.2s ease;
 }
 
-.admin-artists-toolbar input::placeholder {
-  color: #555555 !important;
-  opacity: 1;
-}
-
-.admin-artists-toolbar input:focus {
+.admin-artist-search:focus-within {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 3px var(--primary-soft);
 }
 
-/* =====================================================
-   ADD ARTIST BUTTON
-===================================================== */
+.admin-artist-search input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
 
-.admin-artists-page .admin-primary-button {
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: var(--text);
+
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.admin-artist-search input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* =========================================================
+   ADD ARTIST BUTTON
+========================================================= */
+
+.admin-primary-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 
-  min-height: 42px;
-  padding: 0 17px;
+  min-height: 40px;
+  padding: 0 18px;
 
-  background: var(--primary) !important;
-  color: #ffffff !important;
   border: 1px solid var(--primary);
   border-radius: 8px;
 
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
+  background: var(--primary);
+  color: var(--on-primary);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
-.admin-artists-page .admin-primary-button svg {
-  color: #ffffff !important;
+.admin-primary-button:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
-.admin-artists-page .admin-primary-button:hover {
-  background: var(--primary-dark) !important;
-  border-color: var(--primary-dark);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-  transform: translateY(-1px);
+.admin-primary-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
-/* =====================================================
-   TABLE CARD
-===================================================== */
+/* =========================================================
+   ARTISTS TABLE
+========================================================= */
 
 .admin-artists-page .admin-table-card {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
 
-  background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: 13px;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  border-radius: 10px;
+
+  background: var(--panel);
 }
 
-/* =====================================================
-   TABLE
-===================================================== */
-
-.admin-artists-page .admin-table {
+.admin-artists-table {
   width: 100%;
+  min-width: 850px;
+
   border-collapse: collapse;
-  border-spacing: 0;
-  background: #ffffff;
-}
-
-/* Table headings */
-
-.admin-artists-page .admin-table thead {
-  background: #eaf2ff !important;
-}
-
-.admin-artists-page .admin-table th {
-  height: 54px;
-  padding: 12px 20px;
-
-  background: #eaf2ff !important;
-  color: #000000 !important;
-
-  border-bottom: 1px solid #dbeafe;
   text-align: left;
+}
 
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+.admin-artists-table thead th {
+  height: 50px;
+  padding: 12px 15px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: var(--head);
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 650;
+
   white-space: nowrap;
 }
-
-/* Count badge */
 
 .admin-artists-page .admin-count {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 25px;
-  height: 22px;
-  margin-left: 7px;
+  min-width: 21px;
+  height: 21px;
+  margin-left: 8px;
   padding: 0 6px;
 
-  background: #dbeafe;
-  color: #000000 !important;
-  border-radius: 6px;
+  border-radius: 5px;
+
+  background: var(--primary-soft);
+  color: var(--primary-text);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.admin-artists-table tbody td {
+  padding: 13px 15px;
+
+  border-bottom: 1px solid var(--border);
+
+  background: var(--panel);
+  color: var(--text);
+
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.admin-artists-table tbody tr:hover td {
+  background: var(--row-hover);
+}
+
+.admin-artists-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================================
+   ARTIST PROFILE
+========================================================= */
+
+.admin-artist-cell {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 150px;
+}
+
+.admin-artist-avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--head);
+  color: var(--primary-text);
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.admin-artist-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-artist-cell strong {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   ARTIST ACTIONS
+========================================================= */
+
+.admin-artist-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.admin-icon-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 30px;
+
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  color: #777d91;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.admin-icon-action:hover {
+  color: var(--primary);
+}
+
+.admin-icon-action.delete {
+  color: #c58b37;
+}
+
+.admin-icon-action.delete:hover {
+  color: var(--danger);
+}
+
+.admin-empty-row {
+  padding: 45px !important;
+  color: var(--muted) !important;
+  text-align: center;
+}
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.artist-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  background: rgba(15, 19, 29, 0.72);
+  backdrop-filter: blur(2px);
+
+  animation: artistOverlay 0.2s ease;
+}
+
+@keyframes artistOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MODAL CONTAINER
+========================================================= */
+
+.artist-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 360px;
+  max-height: calc(100vh - 20px);
+
+  overflow-y: auto;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 5px;
+
+  background: var(--panel);
+  color: var(--text);
+
+  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.3);
+
+  animation: artistModalEnter 0.25s ease;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+@keyframes artistModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.artist-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding-bottom: 11px;
+  margin-bottom: 14px;
+
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.artist-modal-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.artist-modal-close {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+
+  background: transparent;
+  color: var(--muted);
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.artist-modal-close:hover {
+  background: var(--head);
+  color: var(--text);
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.artist-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  min-width: 0;
+}
+
+.artist-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.artist-form-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.artist-form-label span {
+  color: var(--primary);
+}
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+.artist-upload-box {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 180px;
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 8px;
+
+  background: var(--head);
+  color: var(--muted);
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.artist-upload-box:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.artist-upload-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: var(--muted);
+}
+
+.artist-upload-placeholder svg {
+  opacity: 0.65;
+}
+
+.artist-upload-icon {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 7px;
+
+  background: var(--panel-light);
+  color: var(--muted);
+}
+
+.artist-image-preview {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.artist-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-change-image {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+
+  display: grid;
+  place-items: center;
+
+  width: 31px;
+  height: 31px;
+
+  border: 2px solid var(--panel);
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: white;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.artist-upload-hint {
+  margin: 5px 0 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   INPUT FIELDS
+========================================================= */
+
+.artist-form-group > input {
+  width: 100%;
+  height: 38px;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+
+  outline: none;
+
+  background: var(--field);
+  color: var(--text);
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition: 0.2s ease;
+}
+
+.artist-form-group > input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.artist-form-group > input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* =========================================================
+   RICH TEXT EDITOR
+========================================================= */
+
+.artist-rich-editor {
+  overflow: hidden;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+
+  background: var(--field);
+
+  transition: 0.2s ease;
+}
+
+.artist-rich-editor:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* TOOLBAR */
+
+.artist-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  min-height: 38px;
+  margin: 5px 10px;
+  padding: 0 7px;
+
+  background: var(--head);
+}
+
+.artist-editor-toolbar button {
+  display: grid;
+  place-items: center;
+
+  width: 27px;
+  height: 29px;
+
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+
+  background: transparent;
+  color: var(--text);
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.artist-editor-toolbar button:hover {
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+
+.artist-editor-toolbar button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* EDITOR INPUT */
+
+.artist-about-editor {
+  display: block;
+
+  width: 100%;
+  min-height: 105px;
+  max-height: 160px;
+
+  overflow-y: auto;
+
+  padding: 10px 12px;
+
+  outline: none;
+
+  background: transparent;
+  color: var(--text);
+
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.artist-about-editor:empty::before {
+  content: attr(data-placeholder);
+
+  color: var(--muted);
+  opacity: 0.85;
+
+  pointer-events: none;
+}
+
+.artist-about-editor ul {
+  padding-left: 22px;
+}
+
+.artist-about-editor ol {
+  padding-left: 22px;
+}
+
+/* =========================================================
+   CHARACTER COUNT
+========================================================= */
+
+.artist-character-count {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin-top: -3px;
+
+  color: var(--text);
 
   font-size: 11px;
   font-weight: 700;
 }
 
-/* Table data */
+/* =========================================================
+   FORM ERROR
+========================================================= */
 
-.admin-artists-page .admin-table td {
-  height: 65px;
-  padding: 11px 20px;
+.artist-form-error {
+  padding: 9px 11px;
 
-  background: #ffffff !important;
-  color: #000000 !important;
+  border: 1px solid rgba(198, 47, 47, 0.25);
+  border-radius: 6px;
 
-  border-bottom: 1px solid #edf0f5;
+  background: rgba(198, 47, 47, 0.08);
+  color: var(--danger);
 
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   line-height: 1.5;
 }
 
-/* Row hover */
+/* =========================================================
+   MODAL FOOTER
+========================================================= */
 
-.admin-artists-page .admin-table tbody tr {
-  transition: background 0.2s ease;
-}
-
-.admin-artists-page .admin-table tbody tr:hover td {
-  background: #f3f7ff !important;
-}
-
-/* Last row */
-
-.admin-artists-page .admin-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* =====================================================
-   ARTIST NAME AND AVATAR
-===================================================== */
-
-.admin-artists-page .admin-artist-cell {
+.artist-modal-footer {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 150px;
+  justify-content: flex-end;
+  gap: 10px;
+
+  width: 100%;
+  margin-top: 2px;
 }
 
-/* Artist initial */
-
-.admin-artists-page .admin-artist-cell > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-
-  background: #eaf2ff;
-  color: #000000 !important;
-
-  border: 1px solid #dbeafe;
-  border-radius: 9px;
-
-  font-size: 14px;
-  font-weight: 700;
-}
-
-/* Artist name */
-
-.admin-artists-page .admin-artist-cell strong {
-  color: #000000 !important;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* =====================================================
-   ACTION BUTTONS
-===================================================== */
-
-.admin-artists-page .admin-icon-action {
+.artist-submit-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
 
-  width: 34px;
-  height: 34px;
-  margin-right: 7px;
+  width: 100%;
+  min-height: 38px;
+  padding: 0 18px;
 
-  background: #eff6ff;
-  color: #1d4ed8 !important;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
 
-  border: 1px solid #dbeafe;
-  border-radius: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
 
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
-.admin-artists-page .admin-icon-action svg {
-  width: 16px;
-  height: 16px;
-  color: inherit !important;
+.artist-submit-button:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
-.admin-artists-page .admin-icon-action:hover {
-  background: #dbeafe;
-  border-color: #93c5fd;
-  transform: translateY(-2px);
+.artist-submit-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
-/* Delete button */
-
-.admin-artists-page .admin-icon-action.delete {
-  background: #fff1f2;
-  color: #dc2626 !important;
-  border-color: #fecaca;
-}
-
-.admin-artists-page .admin-icon-action.delete:hover {
-  background: #fee2e2;
-  border-color: #fca5a5;
-}
-
-/* =====================================================
-   EMPTY SEARCH RESULT
-===================================================== */
-
-.admin-artists-page .admin-empty-row {
-  height: 100px !important;
-  padding: 25px !important;
-
-  background: #ffffff !important;
-  color: #000000 !important;
-
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
-.admin-artists-page .admin-table-card::-webkit-scrollbar {
-  height: 5px;
-}
-
-.admin-artists-page .admin-table-card::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-.admin-artists-page .admin-table-card::-webkit-scrollbar-thumb {
-  background: #93b4f5;
-  border-radius: 10px;
-}
-
-.admin-artists-page .admin-table-card::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
-}
-
-/* =====================================================
+/* =========================================================
    RESPONSIVE
-===================================================== */
+========================================================= */
 
 @media (max-width: 900px) {
   .admin-artists-page {
-    padding: 20px;
-  }
-
-  .admin-artists-page .admin-table {
-    min-width: 700px;
-  }
-}
-
-@media (max-width: 600px) {
-  .admin-artists-page {
-    padding: 14px;
+    padding: 18px;
   }
 
   .admin-artists-content {
-    margin-top: 16px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-artists-page {
+    padding: 13px;
+  }
+
+  .admin-artists-content {
+    padding: 14px;
   }
 
   .admin-artists-toolbar {
     align-items: stretch;
     flex-direction: column;
-    padding: 14px;
   }
 
-  .admin-artists-toolbar input {
+  .admin-artist-search {
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-primary-button {
     width: 100%;
   }
 
-  .admin-artists-page .admin-primary-button {
-    width: 100%;
+  .artist-modal-overlay {
+    padding: 12px;
   }
 
-  .admin-artists-page .admin-table th,
-  .admin-artists-page .admin-table td {
-    padding: 12px 14px;
+  .artist-modal {
+    max-width: 100%;
+    max-height: calc(100vh - 24px);
+
+    padding: 16px;
+
+    border-radius: 8px;
+  }
+
+  .artist-modal-header h2 {
+    font-size: 19px;
+  }
+
+  .artist-modal-form {
+    gap: 14px;
+  }
+
+  .artist-upload-box {
+    width: 180px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .artist-modal {
+    padding: 13px;
+  }
+
+  .artist-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .artist-form-label {
+    font-size: 12px;
+  }
+
+  .artist-editor-toolbar {
+    margin: 5px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-artists-page *,
+  .artist-modal-overlay * {
+    animation: none !important;
+    transition: none !important;
   }
 }

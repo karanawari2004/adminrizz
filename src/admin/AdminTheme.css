@@ -122,7 +122,7 @@
   .event-end-page,
   .sales-report-page,
   .admin-utility-page
-) span:not(.admin-status-pill):not(.admin-type-pill):not(.sr-channel-tag):not(.sr-status):not(.er-badge):not(.admin-count):not(.utility-badge):not(.utility-status) {
+) span:not(.admin-status-pill):not(.admin-type-pill):not(.sr-channel-tag):not(.sr-status):not(.er-badge):not(.admin-count):not(.utility-badge):not(.utility-status):not(.admin-category-icon):not(.admin-events-pill):not(.admin-events-pill span):not(.admin-th-inner):not(.catalog-modal-field span) {
   color: var(--admin-text) !important;
 }
 

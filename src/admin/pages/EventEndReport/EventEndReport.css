@@ -1,7 +1,11 @@
-
 /* =========================================================
    RIZZTIX - EVENT END REPORT
    Premium White & Blue Dashboard
+   Dynamic Sidebar Responsive CSS
+========================================================= */
+
+/* =========================================================
+   EVENT END PAGE
 ========================================================= */
 
 .event-end-page {
@@ -15,14 +19,23 @@
 
   position: relative;
   isolation: isolate;
+
   box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 100vh;
+
   padding: 25px 28px 35px;
+
   overflow-x: hidden;
 
   background:
-    radial-gradient(ellipse at 90% 0%, rgba(59, 130, 246, 0.075), transparent 35%),
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(59, 130, 246, 0.075),
+      transparent 35%
+    ),
     linear-gradient(135deg, #f7faff 0%, #f0f5fd 100%);
 
   color: var(--er-text);
@@ -91,7 +104,6 @@
   from {
     transform: translate(0, 0) scale(1);
   }
-
   to {
     transform: translate(30px, -25px) scale(1.15);
   }
@@ -124,6 +136,7 @@
 
 .er-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -151,7 +164,6 @@
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -167,8 +179,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px 15px;
+
   border: 1px solid #e2eaf5;
   border-radius: 9px;
+
   background: #ffffff;
   color: #8092a9;
   font-size: 11px;
@@ -205,6 +219,8 @@
 .er-card {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 
   border: 1px solid #e1eaf5;
   border-radius: 13px;
@@ -234,7 +250,6 @@
     opacity: 0;
     transform: translateY(12px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -246,6 +261,8 @@
 ========================================================= */
 
 .er-club-card {
+  width: 100%;
+  min-width: 0;
   padding: 22px;
   margin-bottom: 17px;
   animation-delay: 0.1s;
@@ -259,6 +276,7 @@
   display: flex;
   flex-direction: column;
   gap: 9px;
+  min-width: 0;
 
   color: #304d72;
   font-size: 12px;
@@ -267,16 +285,15 @@
 }
 
 /* =========================================================
-   PREMIUM SELECTOR WRAPPER
+   SELECTOR
 ========================================================= */
 
 .er-select-wrap {
   position: relative;
   width: 100%;
   max-width: 380px;
+  min-width: 0;
 }
-
-/* Custom dropdown arrow for Club selector */
 
 .er-select-wrap::after {
   position: absolute;
@@ -317,21 +334,16 @@
   -webkit-appearance: none;
 
   width: 100%;
+  min-width: 0;
   height: 46px;
 
   padding: 0 40px 0 14px;
 
   border: 1px solid #dce6f2;
   border-radius: 9px;
-
   outline: none;
 
-  background: linear-gradient(
-    135deg,
-    #ffffff,
-    #fafdff
-  );
-
+  background: linear-gradient(135deg, #ffffff, #fafdff);
   color: #263f60;
 
   font-family: inherit;
@@ -340,35 +352,22 @@
 
   cursor: pointer;
 
-  transition:
-    border-color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+  transition: all 0.25s ease;
 }
-
-/* Club selector spacing */
 
 .er-select-wrap select {
   padding-right: 75px;
 }
 
-/* Selector hover */
-
 .er-field select:hover {
   border-color: #8bb5ed;
-
   background: #f7faff;
 
-  box-shadow:
-    0 3px 12px rgba(37, 99, 235, 0.07);
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.07);
 }
-
-/* Selector focus */
 
 .er-field select:focus {
   border-color: #4389e8;
-
   background: #ffffff;
 
   box-shadow:
@@ -376,13 +375,9 @@
     0 5px 14px rgba(37, 99, 235, 0.07);
 }
 
-/* Dropdown open wrapper */
-
 .er-select-wrap:focus-within select {
   border-color: #4389e8;
 }
-
-/* Native dropdown options */
 
 .er-field select option {
   padding: 12px;
@@ -395,8 +390,6 @@
   background: #eaf2ff;
   color: #174b9a;
 }
-
-/* Disabled selector */
 
 .er-field select:disabled {
   border-color: #e3eaf3;
@@ -432,7 +425,6 @@
   cursor: pointer;
 
   transform: translateY(-50%);
-
   transition: all 0.25s ease;
 }
 
@@ -454,7 +446,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
   margin: 15px 0 0;
 
   color: #7186a2;
@@ -479,7 +470,6 @@
   0%, 100% {
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
   }
-
   50% {
     box-shadow: 0 0 0 7px rgba(59, 130, 246, 0.04);
   }
@@ -490,6 +480,8 @@
 ========================================================= */
 
 .er-main-card {
+  width: 100%;
+  min-width: 0;
   padding: 27px;
   animation-delay: 0.2s;
 }
@@ -500,6 +492,7 @@
 
 .er-heading-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   gap: 15px;
@@ -517,10 +510,8 @@
 
 .er-heading-row h3::before {
   display: inline-block;
-
   width: 4px;
   height: 16px;
-
   margin-right: 9px;
 
   border-radius: 5px;
@@ -555,11 +546,10 @@
   border-radius: 20px;
 
   background: linear-gradient(135deg, #edf5ff, #e4efff);
-
   color: #245bb5;
+
   font-size: 11px;
   font-weight: 700;
-
   white-space: nowrap;
 
   transition: all 0.25s ease;
@@ -583,7 +573,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 
+  width: 100%;
   max-width: 700px;
+  min-width: 0;
 }
 
 .er-date-fields .er-field {
@@ -592,13 +584,13 @@
 
 .er-field input {
   width: 100%;
+  min-width: 0;
   height: 46px;
 
   padding: 0 13px;
 
   border: 1px solid #dce6f2;
   border-radius: 9px;
-
   outline: none;
 
   background: #fbfdff;
@@ -631,7 +623,6 @@
 .er-divider {
   width: 100%;
   height: 1px;
-
   margin: 27px 0;
 
   background: linear-gradient(
@@ -647,7 +638,9 @@
 ========================================================= */
 
 .er-completed-field {
+  width: 100%;
   max-width: 480px;
+  min-width: 0;
   margin-bottom: 23px;
 }
 
@@ -670,14 +663,12 @@
   gap: 9px;
 
   overflow: hidden;
-
   padding: 0 21px;
 
   border: 1px solid #2563c5;
   border-radius: 8px;
 
   background: linear-gradient(115deg, #2563c5, #347fe1);
-
   color: #ffffff;
 
   font-family: inherit;
@@ -707,7 +698,6 @@
   );
 
   content: "";
-
   transition: left 0.55s ease;
 }
 
@@ -739,12 +729,30 @@
 }
 
 /* =========================================================
-   RESPONSIVE
+   OVERFLOW PROTECTION
 ========================================================= */
 
-@media (max-width: 900px) {
+.event-end-page img,
+.event-end-page svg,
+.event-end-page canvas {
+  max-width: 100%;
+}
+
+.event-end-page table {
+  max-width: 100%;
+}
+
+.event-end-page .er-card > * {
+  min-width: 0;
+}
+
+/* =========================================================
+   TABLET RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
   .event-end-page {
-    padding: 24px;
+    padding: 22px;
   }
 
   .er-main-card {
@@ -752,9 +760,13 @@
   }
 }
 
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
 @media (max-width: 700px) {
   .event-end-page {
-    padding: 18px;
+    padding: 16px;
   }
 
   .er-header {
@@ -793,6 +805,10 @@
     width: 100%;
   }
 }
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
 @media (max-width: 420px) {
   .event-end-page {

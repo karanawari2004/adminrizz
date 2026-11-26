@@ -1,9 +1,11 @@
+
 /* ==========================================
    MANAGE CATALOG - PREMIUM RIZZTIX DESIGN
 ========================================== */
 
 .admin-catalog-page {
   width: 100%;
+  min-width: 0;
   min-height: 100vh;
   padding: 28px 30px 35px;
   color: #edf2ff;
@@ -23,25 +25,17 @@
 
 .admin-catalog-page .admin-catalog-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-
   width: 100%;
   min-height: 76px;
   padding: 12px;
-
   margin: 22px 0 20px;
-
-  background: linear-gradient(
-    110deg,
-    rgba(29, 44, 72, 0.95),
-    rgba(18, 32, 55, 0.96)
-  );
-
+  background: linear-gradient(110deg, #1d2c48, #122037);
   border: 1px solid rgba(104, 130, 175, 0.25);
   border-radius: 12px;
-
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
 }
 
@@ -49,82 +43,155 @@
    SEARCH INPUT
 ========================================== */
 
-.admin-catalog-page .admin-catalog-toolbar > input {
-  width: 100%;
-  max-width: 85%;
+.admin-catalog-page .admin-catalog-search {
+  display: flex;
+  flex: 1 1 220px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
   height: 46px;
-
-  padding: 0 16px;
-
-  color: #f3f6ff;
-  background: rgba(16, 30, 52, 0.85);
-
+  padding: 0 14px;
+  color: #93c5fd;
+  background: #101e34;
   border: 1px solid #354563;
   border-radius: 9px;
-
-  outline: none;
-  font-size: 14px;
-
   transition: all 0.25s ease;
 }
 
+.admin-catalog-page .admin-catalog-search:focus-within {
+  border-color: #2563eb;
+  background: #172944;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.admin-catalog-page .admin-catalog-search svg {
+  flex-shrink: 0;
+}
+
+.admin-catalog-page .admin-catalog-search > input,
+.admin-shell[data-theme] .admin-catalog-page .admin-catalog-search > input,
+.admin-shell[data-theme] .admin-catalog-page .admin-catalog-search > input:focus,
+.admin-catalog-page .admin-catalog-toolbar > input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  color: inherit;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.admin-catalog-page .admin-catalog-search > input {
+  color: #f3f6ff;
+}
+
+.admin-categories-page .admin-catalog-search > input,
+.admin-shell[data-theme="light"] .admin-categories-page .admin-catalog-search > input {
+  color: #0f172a !important;
+}
+
+.admin-shell[data-theme="dark"] .admin-categories-page .admin-catalog-search > input {
+  color: var(--admin-text) !important;
+}
+
+.admin-catalog-page .admin-catalog-search > input::placeholder,
 .admin-catalog-page .admin-catalog-toolbar > input::placeholder {
   color: #a4b0c6;
 }
 
-.admin-catalog-page .admin-catalog-toolbar > input:focus {
-  border-color: #ff5722;
+.admin-catalog-page .admin-th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  background: #172944;
+.admin-catalog-page .admin-catalog-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 20px;
+}
 
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.12);
+.admin-catalog-page .admin-catalog-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 13px;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.05);
+}
+
+.admin-catalog-page .admin-catalog-stat-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 11px;
+}
+
+.admin-catalog-page .admin-catalog-stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.admin-catalog-page .admin-catalog-stat-info span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.admin-catalog-page .admin-catalog-stat-info strong {
+  font-size: 20px;
+  font-weight: 750;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ==========================================
-   ADD BUTTON
+   PRIMARY BUTTON
 ========================================== */
 
 .admin-catalog-page .admin-primary-button {
   min-width: 125px;
   min-height: 46px;
-
   padding: 0 20px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-
   color: #ffffff;
-
-  background: linear-gradient(
-    135deg,
-    #ff6428,
-    #f0440d
-  );
-
+  background: linear-gradient(135deg, #ff6428, #f0440d);
   border: 1px solid #ff6428;
   border-radius: 9px;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
-
   box-shadow: 0 4px 12px rgba(255, 75, 20, 0.15);
-
   transition: all 0.25s ease;
 }
 
 .admin-catalog-page .admin-primary-button:hover {
-  background: linear-gradient(
-    135deg,
-    #ff7943,
-    #ff5019
-  );
-
+  background: linear-gradient(135deg, #ff7943, #ff5019);
   box-shadow: 0 6px 18px rgba(255, 75, 20, 0.25);
-
   transform: translateY(-2px);
 }
 
@@ -139,16 +206,9 @@
 .admin-catalog-page .admin-table-card {
   width: 100%;
   overflow-x: auto;
-
-  background: linear-gradient(
-    145deg,
-    rgba(21, 36, 61, 0.97),
-    rgba(13, 27, 49, 0.98)
-  );
-
+  background: linear-gradient(145deg, #15243d, #0d1b31);
   border: 1px solid rgba(103, 130, 177, 0.32);
   border-radius: 13px;
-
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.17);
 }
 
@@ -159,34 +219,22 @@
 .admin-catalog-page .admin-catalog-table {
   width: 100%;
   min-width: 640px;
-
   border-collapse: separate;
   border-spacing: 0;
-
   text-align: left;
 }
 
-/* Table Header */
-
 .admin-catalog-page .admin-catalog-table thead {
-  background: linear-gradient(
-    110deg,
-    #293a59,
-    #25334e
-  );
+  background: linear-gradient(110deg, #293a59, #25334e);
 }
 
 .admin-catalog-page .admin-catalog-table th {
   height: 60px;
   padding: 0 30px;
-
   color: #f5f7ff;
-
   font-size: 14px;
   font-weight: 700;
-
   white-space: nowrap;
-
   border-bottom: 1px solid rgba(120, 145, 185, 0.22);
 }
 
@@ -205,47 +253,34 @@
 .admin-catalog-page .admin-catalog-table td {
   height: 55px;
   padding: 10px 30px;
-
   color: #dce5f5;
-
   font-size: 14px;
-
   border-bottom: 1px solid rgba(110, 135, 175, 0.19);
-
   transition: background 0.2s ease;
 }
 
-/* First Column */
-
 .admin-catalog-page .admin-catalog-table td:first-child {
   position: relative;
-
   color: #f5f7ff;
   font-weight: 600;
 }
 
-/* Orange Row Indicator */
+/* ORANGE ROW INDICATOR */
 
 .admin-catalog-page .admin-catalog-table tbody td:first-child::before {
   content: "";
-
   position: absolute;
-
   left: 0;
   top: 9px;
   bottom: 9px;
-
   width: 4px;
-
   background: #ff5722;
   border-radius: 0 5px 5px 0;
-
   opacity: 0;
-
   transition: opacity 0.2s ease;
 }
 
-/* Row Hover */
+/* ROW HOVER */
 
 .admin-catalog-page .admin-catalog-table tbody tr {
   transition: background 0.2s ease;
@@ -259,8 +294,6 @@
   opacity: 1;
 }
 
-/* Last Row */
-
 .admin-catalog-page .admin-catalog-table tbody tr:last-child td {
   border-bottom: none;
 }
@@ -273,19 +306,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-width: 25px;
   height: 23px;
-
   margin-left: 8px;
   padding: 0 7px;
-
   color: #ffffff;
   background: #142541;
-
   border: 1px solid rgba(125, 150, 195, 0.15);
   border-radius: 6px;
-
   font-size: 12px;
   font-weight: 700;
 }
@@ -298,59 +326,40 @@
   white-space: nowrap;
 }
 
-/* Common Action Button */
-
 .admin-catalog-page .admin-icon-action {
   width: 39px;
   height: 39px;
-
   margin-right: 9px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   color: #d1d9ff;
   background: #202f50;
-
   border: 1px solid rgba(130, 155, 220, 0.12);
   border-radius: 9px;
-
   cursor: pointer;
-
   transition: all 0.22s ease;
 }
-
-/* Edit */
 
 .admin-catalog-page .admin-icon-action:not(.delete):hover {
   color: #ffffff;
   background: #354b7c;
-
   border-color: #7189d4;
-
   transform: translateY(-2px);
 }
-
-/* Delete */
 
 .admin-catalog-page .admin-icon-action.delete {
   color: #ff725d;
   background: rgba(151, 39, 37, 0.32);
-
   border-color: rgba(255, 83, 65, 0.12);
 }
 
 .admin-catalog-page .admin-icon-action.delete:hover {
   color: #ffffff;
   background: #c9362b;
-
   border-color: #f35b4d;
-
   transform: translateY(-2px);
 }
-
-/* Button Click */
 
 .admin-catalog-page .admin-icon-action:active {
   transform: scale(0.94);
@@ -362,12 +371,257 @@
 
 .admin-catalog-page .admin-empty-row {
   padding: 40px 20px !important;
-
   color: #aab8ce !important;
-
   text-align: center;
   font-size: 14px;
   font-weight: 400 !important;
+}
+
+/* ==========================================
+   WHITE MODAL OVERLAY
+========================================== */
+
+.catalog-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  animation: catalogFadeIn 0.2s ease;
+}
+
+@keyframes catalogFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   WHITE MODAL BOX
+========================================== */
+
+.catalog-modal {
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e8edf4;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.22);
+  animation: catalogModalIn 0.25s ease;
+}
+
+@keyframes catalogModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================
+   MODAL HEADER
+========================================== */
+
+.catalog-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 22px 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 100%);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.catalog-modal-title-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.catalog-modal-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.catalog-modal-header h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.catalog-modal-header p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* CLOSE BUTTON */
+
+.catalog-modal-close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.catalog-modal-close:hover {
+  color: #ffffff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* ==========================================
+   MODAL BODY
+========================================== */
+
+.catalog-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: #ffffff;
+}
+
+.catalog-modal-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.catalog-modal-field label span {
+  color: #2563eb;
+}
+
+.catalog-modal-body input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.catalog-modal-body input::placeholder {
+  color: #94a3b8;
+}
+
+.catalog-modal-body input:hover {
+  border-color: #93c5fd;
+}
+
+.catalog-modal-body input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+/* ERROR MESSAGE */
+
+.catalog-modal-body .catalog-error {
+  margin: 0;
+  padding: 9px 12px;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ==========================================
+   MODAL FOOTER
+========================================== */
+
+.catalog-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 22px;
+  background: #f8fbff;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* CANCEL BUTTON */
+
+.catalog-cancel-button {
+  min-width: 95px;
+  height: 43px;
+  padding: 0 17px;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.catalog-cancel-button:hover {
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+/* SAVE / UPDATE BUTTON */
+
+.catalog-modal-footer .admin-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 43px;
+  min-width: 130px;
+  padding: 0 18px;
+  color: #ffffff;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.catalog-modal-footer .admin-primary-button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
 }
 
 /* ==========================================
@@ -391,11 +645,15 @@
     padding: 18px 14px;
   }
 
+  .admin-catalog-page .admin-catalog-stats {
+    grid-template-columns: 1fr;
+  }
+
   .admin-catalog-page .admin-catalog-toolbar {
-    flex-wrap: wrap;
     gap: 12px;
   }
 
+  .admin-catalog-page .admin-catalog-search,
   .admin-catalog-page .admin-catalog-toolbar > input {
     max-width: 100%;
   }
@@ -427,6 +685,7 @@
 
   .admin-catalog-page .admin-catalog-toolbar > input {
     height: 42px;
+    flex-basis: 100%;
     font-size: 13px;
   }
 
@@ -451,5 +710,31 @@
   .admin-catalog-page .admin-icon-action {
     width: 34px;
     height: 34px;
+  }
+
+  .catalog-modal {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .catalog-modal-header {
+    padding: 19px;
+  }
+
+  .catalog-modal-header h2 {
+    font-size: 19px;
+  }
+
+  .catalog-modal-body {
+    padding: 20px 19px;
+  }
+
+  .catalog-modal-footer {
+    padding: 15px 19px 19px;
+  }
+
+  .catalog-modal-footer button {
+    flex: 1;
+    min-width: 0;
   }
 }

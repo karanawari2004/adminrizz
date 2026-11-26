@@ -11,6 +11,7 @@
   --border: #e2e8f0;
 
   width: 100%;
+  min-width: 0;
   min-height: 100%;
   padding: 26px 28px;
   box-sizing: border-box;
@@ -52,6 +53,7 @@
 
 .utility-card-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   position: relative;

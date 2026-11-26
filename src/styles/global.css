@@ -178,6 +178,7 @@ select:focus-visible {
 
 .page-transition {
   width: 100%;
+  min-width: 0;
   min-height: 100vh;
   will-change: opacity, transform, filter;
 }

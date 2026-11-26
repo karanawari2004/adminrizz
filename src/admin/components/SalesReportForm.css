@@ -1,7 +1,7 @@
 /* =====================================================
    RIZZTIX · SALES REPORT
    Professional White & Blue Dashboard
-   Purple Fluid Vessel + Category + Revenue Graphs
+   Purple Fluid Vessel + Catagory + Revenue Graphs
    Complete Responsive Stylesheet
    ===================================================== */
 
@@ -22,6 +22,8 @@
 
   position: relative;
   isolation: isolate;
+  width: 100%;
+  min-width: 0;
   min-height: 100vh;
   padding: 28px 30px 80px;
   color: var(--sr-text);
@@ -640,6 +642,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
   margin-top: 28px;
 }
 
@@ -648,13 +651,13 @@
 .sr-addon-grid,
 .sr-channel-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr));
   gap: 18px;
 }
 
 .sr-chart-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 18px;
   margin-bottom: 18px;
 }
@@ -706,6 +709,7 @@
 .sr-chart-card,
 .sr-channel-card {
   position: relative;
+  min-width: 0;
   padding: 22px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
@@ -1066,8 +1070,8 @@
 }
 
 .sr-legend {
-  flex: 1;
-  min-width: 180px;
+  flex: 1 1 180px;
+  min-width: min(100%, 180px);
 }
 
 .sr-legend div {
@@ -1110,8 +1114,8 @@
 }
 
 .sr-addon-donut-legend {
-  flex: 1;
-  min-width: 230px;
+  flex: 1 1 230px;
+  min-width: min(100%, 230px);
 }
 
 .sr-addon-legend-item {
@@ -1187,11 +1191,16 @@
    ===================================================== */
 
 .sr-section {
+  min-width: 0;
   padding: 24px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
   border-radius: 18px;
   box-shadow: 0 1px 2px rgba(15, 42, 92, 0.04);
+}
+
+.sr-section-content {
+  min-width: 0;
 }
 
 .sr-section-heading {
@@ -1231,10 +1240,10 @@
 }
 
 /* =====================================================
-   CATEGORY BREAKDOWN GRAPH
+   Catagory BREAKDOWN GRAPH
    ===================================================== */
 
-.sr-category-chart-card {
+.sr-Catagory-chart-card {
   margin-bottom: 22px;
   padding: 20px;
   background: var(--sr-bg);
@@ -1242,7 +1251,7 @@
   border-radius: 14px;
 }
 
-.sr-category-chart-heading {
+.sr-Catagory-chart-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1251,14 +1260,14 @@
   margin-bottom: 20px;
 }
 
-.sr-category-chart-heading h4 {
+.sr-Catagory-chart-heading h4 {
   margin: 0;
   font-size: 15px;
   font-weight: 700;
   color: var(--sr-text);
 }
 
-.sr-category-chart-heading span {
+.sr-Catagory-chart-heading span {
   padding: 5px 11px;
   font-size: 11px;
   font-weight: 700;
@@ -1267,13 +1276,13 @@
   border-radius: 99px;
 }
 
-.sr-category-chart-grid {
+.sr-Catagory-chart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 14px;
 }
 
-.sr-category-chart-item {
+.sr-Catagory-chart-item {
   padding: 16px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
@@ -1281,12 +1290,12 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.sr-category-chart-item:hover {
+.sr-Catagory-chart-item:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(29, 78, 216, 0.1);
 }
 
-.sr-category-chart-top {
+.sr-Catagory-chart-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1294,36 +1303,36 @@
   margin-bottom: 12px;
 }
 
-.sr-category-chart-top strong {
+.sr-Catagory-chart-top strong {
   font-size: 13px;
   color: var(--sr-text);
 }
 
-.sr-category-chart-top span {
+.sr-Catagory-chart-top span {
   font-size: 12px;
   font-weight: 700;
   color: var(--sr-muted);
 }
 
-.sr-category-chart-count {
+.sr-Catagory-chart-count {
   display: flex;
   align-items: baseline;
   gap: 5px;
   margin-bottom: 12px;
 }
 
-.sr-category-chart-count strong {
+.sr-Catagory-chart-count strong {
   font-size: 27px;
   font-weight: 700;
   color: var(--sr-text);
 }
 
-.sr-category-chart-count span {
+.sr-Catagory-chart-count span {
   font-size: 12px;
   color: var(--sr-muted);
 }
 
-.sr-category-progress {
+.sr-Catagory-progress {
   width: 100%;
   height: 10px;
   overflow: hidden;
@@ -1331,7 +1340,7 @@
   border-radius: 99px;
 }
 
-.sr-category-progress div {
+.sr-Catagory-progress div {
   height: 100%;
   min-width: 4px;
   border-radius: inherit;
@@ -1339,11 +1348,11 @@
   animation: sr-fill 1.2s cubic-bezier(0.2, 0.9, 0.25, 1) 0.3s backwards;
 }
 
-.sr-category-progress .ga { background: linear-gradient(90deg, #3b82f6, #2563eb); }
-.sr-category-progress .vvip { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
-.sr-category-progress .couple { background: linear-gradient(90deg, #2dd4bf, #0d9488); }
+.sr-Catagory-progress .ga { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+.sr-Catagory-progress .vvip { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
+.sr-Catagory-progress .couple { background: linear-gradient(90deg, #2dd4bf, #0d9488); }
 
-.sr-category-chart-footer {
+.sr-Catagory-chart-footer {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -1917,23 +1926,23 @@
   border-color: #75404b;
 }
 
-.sr-dark .sr-category-chart-card,
-.dark .sr-category-chart-card,
-[data-theme="dark"] .sr-category-chart-card {
+.sr-dark .sr-Catagory-chart-card,
+.dark .sr-Catagory-chart-card,
+[data-theme="dark"] .sr-Catagory-chart-card {
   background: #162238;
   border-color: #334155;
 }
 
-.sr-dark .sr-category-chart-item,
-.dark .sr-category-chart-item,
-[data-theme="dark"] .sr-category-chart-item {
+.sr-dark .sr-Catagory-chart-item,
+.dark .sr-Catagory-chart-item,
+[data-theme="dark"] .sr-Catagory-chart-item {
   background: #1e293b;
   border-color: #334155;
 }
 
-.sr-dark .sr-category-progress,
-.dark .sr-category-progress,
-[data-theme="dark"] .sr-category-progress { background: #334155; }
+.sr-dark .sr-Catagory-progress,
+.dark .sr-Catagory-progress,
+[data-theme="dark"] .sr-Catagory-progress { background: #334155; }
 
 .sr-dark .sr-revenue-value { color: #e2e8f0; }
 
@@ -2041,9 +2050,9 @@
 
   .sr-section { padding: 17px 12px; }
 
-  .sr-category-chart-card { padding: 14px; }
+  .sr-Catagory-chart-card { padding: 14px; }
 
-  .sr-category-chart-grid { grid-template-columns: 1fr; }
+  .sr-Catagory-chart-grid { grid-template-columns: 1fr; }
 
   .sr-header h2 { font-size: 24px; }
 
@@ -2141,7 +2150,8 @@
   border: 1px solid #e5eaf2;
   border-radius: 16px;
   box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   transition:
     background 0.3s ease,
     border-color 0.3s ease,

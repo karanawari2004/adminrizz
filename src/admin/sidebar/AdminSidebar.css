@@ -140,7 +140,7 @@
 }
 
 .mini-sidebar-scroll::-webkit-scrollbar {
-  width: 4px;
+  width: 1px;
 }
 
 .mini-sidebar-scroll::-webkit-scrollbar-track {
@@ -149,7 +149,7 @@
 
 .mini-sidebar-scroll::-webkit-scrollbar-thumb {
   background: var(--sidebar-scroll-thumb);
-  border-radius: 5px;
+  border-radius: 1px;
 }
 
 .mini-sidebar-scroll::-webkit-scrollbar-thumb:hover {
