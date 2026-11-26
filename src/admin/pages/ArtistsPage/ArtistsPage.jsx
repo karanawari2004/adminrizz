@@ -17,6 +17,51 @@ import AdminHeading from "../../AdminHeading";
 import { artists as initialArtists } from "../../data";
 import "./ArtistsPage.css";
 
+const AVATAR_TONES = ["tone-0", "tone-1", "tone-2", "tone-3"];
+
+const getInitials = (name = "") =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
+
+const stripHtml = (html = "") =>
+  html
+    .replace(/<\/(p|div|li)>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const getHandle = (url = "") => {
+  const m = url.match(/instagram\.com\/([^/?#\s]+)/i);
+  return m ? `@${m[1]}` : "";
+};
+
+function ArtistAvatar({ artist, index }) {
+  const [failed, setFailed] = useState(false);
+  const src = typeof artist.image === "string" ? artist.image : "";
+
+  return (
+    <span
+      className={`admin-artist-avatar ${AVATAR_TONES[index % AVATAR_TONES.length]}`}
+    >
+      {src && !failed ? (
+        <img
+          src={src}
+          alt={artist.name}
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        getInitials(artist.name)
+      )}
+    </span>
+  );
+}
+
 export default function ArtistsPage() {
   const [artistsList, setArtistsList] = useState(
     initialArtists.map((artist) => ({
@@ -274,95 +319,108 @@ export default function ArtistsPage() {
         {/* ARTISTS TABLE */}
         <div className="admin-table-card">
 
-          <table className="admin-table admin-artists-table">
+          <div className="admin-card-head">
+            <div className="admin-card-tab">
+              Artists
+              <span className="admin-count">{artistsList.length}</span>
+            </div>
+          </div>
 
-            <thead>
-              <tr>
-                <th>
-                  Artists
-                  <span className="admin-count">
-                    {artistsList.length}
-                  </span>
-                </th>
+          <div className="admin-table-scroll">
+            <table className="admin-table admin-artists-table">
 
-                <th>About Artist</th>
-                <th>No. Of Followers</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              {visibleArtists.map((artist, index) => (
-
-                <tr key={`${artist.name}-${index}`}>
-
-                  <td>
-                    <div className="admin-artist-cell">
-
-                      <span className="admin-artist-avatar">
-                        {artist.image ? (
-                          <img
-                            src={artist.image}
-                            alt={artist.name}
-                          />
-                        ) : (
-                          artist.name.slice(0, 1).toUpperCase()
-                        )}
-                      </span>
-
-                      <strong>{artist.name}</strong>
-
-                    </div>
-                  </td>
-
-                  <td>
-                    {artist.about
-                      ? artist.about.replace(/<[^>]*>/g, "")
-                      : ""}
-                  </td>
-
-                  <td>{artist.followers || 0}</td>
-
-                  <td>
-                    <div className="admin-artist-actions">
-
-                      <button
-                        aria-label={`Edit ${artist.name}`}
-                        className="admin-icon-action"
-                        onClick={() => handleEdit(artist)}
-                        type="button"
-                      >
-                        <Pencil size={17} />
-                      </button>
-
-                      <button
-                        aria-label={`Delete ${artist.name}`}
-                        className="admin-icon-action delete"
-                        onClick={() => handleDelete(artist.name)}
-                        type="button"
-                      >
-                        <Trash2 size={17} />
-                      </button>
-
-                    </div>
-                  </td>
-
-                </tr>
-
-              ))}
-
-              {visibleArtists.length === 0 && (
+              <thead>
                 <tr>
-                  <td className="admin-empty-row" colSpan="4">
-                    No artists match your search.
-                  </td>
+                  <th>Artist</th>
+                  <th>About Artist</th>
+                  <th>No. Of Followers</th>
+                  <th className="col-actions">Actions</th>
                 </tr>
-              )}
+              </thead>
 
-            </tbody>
+              <tbody>
 
-          </table>
+                {visibleArtists.map((artist, index) => {
+                  const about = stripHtml(artist.about);
+                  const handle = getHandle(artist.instagram);
+
+                  return (
+                    <tr key={`${artist.name}-${index}`}>
+
+                      <td>
+                        <div className="admin-artist-cell">
+                          <ArtistAvatar artist={artist} index={index} />
+
+                          <span className="admin-artist-meta">
+                            <strong>{artist.name}</strong>
+                            {handle && (
+                              <a
+                                className="admin-artist-handle"
+                                href={artist.instagram}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {handle}
+                              </a>
+                            )}
+                          </span>
+                        </div>
+                      </td>
+
+                      <td>
+                        {about ? (
+                          <p className="admin-artist-about">{about}</p>
+                        ) : (
+                          <span className="admin-pill muted">No bio</span>
+                        )}
+                      </td>
+
+                      <td>
+                        <span className="admin-followers">
+                          {artist.followers || 0}
+                        </span>
+                      </td>
+
+                      <td>
+                        <div className="admin-artist-actions">
+
+                          <button
+                            aria-label={`Edit ${artist.name}`}
+                            className="admin-icon-action"
+                            onClick={() => handleEdit(artist)}
+                            type="button"
+                          >
+                            <Pencil size={16} />
+                          </button>
+
+                          <button
+                            aria-label={`Delete ${artist.name}`}
+                            className="admin-icon-action delete"
+                            onClick={() => handleDelete(artist.name)}
+                            type="button"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+
+                        </div>
+                      </td>
+
+                    </tr>
+                  );
+                })}
+
+                {visibleArtists.length === 0 && (
+                  <tr>
+                    <td className="admin-empty-row" colSpan="4">
+                      No artists match your search.
+                    </td>
+                  </tr>
+                )}
+
+              </tbody>
+
+            </table>
+          </div>
 
         </div>
       </div>
