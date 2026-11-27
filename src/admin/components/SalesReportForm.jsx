@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./SalesReportForm.css";
 
 /* =====================================================
@@ -181,6 +181,11 @@ const toISO = (d) =>
     d.getDate()
   ).padStart(2, "0")}`;
 
+const parseISO = (iso) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d);
+};
+
 const getPreset = (key) => {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -357,6 +362,7 @@ const ICONS = {
     </>
   ),
   chevronDown: <path d="M6 9l6 6 6-6" />,
+  chevronLeft: <path d="M15 5l-7 7 7 7" />,
   chevronRight: <path d="M9 6l6 6-6 6" />,
   check: <path d="M5 12l5 5L20 7" />,
   search: (
@@ -391,6 +397,263 @@ function Icon({ name, size = 16 }) {
     >
       {ICONS[name]}
     </svg>
+  );
+}
+
+/* =====================================================
+   DARK DATE PICKER (calendar card)
+   Click once → start date, click again → end date.
+   ===================================================== */
+const DP_WEEKDAYS = ["M", "T", "W", "T", "F", "S", "S"];
+const DP_WEEKDAY_NAMES = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const DP_MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const dpStartOfDay = (d) =>
+  new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+const dpSameDay = (a, b) =>
+  !!a &&
+  !!b &&
+  a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate();
+
+const dpBetween = (d, a, b) => !!a && !!b && d > a && d < b;
+
+/* Fixed 6-week grid (Monday first) so the card height never jumps. */
+const dpBuildGrid = (year, month) => {
+  const first = new Date(year, month, 1);
+  const offset = (first.getDay() + 6) % 7;
+  const gridStart = new Date(year, month, 1 - offset);
+
+  return Array.from({ length: 42 }, (_, i) => {
+    const date = new Date(
+      gridStart.getFullYear(),
+      gridStart.getMonth(),
+      gridStart.getDate() + i
+    );
+    return { date, outside: date.getMonth() !== month };
+  });
+};
+
+const dpFormatLong = (d) =>
+  `${DP_WEEKDAY_NAMES[d.getDay()]}, ${
+    DP_MONTH_NAMES[d.getMonth()]
+  } ${d.getDate()}, ${d.getFullYear()}`;
+
+const dpFormatShort = (d) =>
+  `${DP_WEEKDAY_NAMES[d.getDay()].slice(0, 3)}, ${DP_MONTH_NAMES[
+    d.getMonth()
+  ].slice(0, 3)} ${d.getDate()}`;
+
+function DatePicker({ initialStart, initialEnd, onChange }) {
+  const [viewDate, setViewDate] = useState(
+    new Date(initialStart.getFullYear(), initialStart.getMonth(), 1)
+  );
+  const [start, setStart] = useState(dpStartOfDay(initialStart));
+  const [end, setEnd] = useState(initialEnd ? dpStartOfDay(initialEnd) : null);
+
+  const year = viewDate.getFullYear();
+  const month = viewDate.getMonth();
+
+  const cells = useMemo(() => dpBuildGrid(year, month), [year, month]);
+
+  const goToMonth = (delta) => setViewDate(new Date(year, month + delta, 1));
+
+  const handleSelect = (date) => {
+    let nextStart = start;
+    let nextEnd = end;
+
+    if (!start || (start && end)) {
+      nextStart = date;
+      nextEnd = null;
+    } else if (date < start) {
+      nextStart = date;
+    } else {
+      nextEnd = date;
+    }
+
+    setStart(nextStart);
+    setEnd(nextEnd);
+
+    if (onChange) onChange({ start: nextStart, end: nextEnd });
+  };
+
+  const today = dpStartOfDay(new Date());
+
+  const footerText = !start
+    ? "Select a start date"
+    : end && !dpSameDay(start, end)
+    ? `${dpFormatShort(start)} – ${dpFormatShort(end)}, ${end.getFullYear()}`
+    : end
+    ? dpFormatLong(start)
+    : `${dpFormatShort(start)} · select end date`;
+
+  return (
+    <div className="dp" role="group" aria-label="Date picker">
+      <p className="dp-eyebrow">Select Dates</p>
+
+      <div className="dp-header">
+        <button
+          type="button"
+          className="dp-nav"
+          onClick={() => goToMonth(-1)}
+          aria-label="Previous month"
+        >
+          <Icon name="chevronLeft" size={18} />
+        </button>
+
+        <h2 className="dp-title" aria-live="polite">
+          {DP_MONTH_NAMES[month]} {year}
+        </h2>
+
+        <button
+          type="button"
+          className="dp-nav"
+          onClick={() => goToMonth(1)}
+          aria-label="Next month"
+        >
+          <Icon name="chevronRight" size={18} />
+        </button>
+      </div>
+
+      <div className="dp-weekdays" aria-hidden="true">
+        {DP_WEEKDAYS.map((d, i) => (
+          <span key={i}>{d}</span>
+        ))}
+      </div>
+
+      <div className="dp-grid" role="grid">
+        {cells.map(({ date, outside }) => {
+          const isStart = dpSameDay(date, start);
+          const isEnd = dpSameDay(date, end);
+          const inRange = dpBetween(date, start, end);
+
+          const classes = [
+            "dp-day",
+            outside && "is-outside",
+            dpSameDay(date, today) && "is-today",
+            inRange && "in-range",
+            isStart && "range-start",
+            isStart && !end && "lone",
+            isEnd && "range-end",
+            (isStart || isEnd) && "is-selected",
+          ]
+            .filter(Boolean)
+            .join(" ");
+
+          return (
+            <button
+              key={date.toISOString()}
+              type="button"
+              role="gridcell"
+              className={classes}
+              onClick={() => handleSelect(date)}
+              aria-selected={isStart || isEnd || inRange}
+              aria-label={dpFormatLong(date)}
+            >
+              <span className="dp-day-num">{date.getDate()}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <p className="dp-footer">{footerText}</p>
+    </div>
+  );
+}
+
+/* =====================================================
+   DATE RANGE FIELD (button + dark calendar popover)
+   ===================================================== */
+function DateRangeField({ label, from, to, onChange }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const onDown = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target))
+        setOpen(false);
+    };
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div className="sr-field" ref={rootRef}>
+      <span className="sr-field-label">{label}</span>
+
+      <div className="sr-dd">
+        <button
+          type="button"
+          className={`sr-dd-btn${open ? " open" : ""}`}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-label={`${label}: ${fmtDate(from)} to ${fmtDate(to)}`}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="sr-dd-icon">
+            <Icon name="calendar" size={15} />
+          </span>
+
+          <span className="sr-dd-value">
+            {fmtDate(from)} → {fmtDate(to)}
+          </span>
+
+          <span className="sr-dd-chevron">
+            <Icon name="chevronDown" size={16} />
+          </span>
+        </button>
+
+        {open && (
+          <div className="sr-range-pop">
+            <DatePicker
+              initialStart={parseISO(from)}
+              initialEnd={parseISO(to)}
+              onChange={({ start, end }) => {
+                if (start && end) {
+                  onChange(toISO(start), toISO(end));
+                  setOpen(false);
+                }
+              }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -523,25 +786,6 @@ function Dropdown({
             })}
           </div>
         )}
-      </div>
-    </div>
-  );
-}
-
-function DateField({ label, value, onChange }) {
-  return (
-    <div className="sr-field">
-      <span className="sr-field-label">{label}</span>
-
-      <div className="sr-date-box">
-        <Icon name="calendar" size={16} />
-
-        <input
-          type="date"
-          value={value}
-          aria-label={label}
-          onChange={(e) => onChange(e.target.value)}
-        />
       </div>
     </div>
   );
@@ -1060,7 +1304,7 @@ function YearlySalesTrendChart() {
           )}
 
           {/* VERTICAL GRID */}
-          {points.map((point, index) => (
+          {points.map((point) => (
             <line
               key={`grid-${point.month}`}
               x1={point.x}
@@ -1441,6 +1685,11 @@ export default function SalesReportForm({
     setToDate(to);
   };
 
+  const applyRange = (from, to) => {
+    setFromDate(from);
+    setToDate(to);
+  };
+
   const resetFilters = () => {
     setSelectedClub(club);
     setEventType(DEFAULTS.eventType);
@@ -1556,16 +1805,11 @@ export default function SalesReportForm({
             options={CLUB_OPTIONS}
           />
 
-          <DateField
-            label="From"
-            value={fromDate}
-            onChange={setFromDate}
-          />
-
-          <DateField
-            label="To"
-            value={toDate}
-            onChange={setToDate}
+          <DateRangeField
+            label="Date range"
+            from={fromDate}
+            to={toDate}
+            onChange={applyRange}
           />
 
           <Dropdown
@@ -1740,7 +1984,7 @@ export default function SalesReportForm({
             </div>
           </Section>
 
-          {/* NEW YEARLY SALES TREND GRAPH */}
+          {/* YEARLY SALES TREND GRAPH */}
           <Section
             title="Yearly Sales Trends"
             subtitle="Monthly revenue performance and sales channel breakdown."

@@ -8,6 +8,7 @@
   --phase-blue-dark: #174b9a;
   --phase-blue-light: #eaf2ff;
   --phase-blue-soft: #f3f7ff;
+  --phase-coral: #e07a5f;
 
   --phase-bg: #f4f7fc;
   --phase-white: #ffffff;
@@ -31,17 +32,8 @@
   color: var(--phase-text);
 
   background:
-    radial-gradient(
-      circle at 90% 5%,
-      rgba(37, 99, 197, 0.08),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #f8faff 0%,
-      #f1f5fc 55%,
-      #edf3fc 100%
-    );
+    radial-gradient(circle at 90% 5%, rgba(37, 99, 197, 0.08), transparent 30%),
+    linear-gradient(135deg, #f8faff 0%, #f1f5fc 55%, #edf3fc 100%);
 
   font-family: inherit;
 }
@@ -67,9 +59,7 @@
   height: 350px;
 
   border-radius: 50%;
-
   filter: blur(100px);
-
   pointer-events: none;
 
   animation: phaseGlow 12s ease-in-out infinite alternate;
@@ -78,16 +68,13 @@
 .admin-event-phases-page::before {
   top: -140px;
   right: -100px;
-
-  background: rgba(59, 130, 246, 0.10);
+  background: rgba(59, 130, 246, 0.1);
 }
 
 .admin-event-phases-page::after {
   bottom: -150px;
   left: -120px;
-
   background: rgba(96, 165, 250, 0.09);
-
   animation-delay: 2s;
 }
 
@@ -95,7 +82,6 @@
   from {
     transform: translate(0, 0) scale(0.9);
   }
-
   to {
     transform: translate(35px, 25px) scale(1.15);
   }
@@ -143,15 +129,12 @@
 
   transition:
     border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+    box-shadow 0.3s ease;
 }
 
 .admin-event-phases-page .admin-phases-panel:hover {
   border-color: #c9dcf5;
-
-  box-shadow:
-    0 12px 35px rgba(37, 99, 197, 0.075);
+  box-shadow: 0 12px 35px rgba(37, 99, 197, 0.075);
 }
 
 @keyframes phasePanelEnter {
@@ -159,7 +142,6 @@
     opacity: 0;
     transform: translateY(22px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -187,13 +169,7 @@
   border: 1px solid #cbdcf5;
   border-radius: 14px;
 
-  background:
-    linear-gradient(
-      120deg,
-      #f1f6ff,
-      #e8f1ff,
-      #f5f9ff
-    );
+  background: linear-gradient(120deg, #f1f6ff, #e8f1ff, #f5f9ff);
 
   transition:
     border-color 0.3s ease,
@@ -201,24 +177,17 @@
     transform 0.3s ease;
 }
 
-/* Decorative blue line */
-
 .admin-event-phases-page .admin-pricing-banner::before {
   content: "";
 
   position: absolute;
-
   top: 0;
   left: 0;
 
   width: 4px;
   height: 100%;
 
-  background: linear-gradient(
-    180deg,
-    #2563c5,
-    #60a5fa
-  );
+  background: linear-gradient(180deg, #2563c5, #60a5fa);
 
   transition: width 0.3s ease;
 }
@@ -229,10 +198,7 @@
 
 .admin-event-phases-page .admin-pricing-banner:hover {
   border-color: #a9c8f2;
-
-  box-shadow:
-    0 9px 25px rgba(37, 99, 197, 0.08);
-
+  box-shadow: 0 9px 25px rgba(37, 99, 197, 0.08);
   transform: translateY(-2px);
 }
 
@@ -240,29 +206,23 @@
   max-width: 750px;
 }
 
-/* Banner label */
-
 .admin-event-phases-page .admin-pricing-banner span {
   display: inline-flex;
   align-items: center;
 
   margin-bottom: 10px;
-
   padding: 6px 11px;
 
   border: 1px solid #c9dcf8;
   border-radius: 6px;
 
   background: #e4efff;
-
   color: #174b9a;
 
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.5px;
 }
-
-/* Banner heading */
 
 .admin-event-phases-page .admin-pricing-banner h2 {
   margin: 0 0 10px;
@@ -276,7 +236,6 @@
 
 .admin-event-phases-page .admin-pricing-banner p {
   max-width: 680px;
-
   margin: 0;
 
   color: #596579;
@@ -301,18 +260,12 @@
   padding: 12px 25px;
 
   flex-shrink: 0;
-
   overflow: hidden;
 
   border: 1px solid #2563c5;
   border-radius: 9px;
 
-  background: linear-gradient(
-    120deg,
-    #2563c5,
-    #3478d5
-  );
-
+  background: linear-gradient(120deg, #2563c5, #3478d5);
   color: #ffffff;
 
   font-family: inherit;
@@ -321,8 +274,7 @@
 
   cursor: pointer;
 
-  box-shadow:
-    0 5px 14px rgba(37, 99, 197, 0.19);
+  box-shadow: 0 5px 14px rgba(37, 99, 197, 0.19);
 
   transition:
     transform 0.3s ease,
@@ -330,13 +282,10 @@
     background 0.3s ease;
 }
 
-/* Shine animation */
-
 .admin-event-phases-page .admin-primary-button::before {
   content: "";
 
   position: absolute;
-
   top: 0;
   left: -130%;
 
@@ -358,11 +307,7 @@
 }
 
 .admin-event-phases-page .admin-primary-button:hover {
-  background: linear-gradient(
-    120deg,
-    #174b9a,
-    #2563c5
-  );
+  background: linear-gradient(120deg, #174b9a, #2563c5);
 
   box-shadow:
     0 9px 22px rgba(37, 99, 197, 0.28),
@@ -381,6 +326,7 @@
 
 .admin-event-phases-page .admin-phase-selects {
   position: relative;
+  z-index: 5;
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -403,24 +349,23 @@
 
 .admin-event-phases-page .admin-phase-selects:hover {
   border-color: #c5d9f4;
-
   background: #ffffff;
-
-  box-shadow:
-    0 7px 20px rgba(37, 99, 197, 0.045);
+  box-shadow: 0 7px 20px rgba(37, 99, 197, 0.045);
 }
 
 /* =========================================================
-   LABELS
+   FIELD + LABEL (shared)
 ========================================================= */
 
-.admin-event-phases-page .admin-phase-selects label,
-.admin-event-phases-page .admin-phase-inputs label {
+.admin-event-phases-page .admin-field {
   display: flex;
   flex-direction: column;
-
   gap: 10px;
 
+  min-width: 0;
+}
+
+.admin-event-phases-page .admin-field-label {
   color: #111827;
 
   font-size: 12px;
@@ -429,11 +374,10 @@
 }
 
 /* =========================================================
-   INPUTS AND SELECTS
+   TEXT / NUMBER / TIME INPUTS
 ========================================================= */
 
-.admin-event-phases-page .admin-phases-panel input,
-.admin-event-phases-page .admin-phases-panel select {
+.admin-event-phases-page .admin-phases-panel input {
   display: block;
 
   width: 100%;
@@ -447,7 +391,6 @@
   outline: none;
 
   background-color: #ffffff;
-
   color: #111827;
 
   font-family: inherit;
@@ -459,96 +402,482 @@
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
+    background 0.25s ease;
 }
-
-/* Placeholder */
 
 .admin-event-phases-page .admin-phases-panel input::placeholder {
   color: #8490a3;
   font-weight: 400;
 }
 
-/* Hover */
-
-.admin-event-phases-page .admin-phases-panel input:hover,
-.admin-event-phases-page .admin-phases-panel select:hover {
+.admin-event-phases-page .admin-phases-panel input:hover {
   border-color: #8eb6ec;
-
   background-color: #fbfdff;
-
-  box-shadow:
-    0 3px 10px rgba(37, 99, 197, 0.055);
+  box-shadow: 0 3px 10px rgba(37, 99, 197, 0.055);
 }
 
-/* Focus */
-
-.admin-event-phases-page .admin-phases-panel input:focus,
-.admin-event-phases-page .admin-phases-panel select:focus {
+.admin-event-phases-page .admin-phases-panel input:focus {
   border-color: #3478d5;
-
   background: #ffffff;
 
   box-shadow:
     0 0 0 3px rgba(37, 99, 197, 0.11),
     0 5px 13px rgba(37, 99, 197, 0.06);
-
-  transform: translateY(-1px);
 }
 
-/* =========================================================
-   BEAUTIFUL CUSTOM SELECT ARROW
-========================================================= */
-
-.admin-event-phases-page .admin-phases-panel select {
-  appearance: none;
-  -webkit-appearance: none;
-
-  padding-right: 40px;
-
-  cursor: pointer;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232563c5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
-}
-
-.admin-event-phases-page .admin-phases-panel select:focus {
-  background-color: #ffffff;
-}
-
-.admin-event-phases-page .admin-phases-panel select option {
-  padding: 12px;
-
-  background: #ffffff;
-
-  color: #111827;
-}
-
-/* =========================================================
-   DATE PICKER
-========================================================= */
-
-.admin-event-phases-page input[type="datetime-local"] {
+.admin-event-phases-page input[type="time"] {
   color-scheme: light;
 }
 
-.admin-event-phases-page input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+.admin-event-phases-page input[type="time"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
-
   opacity: 0.75;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
 }
 
-.admin-event-phases-page input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
-  opacity: 1;
-  transform: scale(1.12);
+/* =========================================================
+   CUSTOM SELECT
+========================================================= */
+
+.admin-event-phases-page .admin-select {
+  position: relative;
+}
+
+.admin-event-phases-page .admin-select-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 52px;
+
+  padding: 7px 14px 7px 8px;
+
+  border: 1px solid #dce5f1;
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow: 0 1px 3px rgba(20, 50, 90, 0.025);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.admin-event-phases-page .admin-select-trigger:hover:not(:disabled) {
+  border-color: #8eb6ec;
+  box-shadow: 0 3px 10px rgba(37, 99, 197, 0.055);
+}
+
+.admin-event-phases-page .admin-select-trigger.is-open,
+.admin-event-phases-page .admin-select-trigger:focus-visible {
+  border-color: #3478d5;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 197, 0.12),
+    0 5px 13px rgba(37, 99, 197, 0.06);
+}
+
+.admin-event-phases-page .admin-select-trigger:disabled {
+  cursor: not-allowed;
+  background: #f5f8fc;
+}
+
+.admin-event-phases-page .admin-select-trigger:disabled .admin-select-value {
+  color: #8490a3;
+}
+
+.admin-event-phases-page .admin-select-icon {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #eaf2ff;
+  color: #2563c5;
+}
+
+.admin-event-phases-page .admin-select-value {
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-event-phases-page .admin-select-value.is-placeholder {
+  color: #8490a3;
+  font-weight: 500;
+}
+
+.admin-event-phases-page .admin-select-chevron {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  color: #596579;
+}
+
+/* Dropdown menu */
+
+.admin-event-phases-page .admin-select-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 40;
+
+  width: 100%;
+  max-height: 300px;
+
+  margin: 0;
+  padding: 8px;
+
+  overflow-y: auto;
+
+  list-style: none;
+
+  border: 1px solid #e1e9f4;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 12px rgba(30, 65, 110, 0.06),
+    0 18px 40px rgba(37, 99, 197, 0.14);
+
+  animation: phasePopIn 0.16s ease both;
+}
+
+@keyframes phasePopIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-event-phases-page .admin-select-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 9px 12px 9px 9px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: background 0.15s ease;
+}
+
+.admin-event-phases-page .admin-select-option + .admin-select-option {
+  margin-top: 2px;
+}
+
+.admin-event-phases-page .admin-select-option.is-active {
+  background: #f3f7ff;
+}
+
+.admin-event-phases-page .admin-select-option.is-selected {
+  background: #eaf0ff;
+}
+
+.admin-event-phases-page .admin-avatar {
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.admin-event-phases-page .admin-avatar.tone-mint {
+  background: #dcf5ec;
+  color: #0f6e4c;
+}
+
+.admin-event-phases-page .admin-avatar.tone-amber {
+  background: #fdebd2;
+  color: #96560b;
+}
+
+.admin-event-phases-page .admin-avatar.tone-lavender {
+  background: #e7e6fb;
+  color: #3d3a9e;
+}
+
+.admin-event-phases-page .admin-option-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+
+  min-width: 0;
+}
+
+.admin-event-phases-page .admin-option-text strong {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.admin-event-phases-page .admin-option-text small {
+  color: #596579;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.admin-event-phases-page .admin-option-check {
+  display: grid;
+  place-items: center;
+
+  color: #2563c5;
+}
+
+/* =========================================================
+   CALENDAR (DATE RANGE)
+========================================================= */
+
+.admin-event-phases-page .admin-calendar {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 40;
+
+  width: 330px;
+  max-width: calc(100vw - 32px);
+
+  padding: 18px 18px 14px;
+
+  border: 1px solid #e1e9f4;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 12px rgba(30, 65, 110, 0.06),
+    0 22px 48px rgba(37, 99, 197, 0.16);
+
+  animation: phasePopIn 0.16s ease both;
+}
+
+.admin-event-phases-page .admin-calendar-eyebrow {
+  margin: 0 0 12px;
+
+  text-align: center;
+
+  color: #596579;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.admin-event-phases-page .admin-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+}
+
+.admin-event-phases-page .admin-calendar-nav strong {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.admin-event-phases-page .admin-calendar-arrow {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #dce5f1;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #111827;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-event-phases-page .admin-calendar-arrow:hover {
+  border-color: #8eb6ec;
+  background: #f3f7ff;
+}
+
+.admin-event-phases-page .admin-calendar-weekdays,
+.admin-event-phases-page .admin-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.admin-event-phases-page .admin-calendar-weekdays span {
+  padding: 6px 0 10px;
+
+  text-align: center;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Day cells — the cell paints the range band, the button paints the circle */
+
+.admin-event-phases-page .admin-calendar-cell {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  height: 40px;
+}
+
+.admin-event-phases-page .admin-calendar-cell.in-range {
+  background: #e4eeff;
+}
+
+.admin-event-phases-page .admin-calendar-cell.in-range:nth-child(7n + 1) {
+  border-radius: 20px 0 0 20px;
+}
+
+.admin-event-phases-page .admin-calendar-cell.in-range:nth-child(7n) {
+  border-radius: 0 20px 20px 0;
+}
+
+.admin-event-phases-page .admin-calendar-cell.range-start {
+  background: linear-gradient(to right, transparent 50%, #e4eeff 50%);
+}
+
+.admin-event-phases-page .admin-calendar-cell.range-end {
+  background: linear-gradient(to left, transparent 50%, #e4eeff 50%);
+}
+
+.admin-event-phases-page .admin-calendar-day {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.admin-event-phases-page .admin-calendar-day:hover {
+  background: #eaf2ff;
+}
+
+.admin-event-phases-page .admin-calendar-cell.in-range .admin-calendar-day {
+  font-weight: 750;
+}
+
+.admin-event-phases-page .admin-calendar-cell.in-range .admin-calendar-day:hover {
+  background: #d3e4ff;
+}
+
+.admin-event-phases-page .admin-calendar-day.is-outside {
+  color: #8490a3;
+}
+
+.admin-event-phases-page .admin-calendar-day.is-today::after {
+  content: "";
+
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+
+  width: 14px;
+  height: 2px;
+
+  border-radius: 2px;
+
+  background: #2563c5;
+
+  transform: translateX(-50%);
+}
+
+.admin-event-phases-page .admin-calendar-day.is-start,
+.admin-event-phases-page .admin-calendar-day.is-start:hover {
+  background: #2563c5;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.admin-event-phases-page .admin-calendar-day.is-end,
+.admin-event-phases-page .admin-calendar-day.is-end:hover {
+  background: var(--phase-coral);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.admin-event-phases-page .admin-calendar-day.is-start::after,
+.admin-event-phases-page .admin-calendar-day.is-end::after {
+  background: #ffffff;
+}
+
+.admin-event-phases-page .admin-calendar-footer {
+  margin: 12px 0 0;
+  padding-top: 12px;
+
+  border-top: 1px solid #e8eef7;
+
+  text-align: center;
+
+  color: #596579;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
 }
 
 /* =========================================================
@@ -565,8 +894,7 @@
 
   background: #ffffff;
 
-  box-shadow:
-    0 4px 15px rgba(37, 99, 197, 0.035);
+  box-shadow: 0 4px 15px rgba(37, 99, 197, 0.035);
 
   animation: phaseConfigEnter 0.5s ease both;
 
@@ -577,9 +905,7 @@
 
 .admin-event-phases-page .admin-phase-config:hover {
   border-color: #c2d8f5;
-
-  box-shadow:
-    0 9px 24px rgba(37, 99, 197, 0.065);
+  box-shadow: 0 9px 24px rgba(37, 99, 197, 0.065);
 }
 
 @keyframes phaseConfigEnter {
@@ -587,20 +913,16 @@
     opacity: 0;
     transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Configuration heading */
-
 .admin-event-phases-page .admin-phase-config h3 {
   position: relative;
 
   margin: 0 0 26px;
-
   padding-left: 14px;
 
   color: #111827;
@@ -609,13 +931,10 @@
   font-weight: 800;
 }
 
-/* Blue heading accent */
-
 .admin-event-phases-page .admin-phase-config h3::before {
   content: "";
 
   position: absolute;
-
   top: 2px;
   left: 0;
 
@@ -624,18 +943,11 @@
 
   border-radius: 5px;
 
-  background: linear-gradient(
-    180deg,
-    #2563c5,
-    #60a5fa
-  );
+  background: linear-gradient(180deg, #2563c5, #60a5fa);
 }
-
-/* Input grid */
 
 .admin-event-phases-page .admin-phase-inputs {
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 23px;
@@ -649,16 +961,13 @@
   position: relative;
 
   margin: 26px 0 0;
-
   padding: 16px 19px;
 
   border: 1px solid #d9e7fa;
   border-left: 4px solid #3478d5;
-
   border-radius: 8px;
 
   background: #f1f6ff;
-
   color: #111827;
 
   font-size: 12px;
@@ -673,9 +982,7 @@
 
 .admin-event-phases-page .admin-phase-info:hover {
   background: #eaf2ff;
-
   border-color: #a9c8ef;
-
   transform: translateX(3px);
 }
 
@@ -692,7 +999,6 @@
   justify-content: center;
 
   min-height: 260px;
-
   padding: 35px 20px;
 
   text-align: center;
@@ -700,12 +1006,7 @@
   border: 1px dashed #cbdcf1;
   border-radius: 14px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #fbfdff,
-      #f3f7ff
-    );
+  background: linear-gradient(135deg, #fbfdff, #f3f7ff);
 
   animation: phaseConfigEnter 0.6s ease both;
 
@@ -718,16 +1019,10 @@
 
 .admin-event-phases-page .admin-pick-night:hover {
   border-color: #8eb6ec;
-
   background: #f3f8ff;
-
-  box-shadow:
-    0 8px 22px rgba(37, 99, 197, 0.07);
-
+  box-shadow: 0 8px 22px rgba(37, 99, 197, 0.07);
   transform: translateY(-2px);
 }
-
-/* Empty state icon */
 
 .admin-event-phases-page .admin-pick-icon {
   display: flex;
@@ -742,19 +1037,13 @@
   border: 1px solid #c9dcf8;
   border-radius: 17px;
 
-  background: linear-gradient(
-    135deg,
-    #e4efff,
-    #d5e6ff
-  );
-
+  background: linear-gradient(135deg, #e4efff, #d5e6ff);
   color: #2563c5;
 
   font-size: 28px;
   font-weight: 800;
 
-  box-shadow:
-    0 7px 17px rgba(37, 99, 197, 0.10);
+  box-shadow: 0 7px 17px rgba(37, 99, 197, 0.1);
 
   transition:
     transform 0.3s ease,
@@ -764,14 +1053,9 @@
 
 .admin-event-phases-page .admin-pick-night:hover .admin-pick-icon {
   transform: translateY(-5px) rotate(5deg);
-
   background: #dceaff;
-
-  box-shadow:
-    0 12px 23px rgba(37, 99, 197, 0.16);
+  box-shadow: 0 12px 23px rgba(37, 99, 197, 0.16);
 }
-
-/* Empty state heading */
 
 .admin-event-phases-page .admin-pick-night h3 {
   margin: 0 0 10px;
@@ -782,11 +1066,8 @@
   font-weight: 800;
 }
 
-/* Empty state description */
-
 .admin-event-phases-page .admin-pick-night p {
   max-width: 450px;
-
   margin: 0;
 
   color: #596579;
@@ -805,14 +1086,12 @@
   gap: 10px;
 
   margin-top: 22px;
-
   padding: 14px 17px;
 
   border: 1px solid #bce7cd;
   border-radius: 9px;
 
   background: #edfaf2;
-
   color: #111827;
 
   font-size: 13px;
@@ -857,10 +1136,13 @@
 ========================================================= */
 
 .admin-event-phases-page button:focus-visible,
-.admin-event-phases-page input:focus-visible,
-.admin-event-phases-page select:focus-visible {
+.admin-event-phases-page input:focus-visible {
   outline: 2px solid #3478d5;
   outline-offset: 3px;
+}
+
+.admin-event-phases-page .admin-select-trigger:focus-visible {
+  outline: none;
 }
 
 /* =========================================================
@@ -932,6 +1214,10 @@
   .admin-event-phases-page .admin-pick-night {
     min-height: 230px;
     padding: 25px 16px;
+  }
+
+  .admin-event-phases-page .admin-calendar {
+    width: 100%;
   }
 }
 
