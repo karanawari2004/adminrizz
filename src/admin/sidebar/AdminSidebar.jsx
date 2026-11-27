@@ -2,7 +2,6 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import {
-  LayoutDashboard,
   BarChart3,
   CalendarDays,
   CalendarCheck,
@@ -21,6 +20,14 @@ import {
 } from "lucide-react";
 
 import "./AdminSidebar.css";
+
+/* =====================================================
+   LOGO FILES (put these in your /public folder)
+===================================================== */
+
+const LOGO_LIGHT = "/rizztixx-logo-light-theme.png";
+const LOGO_DARK = "/rizztixx-logo-dark-theme.png";
+const LOGO_ICON = "/rizztixx-icon.png";
 
 /* =====================================================
    NAVIGATION ITEM
@@ -112,9 +119,7 @@ export default function AdminSidebar({
       ================================================= */}
 
       <div
-        className={`mini-sidebar-overlay ${
-          isOpen ? "visible" : ""
-        }`}
+        className={`mini-sidebar-overlay ${isOpen ? "visible" : ""}`}
         onClick={closeSidebar}
       />
 
@@ -128,22 +133,41 @@ export default function AdminSidebar({
           ${isOpen ? "mobile-open" : ""}
         `}
       >
-
         {/* =================================================
             HEADER
         ================================================= */}
 
         <div className="mini-sidebar-header">
+          <NavLink
+            to="/admin"
+            className="mini-sidebar-brand"
+            onClick={closeSidebar}
+            aria-label="rizztixx admin home"
+            title={collapsed ? "rizztixx" : ""}
+          >
+            {/* Ticket icon - shown when the sidebar is collapsed */}
+            <img
+              src={LOGO_ICON}
+              alt=""
+              aria-hidden="true"
+              className="mini-sidebar-icon"
+            />
 
-          <div className="mini-sidebar-brand">
-
-            <div className="mini-sidebar-logo">
-              <LayoutDashboard size={25} color="#60a5fa" />
-            </div>
-
-            <span>RIZZ TIX</span>
-
-          </div>
+            {/* Full logo - light & dark versions */}
+            <span className="mini-sidebar-wordmark">
+              <img
+                src={LOGO_LIGHT}
+                alt="rizztixx"
+                className="mini-sidebar-wordmark-img wordmark-light"
+              />
+              <img
+                src={LOGO_DARK}
+                alt=""
+                aria-hidden="true"
+                className="mini-sidebar-wordmark-img wordmark-dark"
+              />
+            </span>
+          </NavLink>
 
           {/* DESKTOP COLLAPSE BUTTON */}
 
@@ -152,12 +176,9 @@ export default function AdminSidebar({
             className="mini-sidebar-toggle"
             onClick={handleCollapse}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            {collapsed ? (
-              <Menu size={19} />
-            ) : (
-              <ChevronLeft size={20} />
-            )}
+            {collapsed ? <Menu size={19} /> : <ChevronLeft size={20} />}
           </button>
 
           {/* MOBILE CLOSE BUTTON */}
@@ -167,10 +188,10 @@ export default function AdminSidebar({
             className="mini-sidebar-toggle mobile-close-btn"
             onClick={closeSidebar}
             title="Close sidebar"
+            aria-label="Close sidebar"
           >
             <X size={20} />
           </button>
-
         </div>
 
         {/* =================================================
@@ -178,14 +199,10 @@ export default function AdminSidebar({
         ================================================= */}
 
         <div className="mini-sidebar-scroll">
-
           {/* MAIN MENU */}
 
           <div className="mini-sidebar-section">
-
-            <div className="mini-sidebar-section-title">
-              MAIN MENU
-            </div>
+            <div className="mini-sidebar-section-title">MAIN MENU</div>
 
             {/* SALES ANALYSIS */}
 
@@ -194,24 +211,24 @@ export default function AdminSidebar({
               className="mini-sidebar-parent"
               onClick={toggleSales}
               title={collapsed ? "Sales Analysis" : ""}
+              aria-expanded={salesOpen && !collapsed}
             >
               <BarChart3 size={19} />
 
               <span>Sales Analysis</span>
 
-              {!collapsed && (
-                <ChevronDown
-                  className={`chevron ${
-                    salesOpen ? "rotated" : ""
-                  }`}
-                  size={16}
-                />
-              )}
+              <ChevronDown
+                className={`chevron ${salesOpen ? "rotated" : ""}`}
+                size={16}
+              />
             </button>
 
-            {salesOpen && !collapsed && (
+            <div
+              className={`mini-sidebar-submenu-wrap ${
+                salesOpen && !collapsed ? "open" : ""
+              }`}
+            >
               <div className="mini-sidebar-submenu">
-
                 <NavItem
                   to="/admin/sales-report"
                   icon={BarChart3}
@@ -227,9 +244,8 @@ export default function AdminSidebar({
                   collapsed={collapsed}
                   onClick={closeSidebar}
                 />
-
               </div>
-            )}
+            </div>
 
             {/* EVENTS */}
 
@@ -238,24 +254,24 @@ export default function AdminSidebar({
               className="mini-sidebar-parent"
               onClick={toggleEvents}
               title={collapsed ? "Events" : ""}
+              aria-expanded={eventsOpen && !collapsed}
             >
               <CalendarDays size={19} />
 
               <span>Events</span>
 
-              {!collapsed && (
-                <ChevronDown
-                  className={`chevron ${
-                    eventsOpen ? "rotated" : ""
-                  }`}
-                  size={16}
-                />
-              )}
+              <ChevronDown
+                className={`chevron ${eventsOpen ? "rotated" : ""}`}
+                size={16}
+              />
             </button>
 
-            {eventsOpen && !collapsed && (
+            <div
+              className={`mini-sidebar-submenu-wrap ${
+                eventsOpen && !collapsed ? "open" : ""
+              }`}
+            >
               <div className="mini-sidebar-submenu">
-
                 <NavItem
                   to="/admin/events"
                   icon={CalendarDays}
@@ -291,7 +307,7 @@ export default function AdminSidebar({
                 <NavItem
                   to="/admin/categories"
                   icon={Tags}
-                  label="Catagory Management"
+                  label="Category Management"
                   collapsed={collapsed}
                   onClick={closeSidebar}
                 />
@@ -303,19 +319,14 @@ export default function AdminSidebar({
                   collapsed={collapsed}
                   onClick={closeSidebar}
                 />
-
               </div>
-            )}
-
+            </div>
           </div>
 
           {/* MANAGEMENT */}
 
           <div className="mini-sidebar-section">
-
-            <div className="mini-sidebar-section-title">
-              MANAGEMENT
-            </div>
+            <div className="mini-sidebar-section-title">MANAGEMENT</div>
 
             <NavItem
               to="/admin/artists"
@@ -332,16 +343,12 @@ export default function AdminSidebar({
               collapsed={collapsed}
               onClick={closeSidebar}
             />
-
           </div>
 
           {/* SETTINGS */}
 
           <div className="mini-sidebar-section">
-
-            <div className="mini-sidebar-section-title">
-              SETTINGS
-            </div>
+            <div className="mini-sidebar-section-title">SETTINGS</div>
 
             <NavItem
               to="/admin/change-password"
@@ -350,9 +357,7 @@ export default function AdminSidebar({
               collapsed={collapsed}
               onClick={closeSidebar}
             />
-
           </div>
-
         </div>
 
         {/* =================================================
@@ -360,7 +365,6 @@ export default function AdminSidebar({
         ================================================= */}
 
         <div className="mini-sidebar-footer">
-
           <button
             type="button"
             className="mini-sidebar-logout"
@@ -370,9 +374,7 @@ export default function AdminSidebar({
             <LogOut size={19} />
             <span>Logout</span>
           </button>
-
         </div>
-
       </aside>
     </>
   );

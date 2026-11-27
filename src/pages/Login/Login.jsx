@@ -9,80 +9,31 @@ import {
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-/* Barcode stripe thicknesses (top to bottom) */
-const BAR_HEIGHTS = [3, 2, 4, 2, 3, 4, 2, 3, 2, 3, 4, 2, 3];
+/*
+  Logo files: put both PNGs in your project's /public folder:
+    public/rizztixx-logo-light-theme.png
+    public/rizztixx-logo-dark-theme.png
+  The CSS shows the right one for the current theme.
+*/
+const LOGO_LIGHT = "./rizztixx-logo-light-theme.png";
+const LOGO_DARK = "./rizztixx-logo-dark-theme.png";
 
-/* RIZZTIX ticket logo */
-function RizzTixLogo({ className = "" }) {
-  let y = 20;
-  const bars = BAR_HEIGHTS.map((h, i) => {
-    const bar = { key: i, y, h };
-    y += h + 2;
-    return bar;
-  });
-
+/* RIZZTIXX logo (light + dark versions) */
+function RizzTixLogo() {
   return (
-    <svg
-      className={`rizztix-logo ${className}`}
-      viewBox="0 0 240 100"
-      role="img"
-      aria-label="RIZZTIX"
-    >
-      {/* Ticket outline with notches on the divider */}
-      <path
-        d="M11 3 H62 A8 8 0 0 0 78 3 H229 Q237 3 237 11 V89 Q237 97 229 97 H78 A8 8 0 0 0 62 97 H11 Q3 97 3 89 V11 Q3 3 11 3 Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinejoin="round"
+    <>
+      <img
+        src={LOGO_LIGHT}
+        alt="rizztixx"
+        className="rizztix-logo rizztix-logo-light"
       />
-
-      {/* Divider */}
-      <path d="M70 11 V89" stroke="currentColor" strokeWidth="3" />
-
-      {/* Barcode */}
-      {bars.map((b) => (
-        <rect
-          key={b.key}
-          x="15"
-          y={b.y}
-          width="43"
-          height={b.h}
-          fill="currentColor"
-        />
-      ))}
-
-      {/* RIZZ (solid) */}
-      <text
-        x="84"
-        y="71"
-        fontSize="58"
-        fontWeight="900"
-        fontFamily="Montserrat, Poppins, 'Arial Black', Arial, sans-serif"
-        fill="currentColor"
-        textLength="88"
-        lengthAdjust="spacingAndGlyphs"
-      >
-        RIZZ
-      </text>
-
-      {/* TIX (outline) */}
-      <text
-        x="174"
-        y="71"
-        fontSize="58"
-        fontWeight="900"
-        fontFamily="Montserrat, Poppins, 'Arial Black', Arial, sans-serif"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        textLength="58"
-        lengthAdjust="spacingAndGlyphs"
-      >
-        TIX
-      </text>
-    </svg>
+      <img
+        src={LOGO_DARK}
+        alt=""
+        aria-hidden="true"
+        className="rizztix-logo rizztix-logo-dark"
+      />
+    </>
   );
 }
 
@@ -113,7 +64,6 @@ export default function Login() {
 
   return (
     <main className="login-page">
-
       {/* Background Decorations */}
       <div className="bg-shape bg-shape-one"></div>
       <div className="bg-shape bg-shape-two"></div>
@@ -129,9 +79,7 @@ export default function Login() {
 
       {/* Login Card */}
       <section className="login-card">
-
         <div className="login-content">
-
           {/* Heading */}
           <div className="login-header">
             <h1>Welcome Back</h1>
@@ -140,16 +88,15 @@ export default function Login() {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit}>
-
             {/* Email */}
             <div className="login-input-group">
-
               <div className="login-input">
                 <Mail size={25} />
 
                 <input
                   type="email"
                   placeholder="Email Address"
+                  aria-label="Email Address"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -159,18 +106,17 @@ export default function Login() {
                   required
                 />
               </div>
-
             </div>
 
             {/* Password */}
             <div className="login-input-group">
-
               <div className="login-input">
                 <LockKeyhole size={25} />
 
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
+                  aria-label="Password"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
@@ -184,25 +130,16 @@ export default function Login() {
                   type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={
-                    showPassword ? "Hide password" : "Show password"
-                  }
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? (
-                    <Eye size={23} />
-                  ) : (
-                    <EyeOff size={23} />
-                  )}
+                  {showPassword ? <Eye size={23} /> : <EyeOff size={23} />}
                 </button>
               </div>
-
             </div>
 
             {/* Remember Me */}
             <div className="login-options">
-
               <label className="remember-option">
-
                 <input
                   type="checkbox"
                   checked={remember}
@@ -210,13 +147,9 @@ export default function Login() {
                 />
 
                 <span>Remember Me</span>
-
               </label>
 
-              <a href="/forgot-password">
-                Forgot Password?
-              </a>
-
+              <a href="/forgot-password">Forgot Password?</a>
             </div>
 
             {/* Error */}
@@ -228,13 +161,10 @@ export default function Login() {
 
             {/* Login Button */}
             <button type="submit" className="login-button">
-
               <span>Login</span>
 
               <ArrowRight size={25} />
-
             </button>
-
           </form>
 
           {/* Divider */}
@@ -251,11 +181,8 @@ export default function Login() {
               <a href="/contact-admin"> Contact Admin</a>
             </p>
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 }

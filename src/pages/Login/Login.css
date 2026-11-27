@@ -1,6 +1,6 @@
 /* ==========================================
    LOGIN PAGE - CLEAN WHITE & BLUE DESIGN
-   COMPACT LAYOUT
+   COMPACT LAYOUT + DARK THEME SUPPORT
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -21,6 +21,49 @@
 }
 
 .login-page {
+  /* ---------- Light theme colours ---------- */
+  --lp-primary: #0878f9;
+  --lp-primary-dark: #0755df;
+  --lp-primary-ring: rgba(8, 120, 249, 0.07);
+
+  --lp-bg: #ffffff;
+  --lp-shape-1a: #dce9ff;
+  --lp-shape-1b: #edf4ff;
+  --lp-shape-2a: #e4eeff;
+  --lp-shape-2b: #f2f7ff;
+  --lp-shape-3: rgba(255, 255, 255, 0.45);
+  --lp-decoration: #bdd5ff;
+
+  --lp-card-bg: rgba(255, 255, 255, 0.96);
+  --lp-card-border: #e0eaff;
+  --lp-card-border-hover: #cbdfff;
+  --lp-card-shadow:
+    0 20px 65px rgba(39, 104, 205, 0.09),
+    0 4px 15px rgba(39, 104, 205, 0.035);
+  --lp-card-shadow-hover:
+    0 25px 75px rgba(39, 104, 205, 0.12),
+    0 5px 20px rgba(39, 104, 205, 0.05);
+
+  --lp-text: #17243d;
+  --lp-text-light: #64748b;
+  --lp-footer-text: #344765;
+
+  --lp-input-bg: #ffffff;
+  --lp-input-border: #d7e1ef;
+  --lp-icon: #455772;
+  --lp-placeholder: #71819b;
+  --lp-toggle: #52647e;
+
+  --lp-check-bg: #ffffff;
+  --lp-check-border: #cbd8e9;
+
+  --lp-error-text: #dc2626;
+  --lp-error-bg: #fef2f2;
+  --lp-error-border: #fecaca;
+
+  --lp-divider: #dce5f1;
+  --lp-divider-text: #8190a9;
+
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -30,11 +73,63 @@
   justify-content: center;
   padding: 25px 20px;
   color-scheme: light;
-  color: var(--text-dark);
-  background: #ffffff;
+  color: var(--lp-text);
+  background: var(--lp-bg);
   font-family: 'Inter', sans-serif;
   overflow: hidden;
   isolation: isolate;
+}
+
+/* ==========================================
+   DARK THEME
+   Works with the common dark-mode switches. Keep the one
+   your site uses and delete the others if you like.
+========================================== */
+
+:is(.dark, .dark-mode, .dark-theme, [data-theme="dark"]) .login-page {
+  --lp-primary: #3b8bff;
+  --lp-primary-dark: #6aa8ff;
+  --lp-primary-ring: rgba(59, 139, 255, 0.18);
+
+  --lp-bg: #0f1115;
+  --lp-shape-1a: #16213a;
+  --lp-shape-1b: #121a2c;
+  --lp-shape-2a: #151f35;
+  --lp-shape-2b: #111827;
+  --lp-shape-3: rgba(255, 255, 255, 0.03);
+  --lp-decoration: #2b4a80;
+
+  --lp-card-bg: rgba(23, 26, 33, 0.96);
+  --lp-card-border: #262d3b;
+  --lp-card-border-hover: #33405a;
+  --lp-card-shadow:
+    0 20px 65px rgba(0, 0, 0, 0.45),
+    0 4px 15px rgba(0, 0, 0, 0.25);
+  --lp-card-shadow-hover:
+    0 25px 75px rgba(0, 0, 0, 0.55),
+    0 5px 20px rgba(0, 0, 0, 0.3);
+
+  --lp-text: #f1f3f7;
+  --lp-text-light: #9aa3b2;
+  --lp-footer-text: #c3cad6;
+
+  --lp-input-bg: #12151b;
+  --lp-input-border: #343b48;
+  --lp-icon: #9aa3b2;
+  --lp-placeholder: #7d8797;
+  --lp-toggle: #9aa3b2;
+
+  --lp-check-bg: #12151b;
+  --lp-check-border: #3a4352;
+
+  --lp-error-text: #fca5a5;
+  --lp-error-bg: #2a1418;
+  --lp-error-border: #5c2530;
+
+  --lp-divider: #2a2f3a;
+  --lp-divider-text: #7d8797;
+
+  color-scheme: dark;
 }
 
 /* ==========================================
@@ -46,14 +141,30 @@
   z-index: 2;
   display: flex;
   justify-content: center;
-  margin-bottom: 14px; /* gap between logo and box */
+  margin-bottom: 16px; /* gap between logo and box */
 }
 
 .rizztix-logo {
   display: block;
-  width: 170px;
+  width: 190px;
   height: auto;
-  color: var(--brand-orange);
+  max-width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Light theme: show the dark-text logo */
+.rizztix-logo-dark {
+  display: none;
+}
+
+/* Dark theme: show the cream-text logo */
+:is(.dark, .dark-mode, .dark-theme, [data-theme="dark"]) .rizztix-logo-light {
+  display: none;
+}
+
+:is(.dark, .dark-mode, .dark-theme, [data-theme="dark"]) .rizztix-logo-dark {
+  display: block;
 }
 
 /* ==========================================
@@ -72,7 +183,7 @@
   height: 550px;
   top: -355px;
   left: -260px;
-  background: linear-gradient(135deg, #dce9ff, #edf4ff);
+  background: linear-gradient(135deg, var(--lp-shape-1a), var(--lp-shape-1b));
   animation: floatShape 9s ease-in-out infinite;
 }
 
@@ -81,7 +192,7 @@
   height: 500px;
   bottom: -340px;
   right: -200px;
-  background: linear-gradient(135deg, #e4eeff, #f2f7ff);
+  background: linear-gradient(135deg, var(--lp-shape-2a), var(--lp-shape-2b));
   animation: floatShape 11s ease-in-out infinite reverse;
 }
 
@@ -90,7 +201,7 @@
   height: 320px;
   top: -240px;
   left: -80px;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--lp-shape-3);
   filter: blur(2px);
 }
 
@@ -100,7 +211,7 @@
   width: 9px;
   height: 32px;
   border-radius: 20px;
-  background: #bdd5ff;
+  background: var(--lp-decoration);
   pointer-events: none;
 }
 
@@ -128,12 +239,10 @@
   max-width: 650px;
   position: relative;
   padding: 45px 38px 30px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1.5px solid #e0eaff;
+  background: var(--lp-card-bg);
+  border: 1.5px solid var(--lp-card-border);
   border-radius: 26px;
-  box-shadow:
-    0 20px 65px rgba(39, 104, 205, 0.09),
-    0 4px 15px rgba(39, 104, 205, 0.035);
+  box-shadow: var(--lp-card-shadow);
   animation: cardAppear 0.8s ease both;
   transition:
     box-shadow 0.35s ease,
@@ -141,10 +250,8 @@
 }
 
 .login-card:hover {
-  border-color: #cbdfff;
-  box-shadow:
-    0 25px 75px rgba(39, 104, 205, 0.12),
-    0 5px 20px rgba(39, 104, 205, 0.05);
+  border-color: var(--lp-card-border-hover);
+  box-shadow: var(--lp-card-shadow-hover);
 }
 
 /* ==========================================
@@ -169,7 +276,7 @@
 .login-header h1 {
   font-size: 35px;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--lp-text);
   letter-spacing: -1.2px;
   margin: 0;
   animation: headingAppear 0.8s ease both;
@@ -178,7 +285,7 @@
 .login-header p {
   font-size: 17px;
   font-weight: 400;
-  color: #64748b;
+  color: var(--lp-text-light);
   margin: 8px 0 0;
 }
 
@@ -197,8 +304,8 @@
   align-items: center;
   gap: 18px;
   padding: 0 23px;
-  background: #ffffff;
-  border: 2px solid var(--border);
+  background: var(--lp-input-bg);
+  border: 2px solid var(--lp-input-border);
   border-radius: 14px;
   transition: all 0.3s ease;
 }
@@ -206,20 +313,20 @@
 /* Input Icon */
 .login-input > svg {
   flex-shrink: 0;
-  color: #455772;
+  color: var(--lp-icon);
   transition: all 0.3s ease;
 }
 
 /* Input Focus */
 .login-input:focus-within {
-  border-color: var(--primary);
-  background: #ffffff;
-  box-shadow: 0 0 0 5px rgba(8, 120, 249, 0.07);
+  border-color: var(--lp-primary);
+  background: var(--lp-input-bg);
+  box-shadow: 0 0 0 5px var(--lp-primary-ring);
   transform: translateY(-1px);
 }
 
 .login-input:focus-within > svg {
-  color: var(--primary);
+  color: var(--lp-primary);
 }
 
 /* Input */
@@ -232,13 +339,23 @@
   font-family: inherit;
   font-size: 17px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--lp-text);
 }
 
 .login-input input::placeholder {
-  color: #71819b;
+  color: var(--lp-placeholder);
   opacity: 1;
   font-weight: 400;
+}
+
+/* Browser autofill (stops the yellow/white box, esp. in dark mode) */
+.login-input input:-webkit-autofill,
+.login-input input:-webkit-autofill:hover,
+.login-input input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--lp-text);
+  box-shadow: 0 0 0 1000px var(--lp-input-bg) inset;
+  caret-color: var(--lp-text);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Password Toggle */
@@ -248,14 +365,14 @@
   justify-content: center;
   border: none;
   background: transparent;
-  color: #52647e;
+  color: var(--lp-toggle);
   padding: 5px;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .password-toggle:hover {
-  color: var(--primary);
+  color: var(--lp-primary);
   transform: scale(1.12);
 }
 
@@ -277,7 +394,7 @@
   gap: 11px;
   font-size: 15px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--lp-text);
   cursor: pointer;
   user-select: none;
 }
@@ -287,17 +404,17 @@
   width: 27px;
   height: 27px;
   margin: 0;
-  border: 2px solid #cbd8e9;
+  border: 2px solid var(--lp-check-border);
   border-radius: 7px;
-  background: #ffffff;
+  background: var(--lp-check-bg);
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
 }
 
 .remember-option input:checked {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--lp-primary);
+  border-color: var(--lp-primary);
 }
 
 .remember-option input:checked::after {
@@ -313,20 +430,20 @@
 }
 
 .remember-option input:hover {
-  border-color: var(--primary);
+  border-color: var(--lp-primary);
 }
 
 /* Forgot Password */
 .login-options > a {
   text-decoration: none;
-  color: var(--primary);
+  color: var(--lp-primary);
   font-size: 15px;
   font-weight: 500;
   transition: all 0.25s ease;
 }
 
 .login-options > a:hover {
-  color: var(--primary-dark);
+  color: var(--lp-primary-dark);
   text-decoration: underline;
 }
 
@@ -405,9 +522,9 @@
 ========================================== */
 
 .login-error {
-  color: #dc2626;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  color: var(--lp-error-text);
+  background: var(--lp-error-bg);
+  border: 1px solid var(--lp-error-border);
   padding: 12px;
   border-radius: 10px;
   text-align: center;
@@ -431,14 +548,14 @@
 .login-divider span {
   height: 2px;
   flex: 1;
-  background: #dce5f1;
+  background: var(--lp-divider);
 }
 
 .login-divider p {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #8190a9;
+  color: var(--lp-divider-text);
 }
 
 /* ==========================================
@@ -453,17 +570,17 @@
   margin: 0;
   font-size: 15px;
   font-weight: 500;
-  color: #344765;
+  color: var(--lp-footer-text);
 }
 
 .login-footer a {
-  color: var(--primary);
+  color: var(--lp-primary);
   text-decoration: none;
   transition: all 0.25s ease;
 }
 
 .login-footer a:hover {
-  color: var(--primary-dark);
+  color: var(--lp-primary-dark);
   text-decoration: underline;
 }
 
@@ -528,6 +645,10 @@
 ========================================== */
 
 @media (max-width: 768px) {
+  .rizztix-logo {
+    width: 170px;
+  }
+
   .login-card {
     max-width: 500px;
     padding: 38px 28px 27px;
@@ -601,11 +722,11 @@
   }
 
   .rizztix-logo {
-    width: 130px;
+    width: 140px;
   }
 
   .login-logo {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .login-card {
